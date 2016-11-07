@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class StyleController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class StyleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var deselectAllButton: UIButton!
@@ -136,13 +136,19 @@ class StyleController: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBAction func cancelChanges() {
         _ = navigationController?.popViewController(animated: true)
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        get {
+            return true
+        }
+    }
 }
 
 /*
  // MARK: - Collection Extension
  */
 
-extension StyleController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension StyleViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let indexPath = IndexPath(row: collectionView.tag, section: 0)

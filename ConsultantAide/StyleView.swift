@@ -17,8 +17,8 @@ class StyleView: UIView {
     var style: String!
     var sizes: Set<String>!
     
-    var defaultFontSize:CGFloat = 32.0
-    var defaultAccentFontSize:CGFloat = 22.0
+    var defaultFontSize:Float = 32.0
+    var defaultAccentFontSize:Float = 22.0
     
     private var snap: UISnapBehavior!
     private var animator: UIDynamicAnimator!
@@ -48,11 +48,11 @@ class StyleView: UIView {
     
     func initializeSubviews(style: String, price: String?, sizes: Set<String>?) {
         // Initialize Font Scale
-        if let size = UserDefaults.standard.value(forKey: "defaultFontSize") as? CGFloat {
+        if let size = UserDefaults.standard.value(forKey: "fontSize") as? Float {
             defaultFontSize = size
         }
         
-        if let size = UserDefaults.standard.value(forKey: "defaultAccentFontSize") as? CGFloat {
+        if let size = UserDefaults.standard.value(forKey: "secondaryFontSize") as? Float {
             defaultAccentFontSize = size
         }
         
@@ -140,18 +140,21 @@ class StyleView: UIView {
         primaryLabel.numberOfLines = 1
         primaryLabel.textAlignment = .center
         
-        if let fontFamily = UserDefaults.standard.object(forKey: "defaultLabelFont") as? String {
-            let font = UIFont(name: fontFamily, size: defaultFontSize)
+        if let fontFamily = UserDefaults.standard.object(forKey: "defaultFont") as? String {
+            let font = UIFont(name: fontFamily, size: CGFloat(defaultFontSize))
+            primaryLabel.font = font
+        } else {
+            let font = UIFont(name: "Gill Sans", size: CGFloat(defaultFontSize))
             primaryLabel.font = font
         }
         
-        if let color = UserDefaults.standard.colorForKey(key: "defaultLabelBackground") {
+        if let color = UserDefaults.standard.colorForKey(key: "primary") {
             primaryLabel.backgroundColor = color
         } else {
             primaryLabel.backgroundColor = ColorPalette.Primary
         }
         
-        if let color = UserDefaults.standard.colorForKey(key: "defaultLabelForeground") {
+        if let color = UserDefaults.standard.colorForKey(key: "primaryFont") {
             primaryLabel.textColor = color
         } else {
             primaryLabel.textColor = UIColor.white
@@ -182,18 +185,21 @@ class StyleView: UIView {
                     label.numberOfLines = 1
                     label.textAlignment = .center
                     
-                    if let fontFamily = UserDefaults.standard.object(forKey: "defaultLabelFont") as? String {
-                        let font = UIFont(name: fontFamily, size: defaultAccentFontSize)
+                    if let fontFamily = UserDefaults.standard.object(forKey: "defaultFont") as? String {
+                        let font = UIFont(name: fontFamily, size: CGFloat(defaultAccentFontSize))
+                        label.font = font
+                    }  else {
+                        let font = UIFont(name: "Gill Sans", size: CGFloat(defaultAccentFontSize))
                         label.font = font
                     }
                     
-                    if let color = UserDefaults.standard.colorForKey(key: "defaultLabelAccentBackground") {
+                    if let color = UserDefaults.standard.colorForKey(key: "secondary") {
                         label.backgroundColor = color
                     } else {
                         label.backgroundColor = ColorPalette.Accent
                     }
                     
-                    if let color = UserDefaults.standard.colorForKey(key: "defaultLabelAccentForeground") {
+                    if let color = UserDefaults.standard.colorForKey(key: "secondaryFont") {
                         label.textColor = color
                     } else {
                         label.textColor = UIColor.white
@@ -239,18 +245,21 @@ class StyleView: UIView {
             priceLabel.numberOfLines = 1
             priceLabel.textAlignment = .center
             
-            if let fontFamily = UserDefaults.standard.object(forKey: "defaultLabelFont") as? String {
-                let font = UIFont(name: fontFamily, size: defaultAccentFontSize)
+            if let fontFamily = UserDefaults.standard.object(forKey: "defaultFont") as? String {
+                let font = UIFont(name: fontFamily, size: CGFloat(defaultAccentFontSize))
+                priceLabel.font = font
+            } else {
+                let font = UIFont(name: "Gill Sans", size: CGFloat(defaultAccentFontSize))
                 priceLabel.font = font
             }
             
-            if let color = UserDefaults.standard.colorForKey(key: "defaultLabelAccentBackground") {
+            if let color = UserDefaults.standard.colorForKey(key: "secondary") {
                 priceLabel.backgroundColor = color
             } else {
                 priceLabel.backgroundColor = ColorPalette.Accent
             }
             
-            if let color = UserDefaults.standard.colorForKey(key: "defaultLabelAccentForeground") {
+            if let color = UserDefaults.standard.colorForKey(key: "secondaryFont") {
                 priceLabel.textColor = color
             } else {
                 priceLabel.textColor = UIColor.white

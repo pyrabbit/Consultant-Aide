@@ -1,0 +1,47 @@
+import UIKit
+
+extension EditorViewController {
+    
+    @IBAction func savePhoto(sender: UIButton) {
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        
+        if let image = UIGraphicsGetImageFromCurrentImageContext() {
+            let scale = image.scale
+            
+            if let ciImageConversion = CIImage(image: image) {
+                let context = CIContext(options: nil)
+                
+                if let newCGImage = context.createCGImage(ciImageConversion, from: ciImageConversion.extent) {
+                    
+                    let cropRect = CGRect(x: scrollView.frame.origin.x * scale,
+                                          y: scrollView.frame.origin.y * scale,
+                                          width: scrollView.frame.width * scale,
+                                          height: scrollView.frame.height * scale)
+                    
+                    if let croppedImage = newCGImage.cropping(to: cropRect) {
+                        let finalImage = UIImage(cgImage: croppedImage)
+                        
+                        let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: .alert)
+                        self.present(savingAlert, animated: true, completion: nil)
+                        
+                        UIImageWriteToSavedPhotosAlbum(finalImage, nil, nil, nil)
+                        
+                        savingAlert.dismiss(animated: true, completion: {
+                            let savedAlert = UIAlertController(title: "Saved!", message: "", preferredStyle: .alert)
+                            self.present(savedAlert, animated: true, completion: nil)
+                            
+                            let maxDisplayTime = DispatchTime.now() + 1
+                            DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
+                                savedAlert.dismiss(animated: true, completion: nil)
+                            })
+                        })
+                    }
+                }
+            }
+        }
+        
+        UIGraphicsEndImageContext()
+    }
+    
+}
