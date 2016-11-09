@@ -2,7 +2,7 @@
 //  Style+CoreDataClass.swift
 //  ConsultantAide
 //
-//  Created by Matthew Orahood on 11/6/16.
+//  Created by Matthew Orahood on 11/9/16.
 //  Copyright © 2016 Matthew Orahood. All rights reserved.
 //
 

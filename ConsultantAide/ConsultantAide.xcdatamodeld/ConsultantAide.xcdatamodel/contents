@@ -3,9 +3,10 @@
     <entity name="Style" representedClassName="Style" syncable="YES">
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sizes" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Style" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Style" positionX="-63" positionY="-18" width="128" height="105"/>
     </elements>
 </model>

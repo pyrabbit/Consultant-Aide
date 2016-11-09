@@ -22,7 +22,7 @@ class ColorPickerViewController: UIViewController {
         selectedColor = UIColor(red: CGFloat(red.value),
                                 green: CGFloat(green.value),
                                 blue: CGFloat(blue.value),
-                                alpha: CGFloat(red.value))
+                                alpha: CGFloat(alpha.value))
         
         preview.backgroundColor = selectedColor
     }

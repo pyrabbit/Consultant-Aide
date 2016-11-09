@@ -130,7 +130,8 @@ class StyleView: UIView {
             let xPos = CGFloat(x)
             let yPos = CGFloat(y)
             
-            center = CGPoint(x: xPos, y: yPos)
+            frame.origin.x = xPos
+            frame.origin.y = yPos
         }
     }
     
@@ -237,7 +238,7 @@ class StyleView: UIView {
         }
     }
     
-    func initializePrice(superview: UIView, price: String) {
+    func initializePrice(superview: UIView, price: String?) {
         priceLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         
         if let priceLabel = self.priceLabel {
@@ -306,7 +307,8 @@ class StyleView: UIView {
                 
                 if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
                     if fullWidthLabels {
-                        self.transform = CGAffineTransform(rotationAngle: 0)
+                        transform = CGAffineTransform(rotationAngle: 0)
+                        frame.origin.x = 0
                     }
                 }
                 
@@ -321,11 +323,14 @@ class StyleView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: containerView)
-            UserDefaults.standard.set(location.x, forKey: "defaultLabelXPosition")
-            UserDefaults.standard.set(location.y, forKey: "defaultLabelYPosition")
+        var point = CGPoint(x: 0, y: 0)
+        
+        for _ in touches {
+            point = frame.origin
         }
+
+        UserDefaults.standard.set(point.x, forKey: "defaultLabelXPosition")
+        UserDefaults.standard.set(point.y, forKey: "defaultLabelYPosition")
     }
     
 }

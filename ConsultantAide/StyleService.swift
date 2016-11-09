@@ -19,7 +19,8 @@ class StyleService {
             
             guard error == nil else {
                 if let error = error {
-                    print(error)
+                    print("Error reaching server, check if app should load from device")
+                    updateFromDevice()
                 }
                 return
             }
@@ -34,10 +35,59 @@ class StyleService {
                 let didRemoveStylesFromDevice = removedStylesFromDevice()
                 
                 if didRemoveStylesFromDevice {
+                    print("Updating styles from server.")
                     updateStyles(brandData)
                 }
             }
-            }.resume()
+        }.resume()
+    }
+    
+    private static func updateFromDevice() {
+        let fetchRequest: NSFetchRequest<Style> = Style.fetchRequest()
+        let nameSort = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [nameSort]
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try controller.performFetch()
+            
+            if let items = controller.fetchedObjects {
+                if items.count < 1 {
+                    print("There was nothing in the CoreData database so we are going to load from device.")
+                    
+                    guard let path = Bundle.main.path(forResource: "consultant_aide_import", ofType: "json") else {
+                        print("Could not load consultant_aide_import.json")
+                        return
+                    }
+                    
+                    do {
+                        let data = try NSData(contentsOf: URL(string: path)!, options: .mappedIfSafe)
+
+                        guard let brandData = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? Dictionary<String, AnyObject> else {
+                            
+                            print("Could not read consultant_aide_import.json into an json data object.")
+                            return
+                        }
+                        
+                        let didRemoveStylesFromDevice = removedStylesFromDevice()
+                        
+                        if didRemoveStylesFromDevice {
+                            print("Updating styles from device.")
+                            updateStyles(brandData)
+                        }
+                    } catch {
+                        print("Could not read consultant_aide_import.json into initialized Data object.")
+                    }
+
+                } else {
+                    print("There is more than one CoreData record so we will skip updating from server for now.")
+                }
+            }
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
     }
     
     private static func updateStyles(_ data: Dictionary<String, AnyObject>) {
@@ -47,12 +97,15 @@ class StyleService {
                 style.brand = brand
                 
                 if let name = item["name"] as? String {
-                    print("Updating from server: ", brand, name)
                     style.name = name
                 }
                 
                 if let sizes = item["sizes"] as? [String] {
                     style.sizes = sizes
+                }
+                
+                if let price = item["price"] as? Float {
+                    style.price = price
                 }
             }
             

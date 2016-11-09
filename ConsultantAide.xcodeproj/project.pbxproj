@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C912F9371DD11E2A00E1C9B5 /* CameraAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C912F9361DD11E2A00E1C9B5 /* CameraAuthorization.swift */; };
+		C912F9391DD11E5700E1C9B5 /* PhotosAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C912F9381DD11E5700E1C9B5 /* PhotosAuthorization.swift */; };
 		C929034B1DCAC68000796369 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C929034A1DCAC68000796369 /* SettingsTableViewController.swift */; };
 		C929034E1DCAD41200796369 /* FontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C929034D1DCAD41200796369 /* FontViewController.swift */; };
 		C92903501DCAD48300796369 /* FontTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C929034F1DCAD48300796369 /* FontTableViewCell.swift */; };
@@ -17,14 +19,14 @@
 		C93E198A1DCFC5D000A5CD7F /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19891DCFC5D000A5CD7F /* StyleViewController.swift */; };
 		C93E198C1DCFC5EE00A5CD7F /* StyleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E198B1DCFC5EE00A5CD7F /* StyleTableViewCell.swift */; };
 		C93E198E1DCFC61000A5CD7F /* SizeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E198D1DCFC61000A5CD7F /* SizeCollectionViewCell.swift */; };
-		C93E19961DCFCAF300A5CD7F /* Style+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19941DCFCAF300A5CD7F /* Style+CoreDataClass.swift */; };
-		C93E19971DCFCAF300A5CD7F /* Style+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19951DCFCAF300A5CD7F /* Style+CoreDataProperties.swift */; };
 		C93E19991DCFCD8200A5CD7F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19981DCFCD8200A5CD7F /* PrimaryButton.swift */; };
 		C97E9FF41DD0147200A9C5BD /* LabelContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */; };
 		C97E9FF61DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */; };
 		C980CFB31DCFD26B00A75425 /* StyleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB21DCFD26B00A75425 /* StyleService.swift */; };
 		C980CFB51DCFE90400A75425 /* EditorViewController+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB41DCFE90400A75425 /* EditorViewController+ScrollView.swift */; };
 		C980CFB71DCFE93500A75425 /* EditorViewController+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB61DCFE93500A75425 /* EditorViewController+ImagePicker.swift */; };
+		C9868FD31DD2A52500589230 /* consultant_aide_import.json in Resources */ = {isa = PBXBuildFile; fileRef = C9868FD21DD2A52500589230 /* consultant_aide_import.json */; };
+		C9CECBEE1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */; };
 		C9E785791DCA575400B337F4 /* RoundedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E785781DCA575400B337F4 /* RoundedTableView.swift */; };
 		C9E7857B1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7857A1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift */; };
 		C9E7857D1DCA5FC100B337F4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7857C1DCA5FC100B337F4 /* RoundedView.swift */; };
@@ -37,9 +39,13 @@
 		C9F073071DCA49240014F0E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F073051DCA49240014F0E7 /* LaunchScreen.storyboard */; };
 		C9F0730F1DCA497B0014F0E7 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F0730E1DCA497B0014F0E7 /* EditorViewController.swift */; };
 		C9F073111DCA4A110014F0E7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F073101DCA4A110014F0E7 /* SettingsViewController.swift */; };
+		C9F80B4A1DD3BB0A00B38DEF /* Style+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F80B481DD3BB0A00B38DEF /* Style+CoreDataClass.swift */; };
+		C9F80B4B1DD3BB0A00B38DEF /* Style+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F80B491DD3BB0A00B38DEF /* Style+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C912F9361DD11E2A00E1C9B5 /* CameraAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraAuthorization.swift; sourceTree = "<group>"; };
+		C912F9381DD11E5700E1C9B5 /* PhotosAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosAuthorization.swift; sourceTree = "<group>"; };
 		C929034A1DCAC68000796369 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C929034D1DCAD41200796369 /* FontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontViewController.swift; sourceTree = "<group>"; };
 		C929034F1DCAD48300796369 /* FontTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontTableViewCell.swift; sourceTree = "<group>"; };
@@ -50,14 +56,14 @@
 		C93E19891DCFC5D000A5CD7F /* StyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
 		C93E198B1DCFC5EE00A5CD7F /* StyleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleTableViewCell.swift; sourceTree = "<group>"; };
 		C93E198D1DCFC61000A5CD7F /* SizeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeCollectionViewCell.swift; sourceTree = "<group>"; };
-		C93E19941DCFCAF300A5CD7F /* Style+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Style+CoreDataClass.swift"; path = "../Style+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C93E19951DCFCAF300A5CD7F /* Style+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Style+CoreDataProperties.swift"; path = "../Style+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C93E19981DCFCD8200A5CD7F /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelContainerView.swift; sourceTree = "<group>"; };
 		C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewControler+PhotoSaving.swift"; sourceTree = "<group>"; };
 		C980CFB21DCFD26B00A75425 /* StyleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleService.swift; sourceTree = "<group>"; };
 		C980CFB41DCFE90400A75425 /* EditorViewController+ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+ScrollView.swift"; sourceTree = "<group>"; };
 		C980CFB61DCFE93500A75425 /* EditorViewController+ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+ImagePicker.swift"; sourceTree = "<group>"; };
+		C9868FD21DD2A52500589230 /* consultant_aide_import.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = consultant_aide_import.json; sourceTree = "<group>"; };
+		C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+CustomLabelView.swift"; sourceTree = "<group>"; };
 		C9E785781DCA575400B337F4 /* RoundedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTableView.swift; sourceTree = "<group>"; };
 		C9E7857A1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+NoStatusBar.swift"; sourceTree = "<group>"; };
 		C9E7857C1DCA5FC100B337F4 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
@@ -72,6 +78,8 @@
 		C9F073081DCA49240014F0E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9F0730E1DCA497B0014F0E7 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		C9F073101DCA4A110014F0E7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C9F80B481DD3BB0A00B38DEF /* Style+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Style+CoreDataClass.swift"; path = "../Style+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C9F80B491DD3BB0A00B38DEF /* Style+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Style+CoreDataProperties.swift"; path = "../Style+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +115,8 @@
 		C93E198F1DCFC6AF00A5CD7F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C93E19941DCFCAF300A5CD7F /* Style+CoreDataClass.swift */,
-				C93E19951DCFCAF300A5CD7F /* Style+CoreDataProperties.swift */,
+				C9F80B481DD3BB0A00B38DEF /* Style+CoreDataClass.swift */,
+				C9F80B491DD3BB0A00B38DEF /* Style+CoreDataProperties.swift */,
 				C9F073001DCA49240014F0E7 /* ConsultantAide.xcdatamodeld */,
 			);
 			name = Models;
@@ -125,6 +133,8 @@
 				C93E19871DCFC59600A5CD7F /* UserDefaults+SavedStyles.swift */,
 				C93E19981DCFCD8200A5CD7F /* PrimaryButton.swift */,
 				C980CFB21DCFD26B00A75425 /* StyleService.swift */,
+				C912F9361DD11E2A00E1C9B5 /* CameraAuthorization.swift */,
+				C912F9381DD11E5700E1C9B5 /* PhotosAuthorization.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -139,6 +149,7 @@
 				C980CFB61DCFE93500A75425 /* EditorViewController+ImagePicker.swift */,
 				C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */,
 				C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */,
+				C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */,
 			);
 			name = Editor;
 			sourceTree = "<group>";
@@ -179,6 +190,7 @@
 		C9F072F81DCA49240014F0E7 /* ConsultantAide */ = {
 			isa = PBXGroup;
 			children = (
+				C9F80B4C1DD3C47700B38DEF /* Resources */,
 				C93E198F1DCFC6AF00A5CD7F /* Models */,
 				C9E7857E1DCA6E1500B337F4 /* Editor */,
 				C93E19841DCFC43200A5CD7F /* Style Selector */,
@@ -193,6 +205,14 @@
 				C9F073081DCA49240014F0E7 /* Info.plist */,
 			);
 			path = ConsultantAide;
+			sourceTree = "<group>";
+		};
+		C9F80B4C1DD3C47700B38DEF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C9868FD21DD2A52500589230 /* consultant_aide_import.json */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +277,7 @@
 			files = (
 				C9F073071DCA49240014F0E7 /* LaunchScreen.storyboard in Resources */,
 				C9F073041DCA49240014F0E7 /* Assets.xcassets in Resources */,
+				C9868FD31DD2A52500589230 /* consultant_aide_import.json in Resources */,
 				C9F072FF1DCA49240014F0E7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,13 +294,16 @@
 				C93E19881DCFC59600A5CD7F /* UserDefaults+SavedStyles.swift in Sources */,
 				C93E198C1DCFC5EE00A5CD7F /* StyleTableViewCell.swift in Sources */,
 				C9E7857D1DCA5FC100B337F4 /* RoundedView.swift in Sources */,
+				C9F80B4A1DD3BB0A00B38DEF /* Style+CoreDataClass.swift in Sources */,
 				C980CFB31DCFD26B00A75425 /* StyleService.swift in Sources */,
+				C912F9371DD11E2A00E1C9B5 /* CameraAuthorization.swift in Sources */,
 				C93E19811DCFC36500A5CD7F /* ColorPallete.swift in Sources */,
 				C9F073021DCA49240014F0E7 /* ConsultantAide.xcdatamodeld in Sources */,
 				C93E198E1DCFC61000A5CD7F /* SizeCollectionViewCell.swift in Sources */,
-				C93E19971DCFCAF300A5CD7F /* Style+CoreDataProperties.swift in Sources */,
+				C912F9391DD11E5700E1C9B5 /* PhotosAuthorization.swift in Sources */,
 				C980CFB71DCFE93500A75425 /* EditorViewController+ImagePicker.swift in Sources */,
 				C97E9FF61DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift in Sources */,
+				C9CECBEE1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift in Sources */,
 				C9E785791DCA575400B337F4 /* RoundedTableView.swift in Sources */,
 				C980CFB51DCFE90400A75425 /* EditorViewController+ScrollView.swift in Sources */,
 				C93E198A1DCFC5D000A5CD7F /* StyleViewController.swift in Sources */,
@@ -287,8 +311,8 @@
 				C93E19991DCFCD8200A5CD7F /* PrimaryButton.swift in Sources */,
 				C9F073111DCA4A110014F0E7 /* SettingsViewController.swift in Sources */,
 				C9E7857B1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift in Sources */,
-				C93E19961DCFCAF300A5CD7F /* Style+CoreDataClass.swift in Sources */,
 				C929034B1DCAC68000796369 /* SettingsTableViewController.swift in Sources */,
+				C9F80B4B1DD3BB0A00B38DEF /* Style+CoreDataProperties.swift in Sources */,
 				C9E785821DCA6E8300B337F4 /* ColorPickerViewController.swift in Sources */,
 				C93E19831DCFC3C100A5CD7F /* CollageImageView.swift in Sources */,
 				C9F0730F1DCA497B0014F0E7 /* EditorViewController.swift in Sources */,

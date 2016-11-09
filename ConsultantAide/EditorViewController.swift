@@ -18,6 +18,11 @@ class EditorViewController: UIViewController {
     @IBOutlet weak var noImageMessage: UILabel!
     @IBOutlet weak var effectView: UIVisualEffectView!
     @IBOutlet weak var photoSourceView: UIView!
+    @IBOutlet weak var customStyleLabelView: UIView!
+    @IBOutlet weak var styleField: UITextField!
+    @IBOutlet weak var priceField: UITextField!
+    @IBOutlet weak var sizeField: UITextField!
+    @IBOutlet weak var customLabelViewFinishButton: UIButton!
     
     var captureIsForPrimaryImage = true
     var labels = [StyleView]()
@@ -25,9 +30,14 @@ class EditorViewController: UIViewController {
     var snap: UISnapBehavior!
     var animator: UIDynamicAnimator!
     var collage: CollageImageView!
+    var customStyleView: StyleView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        styleField.delegate = self
+        priceField.delegate = self
+        sizeField.delegate = self
         
         automaticallyAdjustsScrollViewInsets = false
         scrollView.minimumZoomScale = 1.0
@@ -37,6 +47,7 @@ class EditorViewController: UIViewController {
 
         effectView.isHidden = true
         photoSourceView.layer.cornerRadius = 5
+        customStyleLabelView.layer.cornerRadius = 5
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,12 +56,31 @@ class EditorViewController: UIViewController {
         if primaryImageView.image == nil {
             saveButton.isHidden = true
             noImageMessage.isHidden = false
+            hideLabels()
         } else {
             noImageMessage.isHidden = true
             saveButton.isHidden = false
         }
         
         resetLabels()
+        
+        if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
+            if fullWidthLabels {
+                makeLabelsWide()
+            }
+        }
+
+    }
+    
+    @IBAction func unwindFromStylePicker(segue: UIStoryboardSegue) {
+        for label in labels {
+            label.removeFromSuperview()
+        }
+        
+        labels.removeAll()
+        
+        initializeLabels()
+        showLabels()
     }
     
     func initializeLabels() {
@@ -59,26 +89,25 @@ class EditorViewController: UIViewController {
                 let styleView = StyleView(style: style, price: nil, sizes: sizes)
                 styleView.containWithin(view: containerView)
                 
-                if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
-                    if fullWidthLabels {
-                        styleView.frame.size.width = view.frame.size.width
-                        styleView.frame.origin.x = 0
-                        styleView.primaryLabel.frame.size.width = view.frame.size.width
-                        styleView.primaryLabel.layer.cornerRadius = 0
-                        
-                        if let priceLabel = styleView.priceLabel {
-                            priceLabel.frame.origin.x = styleView.frame.width - priceLabel.frame.width
-                        }
-                        
-                        if let sizeContainer = styleView.sizeContainer {
-                            sizeContainer.frame.origin.x = (styleView.frame.width / 2) - (sizeContainer.frame.width / 2)
-                        }
-                    }
-                }
-                
                 labels.append(styleView)
-                styleView.isHidden = true
                 containerView.addSubview(styleView)
+            }
+        }
+    }
+    
+    func makeLabelsWide() {
+        for styleView in labels {
+            styleView.frame.size.width = view.frame.size.width
+            styleView.frame.origin.x = 0
+            styleView.primaryLabel.frame.size.width = view.frame.size.width
+            styleView.primaryLabel.layer.cornerRadius = 0
+            
+            if let priceLabel = styleView.priceLabel {
+                priceLabel.frame.origin.x = styleView.frame.width - priceLabel.frame.width
+            }
+            
+            if let sizeContainer = styleView.sizeContainer {
+                sizeContainer.frame.origin.x = (styleView.frame.width / 2) - (sizeContainer.frame.width / 2)
             }
         }
     }
@@ -97,7 +126,6 @@ class EditorViewController: UIViewController {
     
     func resetLabels() {
         for label in labels {
-            print("resetting \(label)")
             label.reset()
         }
     }
@@ -132,7 +160,7 @@ class EditorViewController: UIViewController {
     }
     
     @IBAction func unwindToEditor(segue: UIStoryboardSegue) {
-        print("Hello world")
+        resetLabels()
     }
     
     override var prefersStatusBarHidden: Bool {

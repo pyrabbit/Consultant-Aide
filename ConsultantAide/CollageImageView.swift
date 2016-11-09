@@ -31,6 +31,10 @@ class CollageImageView: UIImageView {
             center = CGPoint(x: xPos, y: yPos)
         }
         
+        if let scale = UserDefaults.standard.value(forKey: "collageSize") as? CGFloat {
+            contentScaleFactor = scale
+        }
+        
         // Allow user interaction
         isUserInteractionEnabled = true
         
@@ -66,34 +70,13 @@ class CollageImageView: UIImageView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: containerView)
-            UserDefaults.standard.set(location.x, forKey: "defaultCollageXPosition")
-            UserDefaults.standard.set(location.y, forKey: "defaultCollageYPosition")
+        var point = CGPoint(x: 0, y: 0)
+        
+        for _ in touches {
+            point = frame.origin
         }
+        
+        UserDefaults.standard.set(point.x, forKey: "defaultCollageXPosition")
+        UserDefaults.standard.set(point.y, forKey: "defaultCollageYPosition")
     }
-    
-    //    private var _tempScale : CGFloat = 1.0
-    //    private let _maxScale : CGFloat = 4.0
-    //    private let _minScale : CGFloat = 1.0
-    
-    //    func wasPinched(recognizer: UIPinchGestureRecognizer) {
-    //        switch recognizer.state {
-    //        case .began, .changed:
-    //
-    //            let currentLayerScale : CGFloat = self.layer.value(forKeyPath: "transform.scale") as! CGFloat
-    //            var scale : CGFloat = 1 - (_tempScale - recognizer.scale)
-    //            scale = min(_maxScale / currentLayerScale, scale)
-    //            scale = max(_minScale / currentLayerScale, scale)
-    //
-    //            self.transform = self.transform.scaledBy(x: scale, y: scale)
-    //            _tempScale = recognizer.scale
-    //
-    //
-    //        case .ended:
-    //            _tempScale = 1.0
-    //        default:
-    //            break
-    //        }
-    //    }
 }

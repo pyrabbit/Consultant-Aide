@@ -16,6 +16,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var secondaryFontColor: UIView!
     @IBOutlet weak var defaultFont: UILabel!
     @IBOutlet weak var defaultFontSize: UISlider!
+    @IBOutlet weak var defaultCollageSize: UISlider!
     @IBOutlet weak var defaultSecondaryFontSize: UISlider!
     @IBOutlet weak var fullWidthLabels: UISwitch!
     @IBOutlet weak var mapPrice: UISwitch!
@@ -29,6 +30,10 @@ class SettingsTableViewController: UITableViewController {
     
     @IBAction func setSecondaryFontSize() {
         UserDefaults.standard.set(defaultSecondaryFontSize.value, forKey: "secondaryFontSize")
+    }
+    
+    @IBAction func setCollageSize() {
+        UserDefaults.standard.set(defaultCollageSize.value, forKey: "collageSize")
     }
     
     @IBAction func toggleFullWidthLabels() {
@@ -66,7 +71,7 @@ class SettingsTableViewController: UITableViewController {
             UserDefaults.standard.set(selectedFont, forKey: "defaultFont")
         }
     }
-    
+        
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.selectionStyle = .none
@@ -123,6 +128,10 @@ class SettingsTableViewController: UITableViewController {
         }
         
         if let size = UserDefaults.standard.value(forKey: "secondaryFontSize") as? Float {
+            defaultSecondaryFontSize.value = size
+        }
+        
+        if let size = UserDefaults.standard.value(forKey: "collageSize") as? Float {
             defaultSecondaryFontSize.value = size
         }
         

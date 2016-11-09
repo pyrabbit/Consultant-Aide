@@ -130,11 +130,11 @@ class StyleViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func saveStyles() {
         UserDefaults.standard.setStyles(styles: selectedItems, forKey: "selectedStyles")
-        _ = navigationController?.popViewController(animated: true)
+        performSegue(withIdentifier: "unwindFromStylePicker", sender: self)
     }
     
     @IBAction func cancelChanges() {
-        _ = navigationController?.popViewController(animated: true)
+        performSegue(withIdentifier: "unwindFromStylePicker", sender: self)
     }
     
     override var prefersStatusBarHidden: Bool {

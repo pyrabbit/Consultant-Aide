@@ -1,8 +1,27 @@
 import UIKit
+import Photos
 
 extension EditorViewController {
     
     @IBAction func savePhoto(sender: UIButton) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            PhotosAuthorization.GetAuthorizationStatus(completion: { granted in
+                if granted {
+                    DispatchQueue.main.async {
+                        self.convertAndSavePhoto()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        let encouragement = PhotosAuthorization.EncourageAccess()
+                        self.present(encouragement, animated: true, completion: nil)
+                    }
+                }
+            })
+        }
+    }
+    
+    
+    func convertAndSavePhoto() {
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
         
@@ -43,5 +62,4 @@ extension EditorViewController {
         
         UIGraphicsEndImageContext()
     }
-    
 }

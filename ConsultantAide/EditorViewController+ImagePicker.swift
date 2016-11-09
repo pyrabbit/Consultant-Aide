@@ -4,31 +4,18 @@ import AVFoundation
 extension EditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBAction func presentCameraController() {
-        let authorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
-        
-        if authorizationStatus == .authorized {
-            callCameraPicker()
-        } else if authorizationStatus == .denied {
-            let url = URL(string: UIApplicationOpenSettingsURLString)
-            
-            let alert = UIAlertController(
-                title: "Important",
-                message: "Consultant Aide doesn't have permission to access your camera. If you want to take photos you need to allow camera access.",
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "Allow Camera", style: .cancel, handler: { (alert) -> Void in
-                if let url = url {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-            }))
-            present(alert, animated: true, completion: nil)
-        } else {
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted) in
+        DispatchQueue.global(qos: .userInitiated).async {
+            CameraAuthorization.GetAuthorizationStatus(completion: { granted in
                 if granted {
-                    self.callCameraPicker()
+                    DispatchQueue.main.async {
+                        self.callCameraPicker()
+                    }
                 } else {
-                    self.animatePhotoSourceViewOut()
+                    DispatchQueue.main.async {
+                        self.animatePhotoSourceViewOut()
+                        let encouragement = CameraAuthorization.EncourageAccess()
+                        self.present(encouragement, animated: true, completion: nil)
+                    }
                 }
             })
         }
@@ -78,6 +65,10 @@ extension EditorViewController: UIImagePickerControllerDelegate, UINavigationCon
             self.animatePhotoSourceViewOut()
             
             if self.captureIsForPrimaryImage {
+                if let defaultScale = UserDefaults.standard.value(forKey: "defaultScrollViewScale") as? CGFloat {
+                    self.scrollView.setZoomScale(defaultScale, animated: true)
+                }
+                
                 self.primaryImageView.image = image
                 self.noImageMessage.isHidden = true
                 self.saveButton.isHidden = false
