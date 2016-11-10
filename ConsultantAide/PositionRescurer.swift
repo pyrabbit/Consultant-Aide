@@ -22,4 +22,15 @@ class PositionRescurer {
         UserDefaults.standard.set(point.x, forKey: "defaultCollageXPosition")
         UserDefaults.standard.set(point.y, forKey: "defaultCollageYPosition")
     }
+    
+    static func rescue(with point: CGPoint) {
+        UserDefaults.standard.set(point.x, forKey: "defaultLabelXPosition")
+        UserDefaults.standard.set(point.y, forKey: "defaultLabelYPosition")
+        UserDefaults.standard.set(point.y, forKey: "defaultWatermarkTextYCenter")
+        UserDefaults.standard.set(point.x, forKey: "defaultWatermarkTextXCenter")
+        UserDefaults.standard.set(point.y, forKey: "defaultWatermarkImageYCenter")
+        UserDefaults.standard.set(point.x, forKey: "defaultWatermarkImageXCenter")
+        UserDefaults.standard.set(point.x, forKey: "defaultCollageXPosition")
+        UserDefaults.standard.set(point.y, forKey: "defaultCollageYPosition")
+    }
 }

@@ -73,7 +73,7 @@ class CollageImageView: UIImageView {
         var point = CGPoint(x: 0, y: 0)
         
         for _ in touches {
-            point = frame.origin
+            point = center
         }
         
         UserDefaults.standard.set(point.x, forKey: "defaultCollageXPosition")

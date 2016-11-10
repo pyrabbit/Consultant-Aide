@@ -215,7 +215,8 @@
 			"price": 42.00
 		}, {
 			"name": "Mimi",
-			"sizes": ["ONE SIZE"]
+			"sizes": ["ONE SIZE"],
+            "price": 75.00
 		}, {
 			"name": "Monroe",
 			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],

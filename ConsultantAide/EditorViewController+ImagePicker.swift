@@ -88,30 +88,23 @@ extension EditorViewController: UIImagePickerControllerDelegate, UINavigationCon
                 
                 self.primaryImageView.image = image
                 self.noImageMessage.isHidden = true
-                self.saveButton.isHidden = false
-//                self.defaultRatioButton.isHidden = false
-//                self.squareRatioButton.isHidden = false
-//                
-//                if self.primaryImageView.image != nil {
-//                    if let imageRatio = UserDefaults.standard.value(forKey: "defaultImageRatio") as? String {
-//                        if imageRatio == "square" {
-//                            self.setSquareRatio()
-//                        } else {
-//                            self.setDefaultRatio()
-//                        }
-//                    }
-//                }
-                
+                self.assistantToolbar.isHidden = false
                 self.showLabels()
                 self.toggleWatermarkVisibility()
                 self.toggleWatermarkImageVisibility()
-            } else {
-                let collageRect = CGRect(x: 0, y: 0, width: 125, height: 125)
-                let collage = CollageImageView(frame: collageRect)
-                collage.image = image
-                collage.containWithin(view: self.containerView)
+                self.toggleRatioButton.isHidden = false
                 
-                self.containerView.addSubview(collage)
+                if let decider = UserDefaults.standard.value(forKey: "editorIsSquare") as? Bool {
+                    if decider {
+                        self.makeEditorSquare()
+                    } else {
+                        self.makeEditorRectangular()
+                    }
+                } else {
+                    self.makeEditorSquare()
+                }
+            } else {
+                self.setCollage(image: image)
             }
         })
     }

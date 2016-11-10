@@ -14,7 +14,6 @@ class EditorViewController: UIViewController {
     @IBOutlet weak var save: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var primaryImageView: UIImageView!
-    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var noImageMessage: UILabel!
     @IBOutlet weak var effectView: UIVisualEffectView!
     @IBOutlet weak var photoSourceView: UIView!
@@ -23,13 +22,16 @@ class EditorViewController: UIViewController {
     @IBOutlet weak var priceField: UITextField!
     @IBOutlet weak var sizeField: UITextField!
     @IBOutlet weak var customLabelViewFinishButton: UIButton!
+    @IBOutlet weak var assistantToolbar: UIToolbar!
+    @IBOutlet weak var removeCollageButton: UIBarButtonItem!
+    @IBOutlet weak var toggleRatioButton: UIButton!
     
     var captureIsForPrimaryImage = true
     var labels = [StyleView]()
     
     var snap: UISnapBehavior!
     var animator: UIDynamicAnimator!
-    var collage: CollageImageView!
+    var collage: CollageImageView?
     var customStyleView: StyleView?
     var watermark: WatermarkLabel?
     var watermarkImage: WatermarkImage?
@@ -57,12 +59,20 @@ class EditorViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if primaryImageView.image == nil {
-            saveButton.isHidden = true
+            assistantToolbar.isHidden = true
             noImageMessage.isHidden = false
+            toggleRatioButton.isHidden = true
             hideLabels()
         } else {
             noImageMessage.isHidden = true
-            saveButton.isHidden = false
+            assistantToolbar.isHidden = false
+            toggleRatioButton.isHidden = false
+        }
+        
+        if collage != nil {
+            removeCollageButton.isEnabled = true
+        } else {
+            removeCollageButton.isEnabled = false
         }
         
         resetLabels()
@@ -216,40 +226,99 @@ class EditorViewController: UIViewController {
             label.reset()
         }
         
-
-    }
-    
-    func removeCollage() {
-        let alert = UIAlertController(title: "Collage Photo", message: "Are you sure you want to remove the collage photo?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { (action) -> Void in
-            self.collage?.removeFromSuperview()
-        }))
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func setCollage(image: UIImage) {
-        if let x = UserDefaults.standard.value(forKey: "defaultCollageXPosition") as? Int,
-            let y = UserDefaults.standard.value(forKey: "defaultCollageYPosition") as? Int {
-            
-            let collageRect = CGRect(x: x, y: y, width: 0, height: 0)
-            
-            collage = CollageImageView(frame: collageRect)
-            collage.image = image
-            collage.isUserInteractionEnabled = true
-            collage.containWithin(view: self.containerView)
-            
-            containerView.addSubview(collage)
-            
-            let longPressCollageGesture = UILongPressGestureRecognizer(target: self, action: #selector(EditorViewController.removeCollage))
-            longPressCollageGesture.cancelsTouchesInView = true
-            collage.addGestureRecognizer(longPressCollageGesture)
+        if collage != nil {
+            setCollage(image: collage?.image)
         }
+    }
+    
+    func setCollage(image: UIImage?) {
+        guard image != nil else {
+            print("exiting set collage")
+            return
+        }
+        
+        var size: CGFloat = 125
+        
+        if let newSize = UserDefaults.standard.value(forKey: "defaultCollageSize") as? CGFloat {
+            size = newSize
+        }
+        
+        if collage != nil {
+            collage?.removeFromSuperview()
+        }
+        
+        var collageRect = CGRect(x: containerView.center.x, y: containerView.center.y, width: size, height: size)
+        
+        if let x = UserDefaults.standard.value(forKey: "defaultCollageXPosition") as? CGFloat,
+            let y = UserDefaults.standard.value(forKey: "defaultCollageYPosition") as? CGFloat {
+            
+            collageRect = CGRect(x: x, y: y, width: size, height: size)
+        }
+        
+        collage = CollageImageView(frame: collageRect)
+        collage?.image = image
+        collage?.isUserInteractionEnabled = true
+        collage?.containWithin(view: self.containerView)
+        removeCollageButton.isEnabled = true
+        
+        if let collageView = collage {
+            containerView.addSubview(collageView)
+        }
+    }
+    
+    @IBAction func removeCollage() {
+        collage?.removeFromSuperview()
+        collage = nil
+        removeCollageButton.isEnabled = false
     }
     
     @IBAction func unwindToEditor(segue: UIStoryboardSegue) {
         resetLabels()
+    }
+    
+    @IBAction func toggleRatio() {
+        if scrollView.frame.width == scrollView.frame.height {
+            makeEditorRectangular()
+            UserDefaults.standard.set(false, forKey: "editorIsSquare")
+        } else {
+            makeEditorSquare()
+            UserDefaults.standard.set(true, forKey: "editorIsSquare")
+        }
+    }
+    
+    func makeEditorRectangular() {
+        containerView.translatesAutoresizingMaskIntoConstraints = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = true
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            let rect = CGRect(x: 0, y: 40, width: self.view.frame.width, height: self.assistantToolbar.frame.minY - 40)
+            self.containerView.frame = rect
+            self.scrollView.frame = rect
+            
+            let point = self.editorCenter()
+            self.containerView.center = point
+            self.scrollView.center = point
+        })
+    }
+    
+    func makeEditorSquare() {
+        containerView.translatesAutoresizingMaskIntoConstraints = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = true
+        UIView.animate(withDuration: 0.25, animations: {
+            let rect = CGRect(x: 0, y: 40, width: self.view.frame.width, height: self.view.frame.width)
+            self.containerView.frame = rect
+            self.scrollView.frame = rect
+            
+            let point = self.editorCenter()
+            self.containerView.center = point
+            self.scrollView.center = point
+        })
+    }
+    
+    func editorCenter() -> CGPoint {
+        let y = (self.assistantToolbar.frame.minY + 40) / 2
+        let x = self.view.frame.width / 2
+        return CGPoint(x: x, y: y)
     }
     
     override var prefersStatusBarHidden: Bool {

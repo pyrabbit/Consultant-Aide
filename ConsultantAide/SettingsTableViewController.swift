@@ -17,6 +17,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var defaultFont: UILabel!
     @IBOutlet weak var defaultFontSize: UISlider!
     @IBOutlet weak var defaultSecondaryFontSize: UISlider!
+    @IBOutlet weak var defaultCollageSize: UISlider!
     @IBOutlet weak var fullWidthLabels: UISwitch!
     @IBOutlet weak var mapPrice: UISwitch!
     @IBOutlet weak var watermarkImage: UIImageView!
@@ -57,6 +58,9 @@ class SettingsTableViewController: UITableViewController {
         UserDefaults.standard.set(watermarkImageToggle.isOn, forKey: "watermarkImage")
     }
     
+    @IBAction func setDefaultCollageSize() {
+        UserDefaults.standard.set(defaultCollageSize.value, forKey: "defaultCollageSize")
+    }
     
     @IBAction func setWatermarkFontSize() {
         UserDefaults.standard.set(watermarkFontSize.value, forKey: "watermarkFontSize")
@@ -113,11 +117,11 @@ class SettingsTableViewController: UITableViewController {
             performSegue(withIdentifier: "segueToColorPicker", sender: self)
         case 4:
             performSegue(withIdentifier: "segueToFontPicker", sender: self)
-        case 10:
+        case 11:
             showWatermarkAlert()
-        case 13:
+        case 14:
             presentPhotoLibraryController()
-        case 15:
+        case 16:
             showRescueAlert()
         default:
             print("Some other path was selected.")
@@ -196,6 +200,10 @@ class SettingsTableViewController: UITableViewController {
             defaultSecondaryFontSize.value = size
         }
         
+        if let size = UserDefaults.standard.value(forKey: "defaultCollageSize") as? Float {
+            defaultCollageSize.value = size
+        }
+        
         if let decider = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
             fullWidthLabels.isOn = decider
         }
@@ -223,6 +231,8 @@ class SettingsTableViewController: UITableViewController {
         if let size = UserDefaults.standard.value(forKey: "watermarkTransparency") as? Float {
             watermarkTransparency.value = size
         }
+        
+        
         
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent("watermark.png").path
