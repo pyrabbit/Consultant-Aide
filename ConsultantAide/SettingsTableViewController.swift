@@ -16,10 +16,15 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var secondaryFontColor: UIView!
     @IBOutlet weak var defaultFont: UILabel!
     @IBOutlet weak var defaultFontSize: UISlider!
-    @IBOutlet weak var defaultCollageSize: UISlider!
     @IBOutlet weak var defaultSecondaryFontSize: UISlider!
     @IBOutlet weak var fullWidthLabels: UISwitch!
     @IBOutlet weak var mapPrice: UISwitch!
+    @IBOutlet weak var watermarkImage: UIImageView!
+    @IBOutlet weak var watermarkTransparency: UISlider!
+    @IBOutlet weak var watermarkToggle: UISwitch!
+    @IBOutlet weak var watermarkTextLabel: UILabel!
+    @IBOutlet weak var watermarkImageToggle: UISwitch!
+    @IBOutlet weak var watermarkFontSize: UISlider!
     
     var colorFor = ""
     var color: UIColor?
@@ -32,16 +37,29 @@ class SettingsTableViewController: UITableViewController {
         UserDefaults.standard.set(defaultSecondaryFontSize.value, forKey: "secondaryFontSize")
     }
     
-    @IBAction func setCollageSize() {
-        UserDefaults.standard.set(defaultCollageSize.value, forKey: "collageSize")
-    }
-    
     @IBAction func toggleFullWidthLabels() {
         UserDefaults.standard.set(fullWidthLabels.isOn, forKey: "fullWidthLabels")
     }
     
     @IBAction func toggleMapPrice() {
         UserDefaults.standard.set(mapPrice.isOn, forKey: "mapPrice")
+    }
+    
+    @IBAction func setWatermarkTransparency() {
+        UserDefaults.standard.set(watermarkTransparency.value, forKey: "watermarkTransparency")
+    }
+    
+    @IBAction func toggleWatermark() {
+        UserDefaults.standard.set(watermarkToggle.isOn, forKey: "watermark")
+    }
+
+    @IBAction func toggleWatermarkImage() {
+        UserDefaults.standard.set(watermarkImageToggle.isOn, forKey: "watermarkImage")
+    }
+    
+    
+    @IBAction func setWatermarkFontSize() {
+        UserDefaults.standard.set(watermarkFontSize.value, forKey: "watermarkFontSize")
     }
     
     @IBAction func unwindFromColorPicker(segue: UIStoryboardSegue) {
@@ -95,9 +113,56 @@ class SettingsTableViewController: UITableViewController {
             performSegue(withIdentifier: "segueToColorPicker", sender: self)
         case 4:
             performSegue(withIdentifier: "segueToFontPicker", sender: self)
+        case 10:
+            showWatermarkAlert()
+        case 13:
+            presentPhotoLibraryController()
+        case 15:
+            showRescueAlert()
         default:
             print("Some other path was selected.")
         }
+    }
+    
+    func showRescueAlert() {
+        let alert = UIAlertController(title: "Rescue Label Positions", message: "If labels are stuck or missing this will reset them to a safe position.", preferredStyle: .alert)
+        
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Do it.", style: .destructive, handler: { (action) -> Void in
+            PositionRescurer.rescue()
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showWatermarkAlert() {
+        let alert = UIAlertController(title: "Watermark", message: "Enter any additional information to be displayed on the photo.", preferredStyle: .alert)
+        
+        alert.addTextField(configurationHandler: { (textfield) -> Void in
+            if let watermark = UserDefaults.standard.value(forKey: "watermarkText") {
+                textfield.text = watermark as? String
+            } else {
+                textfield.text = ""
+            }
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
+            let textField = alert.textFields![0] as UITextField
+            
+            guard let text = textField.text else {
+                alert.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            UserDefaults.standard.set(text, forKey: "watermarkText")
+            self.watermarkTextLabel.text = text
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,16 +196,41 @@ class SettingsTableViewController: UITableViewController {
             defaultSecondaryFontSize.value = size
         }
         
-        if let size = UserDefaults.standard.value(forKey: "collageSize") as? Float {
-            defaultSecondaryFontSize.value = size
-        }
-        
         if let decider = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
             fullWidthLabels.isOn = decider
         }
         
         if let decider = UserDefaults.standard.value(forKey: "mapPrice") as? Bool {
             mapPrice.isOn = decider
+        }
+        
+        if let decider = UserDefaults.standard.value(forKey: "watermark") as? Bool {
+            watermarkToggle.isOn = decider
+        }
+        
+        if let text = UserDefaults.standard.value(forKey: "watermarkText") as? String {
+            watermarkTextLabel.text = text
+        }
+        
+        if let size = UserDefaults.standard.value(forKey: "watermarkFontSize") as? Float {
+            watermarkFontSize.value = size
+        }
+        
+        if let decider = UserDefaults.standard.value(forKey: "watermarkImage") as? Bool {
+            watermarkImageToggle.isOn = decider
+        }
+        
+        if let size = UserDefaults.standard.value(forKey: "watermarkTransparency") as? Float {
+            watermarkTransparency.value = size
+        }
+        
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent("watermark.png").path
+        
+        if FileManager.default.fileExists(atPath: filePath) {
+            if let watermark = UIImage(contentsOfFile: filePath) {
+                watermarkImage.image = watermark
+            }
         }
     }
     

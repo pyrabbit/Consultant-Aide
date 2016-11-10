@@ -23,6 +23,10 @@ extension EditorViewController: UITextFieldDelegate {
         customLabel.containWithin(view: containerView)
         containerView.addSubview(customLabel)
         
+        if primaryImageView.image == nil {
+            customLabel.isHidden = true
+        }
+        
         if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
             if fullWidthLabels {
                 makeLabelsWide()
@@ -33,22 +37,24 @@ extension EditorViewController: UITextFieldDelegate {
     }
     
     @IBAction func changeStyle() {
-        guard let style = styleField.text else {
+        guard let style = styleField.text, style.characters.count > 0 else {
             customLabelViewFinishButton.isHidden = true
             return
         }
         
-        var price: String?
+        var price: Float = 0.0
         
         if let text = priceField.text {
             if text.isEmpty {
-                price = nil
+                price = 0.0
             } else {
-                price = text
+                if let value = Float(text) {
+                    price = value
+                }
             }
         }
         
-        var sizes: Set<String>?
+        var sizes: [String]?
         
         if let text = sizeField.text {
             if text.isEmpty {

@@ -13,9 +13,9 @@ class StyleView: UIView {
     var priceLabel: UILabel?
     var sizeContainer: UIView?
     
-    var price: String!
+    var price: Float!
     var style: String!
-    var sizes: Set<String>!
+    var sizes: [String]!
     
     var defaultFontSize:Float = 32.0
     var defaultAccentFontSize:Float = 22.0
@@ -28,7 +28,7 @@ class StyleView: UIView {
         super.init(coder: aDecoder)
     }
     
-    init(style: String, price: String?, sizes: Set<String>?) {
+    init(style: String, price: Float = 0.0, sizes: [String]?) {
         
         if let x = UserDefaults.standard.value(forKey: "defaultLabelXPosition") as? Int,
             let y = UserDefaults.standard.value(forKey: "defaultLabelYPosition") as? Int {
@@ -46,7 +46,7 @@ class StyleView: UIView {
         isUserInteractionEnabled = true
     }
     
-    func initializeSubviews(style: String, price: String?, sizes: Set<String>?) {
+    func initializeSubviews(style: String, price: Float, sizes: [String]?) {
         // Initialize Font Scale
         if let size = UserDefaults.standard.value(forKey: "fontSize") as? Float {
             defaultFontSize = size
@@ -60,14 +60,18 @@ class StyleView: UIView {
         initializeStyle(superview: self, style: style)
         
         // Create the UILabel for the price
-        if let price = price {
+        var mapDecider: Bool = false
+        
+        if let savedDecider = UserDefaults.standard.value(forKey: "mapPrice") as? Bool {
+            mapDecider = savedDecider
+        }
+        
+        if price > 0 && mapDecider {
             initializePrice(superview: self, price: price)
         }
         
         // Create the UIView for the sizeCollection
-        if let sizes = sizes {
-            initializeSizes(superview: self, sizes: sizes)
-        }
+        initializeSizes(superview: self, sizes: sizes)
         
         // Resize self to match size of content
         var priceHeight:CGFloat = 0.0
@@ -133,6 +137,13 @@ class StyleView: UIView {
             frame.origin.x = xPos
             frame.origin.y = yPos
         }
+        
+        if let x = UserDefaults.standard.value(forKey: "defaultLabelXPosition") as? Int,
+            let y = UserDefaults.standard.value(forKey: "defaultLabelYPosition") as? Int {
+            
+            let point = CGPoint(x: x, y: y)
+            center = point
+        }
     }
     
     func initializeStyle(superview: UIView, style: String) {
@@ -172,7 +183,11 @@ class StyleView: UIView {
         superview.addSubview(primaryLabel)
     }
     
-    func initializeSizes(superview: UIView, sizes: Set<String>) {
+    func initializeSizes(superview: UIView, sizes: [String]?) {
+        guard let sizes = sizes else {
+            return
+        }
+        
         if !sizes.isEmpty {
             sizeContainer = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
             
@@ -238,11 +253,12 @@ class StyleView: UIView {
         }
     }
     
-    func initializePrice(superview: UIView, price: String?) {
+    func initializePrice(superview: UIView, price: Float) {
         priceLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         
         if let priceLabel = self.priceLabel {
-            priceLabel.text = price
+            
+            priceLabel.text = String(format: "$%.0f", price)
             priceLabel.numberOfLines = 1
             priceLabel.textAlignment = .center
             
@@ -326,7 +342,7 @@ class StyleView: UIView {
         var point = CGPoint(x: 0, y: 0)
         
         for _ in touches {
-            point = frame.origin
+            point = center
         }
 
         UserDefaults.standard.set(point.x, forKey: "defaultLabelXPosition")

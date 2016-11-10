@@ -31,6 +31,8 @@ class EditorViewController: UIViewController {
     var animator: UIDynamicAnimator!
     var collage: CollageImageView!
     var customStyleView: StyleView?
+    var watermark: WatermarkLabel?
+    var watermarkImage: WatermarkImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +46,8 @@ class EditorViewController: UIViewController {
         scrollView.maximumZoomScale = 6.0
         
         initializeLabels()
-
+        setWatermark()
+        
         effectView.isHidden = true
         photoSourceView.layer.cornerRadius = 5
         customStyleLabelView.layer.cornerRadius = 5
@@ -63,13 +66,108 @@ class EditorViewController: UIViewController {
         }
         
         resetLabels()
+        setWatermark()
+        setWatermarkImage()
         
         if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
             if fullWidthLabels {
                 makeLabelsWide()
             }
         }
-
+    }
+    
+    func setWatermarkImage() {
+        guard watermarkImage == nil else {
+            watermarkImage?.reset()
+            toggleWatermarkImageVisibility()
+            return
+        }
+        
+        if let decider = UserDefaults.standard.value(forKey: "watermarkImage") as? Bool {
+            
+            if decider {
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let filePath = documentsURL.appendingPathComponent("watermark.png").path
+                
+                if FileManager.default.fileExists(atPath: filePath) {
+                    if let img = UIImage(contentsOfFile: filePath) {
+                        let rect = CGRect(x: 0, y: 0, width: 200, height: 100)
+                        watermarkImage = WatermarkImage(frame: rect)
+                        watermarkImage?.image = img
+                        watermarkImage?.containWithin(view: containerView)
+                        watermarkImage?.sizeToFit()
+                        watermarkImage?.center = containerView.center
+                        
+                        
+                        if let image = watermarkImage {
+                            containerView.addSubview(image)
+                            image.reset()
+                            toggleWatermarkImageVisibility()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func setWatermark() {
+        guard watermark == nil else {
+            watermark?.reset()
+            toggleWatermarkVisibility()
+            return
+        }
+        
+        if let decider = UserDefaults.standard.value(forKey: "watermark") as? Bool,
+            let text = UserDefaults.standard.value(forKey: "watermarkText") as? String {
+            
+            if decider {
+                let rect = CGRect(x: 0, y: 0, width: 200, height: 100)
+                watermark = WatermarkLabel(frame: rect)
+                watermark?.text = text
+                watermark?.containWithin(view: containerView)
+                watermark?.sizeToFit()
+                
+                if let label = watermark {
+                    containerView.addSubview(label)
+                    label.reset()
+                    toggleWatermarkVisibility()
+                }
+            }
+        }
+    }
+    
+    func toggleWatermarkVisibility() {
+        if let decider = UserDefaults.standard.value(forKey: "watermark") as? Bool {
+            if decider {
+                watermark?.isHidden = false
+            } else {
+                watermark?.isHidden = true
+                return
+            }
+        }
+        
+        if primaryImageView.image != nil {
+            watermark?.isHidden = false
+        } else {
+            watermark?.isHidden = true
+        }
+    }
+    
+    func toggleWatermarkImageVisibility() {
+        if let decider = UserDefaults.standard.value(forKey: "watermarkImage") as? Bool {
+            if decider {
+                watermarkImage?.isHidden = false
+            } else {
+                watermarkImage?.isHidden = true
+                return
+            }
+        }
+        
+        if primaryImageView.image != nil {
+            watermarkImage?.isHidden = false
+        } else {
+            watermarkImage?.isHidden = true
+        }
     }
     
     @IBAction func unwindFromStylePicker(segue: UIStoryboardSegue) {
@@ -83,18 +181,7 @@ class EditorViewController: UIViewController {
         showLabels()
     }
     
-    func initializeLabels() {
-        if let styles = UserDefaults.standard.stylesForKey(key: "selectedStyles") {
-            for (style,sizes) in styles {
-                let styleView = StyleView(style: style, price: nil, sizes: sizes)
-                styleView.containWithin(view: containerView)
-                
-                labels.append(styleView)
-                containerView.addSubview(styleView)
-            }
-        }
-    }
-    
+       
     func makeLabelsWide() {
         for styleView in labels {
             styleView.frame.size.width = view.frame.size.width
@@ -128,6 +215,8 @@ class EditorViewController: UIViewController {
         for label in labels {
             label.reset()
         }
+        
+
     }
     
     func removeCollage() {
@@ -144,7 +233,7 @@ class EditorViewController: UIViewController {
         if let x = UserDefaults.standard.value(forKey: "defaultCollageXPosition") as? Int,
             let y = UserDefaults.standard.value(forKey: "defaultCollageYPosition") as? Int {
             
-            let collageRect = CGRect(x: x, y: y, width: 125, height: 125)
+            let collageRect = CGRect(x: x, y: y, width: 0, height: 0)
             
             collage = CollageImageView(frame: collageRect)
             collage.image = image

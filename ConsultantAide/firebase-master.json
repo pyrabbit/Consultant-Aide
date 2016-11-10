@@ -1,0 +1,254 @@
+{
+	"brands": {
+		"lularoe": [{
+			"name": "Adeline",
+			"sizes": ["2T", "4", "6", "8", "10", "12"]
+		}, {
+			"name": "Amelia",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Ana",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Azure",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Azure - Kids",
+			"sizes": ["2", "4", "6", "8", "10", "12", "14"]
+		}, {
+			"name": "Bianka",
+			"sizes": ["1", "2", "3"]
+		}, {
+			"name": "Cassie",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Carly",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Classic T",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Gracie",
+			"sizes": ["2", "4", "6", "8", "10", "12", "14"]
+		}, {
+			"name": "Irma",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Jade",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Jill",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Jordan",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Joy",
+			"sizes": ["XS", "S", "M", "L", "XL"]
+		}, {
+			"name": "Julia",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Leggings",
+			"sizes": ["ONE SIZE", "TALL/CURVY", "TWEEN", "KIDS S/M", "KIDS L/XL"]
+		}, {
+			"name": "Lindsay",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Lola",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Lucy - Skirt",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Lucy - Sleeve",
+			"sizes": ["2", "3/4", "5/6", "7", "8/10", "12/14"]
+		}, {
+			"name": "Lucy - Tank",
+			"sizes": ["2", "3/4", "5/6", "7", "8/10", "12/14"]
+		}, {
+			"name": "Madison",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Mae",
+			"sizes": ["2T", "4", "6", "8", "10", "12"]
+		}, {
+			"name": "Mark",
+			"sizes": ["M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Maxi",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Mimi",
+			"sizes": ["ONE SIZE"]
+		}, {
+			"name": "Monroe",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Nicole",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Patrick",
+			"sizes": ["M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Perfect T",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Randy",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Sarah",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]
+		}, {
+			"name": "Sloan",
+			"sizes": ["2", "4", "6", "8", "10", "12", "14"]
+		}]
+	},
+	"api-v2": {
+		"lularoe": [{
+			"name": "Adeline",
+			"sizes": ["2T", "4", "6", "8", "10", "12"],
+			"price": 30.00
+		}, {
+			"name": "Amelia",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 65.00
+		}, {
+			"name": "Ana",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 60.00
+		}, {
+			"name": "Azure",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 35.00
+		}, {
+			"name": "Azure - Kids",
+			"sizes": ["2", "4", "6", "8", "10", "12", "14"],
+			"price": 25.00
+		}, {
+			"name": "Bianka",
+			"sizes": ["1", "2", "3"],
+			"price": 28.00
+		}, {
+			"name": "Cassie",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 35.00
+		}, {
+			"name": "Carly",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 55.00
+		}, {
+			"name": "Classic T",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 35.00
+		}, {
+			"name": "Gracie",
+			"sizes": ["2", "4", "6", "8", "10", "12", "14"],
+			"price": 28.00
+		}, {
+			"name": "Irma",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 35.00
+		}, {
+			"name": "Jade",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 55.00
+		}, {
+			"name": "Jill",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 55.00
+		}, {
+			"name": "Jordan",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 65.00
+		}, {
+			"name": "Joy",
+			"sizes": ["XS", "S", "M", "L", "XL"],
+			"price": 60.00
+		}, {
+			"name": "Julia",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 45.00
+		}, {
+			"name": "Leggings",
+			"sizes": ["ONE SIZE", "TALL/CURVY"],
+			"price": 25.00
+		}, {
+			"name": "Leggings - Kids",
+			"sizes": ["TWEEN", "KIDS S/M", "KIDS L/XL"],
+			"price": 23.00
+		}, {
+			"name": "Lindsay",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 48.00
+		}, {
+			"name": "Lola",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 52.00
+		}, {
+			"name": "Lucy",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 46.00
+		}, {
+			"name": "Dot Dot Smile Sleeve",
+			"sizes": ["2", "3/4", "5/6", "7", "8/10", "12/14"],
+			"price": 36.00
+		}, {
+			"name": "Dot Dot Smile Tank",
+			"sizes": ["2", "3/4", "5/6", "7", "8/10", "12/14"],
+			"price": 36.00
+		}, {
+			"name": "Madison",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 46.00
+		}, {
+			"name": "Mae",
+			"sizes": ["2T", "4", "6", "8", "10", "12"],
+			"price": 32.00
+		}, {
+			"name": "Mark",
+			"sizes": ["M", "L", "XL", "2XL", "3XL"],
+			"price": 42.00
+		}, {
+			"name": "Maxi",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 42.00
+		}, {
+			"name": "Mimi",
+			"sizes": ["ONE SIZE"]
+		}, {
+			"name": "Monroe",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 48.00
+		}, {
+			"name": "Nicole",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 48.00
+		}, {
+			"name": "Patrick",
+			"sizes": ["M", "L", "XL", "2XL", "3XL"],
+			"price": 40.00
+		}, {
+			"name": "Perfect T",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 36.00
+		}, {
+			"name": "Randy",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 35.00
+		}, {
+			"name": "Sarah",
+			"sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
+			"price": 70.00
+		}, {
+			"name": "Sloan",
+			"sizes": ["2", "4", "6", "8", "10", "12", "14"],
+			"price": 28.00
+		}],
+        "honey": [{
+                  "name": "HoneyItem",
+                  "sizes": ["2", "4", "6", "8", "10", "12", "14"],
+                  "price": 28.00
+        }]
+	}
+}

@@ -22,11 +22,21 @@ extension EditorViewController: UIImagePickerControllerDelegate, UINavigationCon
     }
     
     @IBAction func presentPhotoLibraryController() {
-        
-    }
-    
-    @IBAction func unwindToNav(segue: UIStoryboardSegue) {
-        print("Helloo")
+        DispatchQueue.global(qos: .userInitiated).async {
+            PhotosAuthorization.GetAuthorizationStatus(completion: { granted in
+                if granted {
+                    DispatchQueue.main.async {
+                        self.callPhotoPicker()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.animatePhotoSourceViewOut()
+                        let encouragement = PhotosAuthorization.EncourageAccess()
+                        self.present(encouragement, animated: true, completion: nil)
+                    }
+                }
+            })
+        }
     }
     
     @IBAction func setPrimaryPhoto() {
@@ -54,8 +64,15 @@ extension EditorViewController: UIImagePickerControllerDelegate, UINavigationCon
             let picker = UIImagePickerController();
             picker.delegate = self
             picker.sourceType = .camera
-            self.present(picker, animated: true, completion: nil)
+            present(picker, animated: true, completion: nil)
         }
+    }
+    
+    func callPhotoPicker() {
+        let picker = UIImagePickerController();
+        picker.delegate = self;
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true, completion: nil)
     }
     
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -86,6 +103,8 @@ extension EditorViewController: UIImagePickerControllerDelegate, UINavigationCon
 //                }
                 
                 self.showLabels()
+                self.toggleWatermarkVisibility()
+                self.toggleWatermarkImageVisibility()
             } else {
                 let collageRect = CGRect(x: 0, y: 0, width: 125, height: 125)
                 let collage = CollageImageView(frame: collageRect)

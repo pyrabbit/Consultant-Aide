@@ -12,13 +12,13 @@ import CoreData
 class StyleService {
     
     static func updateFromServer() {
-        let baseURL = "https://consultant-aide.firebaseio.com/brands.json"
+        let baseURL = "https://consultant-aide.firebaseio.com/api-v2.json"
         let url = URL(string: baseURL)!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             
             guard error == nil else {
-                if let error = error {
+                if let _ = error {
                     print("Error reaching server, check if app should load from device")
                     updateFromDevice()
                 }
@@ -56,20 +56,20 @@ class StyleService {
                 if items.count < 1 {
                     print("There was nothing in the CoreData database so we are going to load from device.")
                     
-                    guard let path = Bundle.main.path(forResource: "consultant_aide_import", ofType: "json") else {
-                        print("Could not load consultant_aide_import.json")
+                    guard let path = Bundle.main.path(forResource: "api-v2-import", ofType: "json") else {
+                        print("Could not load api-v2-import.json")
                         return
                     }
-                    
+
                     do {
-                        let data = try NSData(contentsOf: URL(string: path)!, options: .mappedIfSafe)
+                        let data = try NSData(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
 
                         guard let brandData = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? Dictionary<String, AnyObject> else {
                             
-                            print("Could not read consultant_aide_import.json into an json data object.")
+                            print("Could not read api-v2-import.json into an json data object.")
                             return
                         }
-                        
+
                         let didRemoveStylesFromDevice = removedStylesFromDevice()
                         
                         if didRemoveStylesFromDevice {
@@ -77,11 +77,11 @@ class StyleService {
                             updateStyles(brandData)
                         }
                     } catch {
-                        print("Could not read consultant_aide_import.json into initialized Data object.")
+                        print("Could not read api-v2-import.json into initialized Data object.")
                     }
 
                 } else {
-                    print("There is more than one CoreData record so we will skip updating from server for now.")
+                    print("There is more than one CoreData record so we will skip updating from device for now.")
                 }
             }
         } catch {
@@ -108,9 +108,9 @@ class StyleService {
                     style.price = price
                 }
             }
-            
-            ad.saveContext()
         }
+        
+        ad.saveContext()
     }
     
     private static func removedStylesFromDevice() -> Bool {

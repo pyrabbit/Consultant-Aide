@@ -20,12 +20,22 @@
 		C93E198C1DCFC5EE00A5CD7F /* StyleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E198B1DCFC5EE00A5CD7F /* StyleTableViewCell.swift */; };
 		C93E198E1DCFC61000A5CD7F /* SizeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E198D1DCFC61000A5CD7F /* SizeCollectionViewCell.swift */; };
 		C93E19991DCFCD8200A5CD7F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19981DCFCD8200A5CD7F /* PrimaryButton.swift */; };
+		C94426AF1DD418FF003F34C4 /* SettingsTableViewController+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94426AE1DD418FF003F34C4 /* SettingsTableViewController+ImagePicker.swift */; };
+		C94426B11DD41C7F003F34C4 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94426B01DD41C7F003F34C4 /* RoundedImageView.swift */; };
+		C94426B31DD42B6F003F34C4 /* WatermarkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94426B21DD42B6F003F34C4 /* WatermarkLabel.swift */; };
+		C94426B51DD43CE1003F34C4 /* WatermarkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94426B41DD43CE1003F34C4 /* WatermarkImage.swift */; };
+		C94426B71DD45022003F34C4 /* PositionRescurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94426B61DD45022003F34C4 /* PositionRescurer.swift */; };
+		C96A7B011DD3EA5500A2386C /* StyleViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B001DD3EA5500A2386C /* StyleViewController+TableView.swift */; };
+		C96A7B031DD3EBD200A2386C /* StyleViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B021DD3EBD200A2386C /* StyleViewController+CollectionView.swift */; };
+		C96A7B0C1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B0A1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift */; };
+		C96A7B0D1DD3F1E300A2386C /* SavedLabel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B0B1DD3F1E300A2386C /* SavedLabel+CoreDataProperties.swift */; };
+		C96A7B0F1DD3F57000A2386C /* EditorViewController+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B0E1DD3F57000A2386C /* EditorViewController+NSFetchedResultsControllerDelegate.swift */; };
 		C97E9FF41DD0147200A9C5BD /* LabelContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */; };
 		C97E9FF61DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */; };
 		C980CFB31DCFD26B00A75425 /* StyleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB21DCFD26B00A75425 /* StyleService.swift */; };
 		C980CFB51DCFE90400A75425 /* EditorViewController+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB41DCFE90400A75425 /* EditorViewController+ScrollView.swift */; };
 		C980CFB71DCFE93500A75425 /* EditorViewController+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB61DCFE93500A75425 /* EditorViewController+ImagePicker.swift */; };
-		C9868FD31DD2A52500589230 /* consultant_aide_import.json in Resources */ = {isa = PBXBuildFile; fileRef = C9868FD21DD2A52500589230 /* consultant_aide_import.json */; };
+		C9868FD31DD2A52500589230 /* api-v2-import.json in Resources */ = {isa = PBXBuildFile; fileRef = C9868FD21DD2A52500589230 /* api-v2-import.json */; };
 		C9CECBEE1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */; };
 		C9E785791DCA575400B337F4 /* RoundedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E785781DCA575400B337F4 /* RoundedTableView.swift */; };
 		C9E7857B1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7857A1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift */; };
@@ -57,12 +67,22 @@
 		C93E198B1DCFC5EE00A5CD7F /* StyleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleTableViewCell.swift; sourceTree = "<group>"; };
 		C93E198D1DCFC61000A5CD7F /* SizeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeCollectionViewCell.swift; sourceTree = "<group>"; };
 		C93E19981DCFCD8200A5CD7F /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		C94426AE1DD418FF003F34C4 /* SettingsTableViewController+ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsTableViewController+ImagePicker.swift"; sourceTree = "<group>"; };
+		C94426B01DD41C7F003F34C4 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
+		C94426B21DD42B6F003F34C4 /* WatermarkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatermarkLabel.swift; sourceTree = "<group>"; };
+		C94426B41DD43CE1003F34C4 /* WatermarkImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatermarkImage.swift; sourceTree = "<group>"; };
+		C94426B61DD45022003F34C4 /* PositionRescurer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionRescurer.swift; sourceTree = "<group>"; };
+		C96A7B001DD3EA5500A2386C /* StyleViewController+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StyleViewController+TableView.swift"; sourceTree = "<group>"; };
+		C96A7B021DD3EBD200A2386C /* StyleViewController+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StyleViewController+CollectionView.swift"; sourceTree = "<group>"; };
+		C96A7B0A1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedLabel+CoreDataClass.swift"; path = "../SavedLabel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C96A7B0B1DD3F1E300A2386C /* SavedLabel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedLabel+CoreDataProperties.swift"; path = "../SavedLabel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C96A7B0E1DD3F57000A2386C /* EditorViewController+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelContainerView.swift; sourceTree = "<group>"; };
 		C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewControler+PhotoSaving.swift"; sourceTree = "<group>"; };
 		C980CFB21DCFD26B00A75425 /* StyleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleService.swift; sourceTree = "<group>"; };
 		C980CFB41DCFE90400A75425 /* EditorViewController+ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+ScrollView.swift"; sourceTree = "<group>"; };
 		C980CFB61DCFE93500A75425 /* EditorViewController+ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+ImagePicker.swift"; sourceTree = "<group>"; };
-		C9868FD21DD2A52500589230 /* consultant_aide_import.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = consultant_aide_import.json; sourceTree = "<group>"; };
+		C9868FD21DD2A52500589230 /* api-v2-import.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "api-v2-import.json"; sourceTree = "<group>"; };
 		C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+CustomLabelView.swift"; sourceTree = "<group>"; };
 		C9E785781DCA575400B337F4 /* RoundedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTableView.swift; sourceTree = "<group>"; };
 		C9E7857A1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+NoStatusBar.swift"; sourceTree = "<group>"; };
@@ -80,6 +100,7 @@
 		C9F073101DCA4A110014F0E7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C9F80B481DD3BB0A00B38DEF /* Style+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Style+CoreDataClass.swift"; path = "../Style+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C9F80B491DD3BB0A00B38DEF /* Style+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Style+CoreDataProperties.swift"; path = "../Style+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C9F80B4E1DD3D43B00B38DEF /* firebase-master.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "firebase-master.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +129,8 @@
 				C93E19891DCFC5D000A5CD7F /* StyleViewController.swift */,
 				C93E198B1DCFC5EE00A5CD7F /* StyleTableViewCell.swift */,
 				C93E198D1DCFC61000A5CD7F /* SizeCollectionViewCell.swift */,
+				C96A7B001DD3EA5500A2386C /* StyleViewController+TableView.swift */,
+				C96A7B021DD3EBD200A2386C /* StyleViewController+CollectionView.swift */,
 			);
 			name = "Style Selector";
 			sourceTree = "<group>";
@@ -115,6 +138,8 @@
 		C93E198F1DCFC6AF00A5CD7F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C96A7B0A1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift */,
+				C96A7B0B1DD3F1E300A2386C /* SavedLabel+CoreDataProperties.swift */,
 				C9F80B481DD3BB0A00B38DEF /* Style+CoreDataClass.swift */,
 				C9F80B491DD3BB0A00B38DEF /* Style+CoreDataProperties.swift */,
 				C9F073001DCA49240014F0E7 /* ConsultantAide.xcdatamodeld */,
@@ -135,6 +160,8 @@
 				C980CFB21DCFD26B00A75425 /* StyleService.swift */,
 				C912F9361DD11E2A00E1C9B5 /* CameraAuthorization.swift */,
 				C912F9381DD11E5700E1C9B5 /* PhotosAuthorization.swift */,
+				C94426B01DD41C7F003F34C4 /* RoundedImageView.swift */,
+				C94426B61DD45022003F34C4 /* PositionRescurer.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -150,6 +177,9 @@
 				C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */,
 				C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */,
 				C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */,
+				C96A7B0E1DD3F57000A2386C /* EditorViewController+NSFetchedResultsControllerDelegate.swift */,
+				C94426B21DD42B6F003F34C4 /* WatermarkLabel.swift */,
+				C94426B41DD43CE1003F34C4 /* WatermarkImage.swift */,
 			);
 			name = Editor;
 			sourceTree = "<group>";
@@ -159,6 +189,7 @@
 			children = (
 				C9F073101DCA4A110014F0E7 /* SettingsViewController.swift */,
 				C929034A1DCAC68000796369 /* SettingsTableViewController.swift */,
+				C94426AE1DD418FF003F34C4 /* SettingsTableViewController+ImagePicker.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -210,7 +241,8 @@
 		C9F80B4C1DD3C47700B38DEF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C9868FD21DD2A52500589230 /* consultant_aide_import.json */,
+				C9868FD21DD2A52500589230 /* api-v2-import.json */,
+				C9F80B4E1DD3D43B00B38DEF /* firebase-master.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -277,7 +309,7 @@
 			files = (
 				C9F073071DCA49240014F0E7 /* LaunchScreen.storyboard in Resources */,
 				C9F073041DCA49240014F0E7 /* Assets.xcassets in Resources */,
-				C9868FD31DD2A52500589230 /* consultant_aide_import.json in Resources */,
+				C9868FD31DD2A52500589230 /* api-v2-import.json in Resources */,
 				C9F072FF1DCA49240014F0E7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +326,8 @@
 				C93E19881DCFC59600A5CD7F /* UserDefaults+SavedStyles.swift in Sources */,
 				C93E198C1DCFC5EE00A5CD7F /* StyleTableViewCell.swift in Sources */,
 				C9E7857D1DCA5FC100B337F4 /* RoundedView.swift in Sources */,
+				C94426B51DD43CE1003F34C4 /* WatermarkImage.swift in Sources */,
+				C96A7B031DD3EBD200A2386C /* StyleViewController+CollectionView.swift in Sources */,
 				C9F80B4A1DD3BB0A00B38DEF /* Style+CoreDataClass.swift in Sources */,
 				C980CFB31DCFD26B00A75425 /* StyleService.swift in Sources */,
 				C912F9371DD11E2A00E1C9B5 /* CameraAuthorization.swift in Sources */,
@@ -302,23 +336,31 @@
 				C93E198E1DCFC61000A5CD7F /* SizeCollectionViewCell.swift in Sources */,
 				C912F9391DD11E5700E1C9B5 /* PhotosAuthorization.swift in Sources */,
 				C980CFB71DCFE93500A75425 /* EditorViewController+ImagePicker.swift in Sources */,
+				C94426B11DD41C7F003F34C4 /* RoundedImageView.swift in Sources */,
 				C97E9FF61DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift in Sources */,
 				C9CECBEE1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift in Sources */,
 				C9E785791DCA575400B337F4 /* RoundedTableView.swift in Sources */,
 				C980CFB51DCFE90400A75425 /* EditorViewController+ScrollView.swift in Sources */,
+				C96A7B0F1DD3F57000A2386C /* EditorViewController+NSFetchedResultsControllerDelegate.swift in Sources */,
 				C93E198A1DCFC5D000A5CD7F /* StyleViewController.swift in Sources */,
 				C9F072FA1DCA49240014F0E7 /* AppDelegate.swift in Sources */,
 				C93E19991DCFCD8200A5CD7F /* PrimaryButton.swift in Sources */,
 				C9F073111DCA4A110014F0E7 /* SettingsViewController.swift in Sources */,
+				C96A7B0C1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift in Sources */,
 				C9E7857B1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift in Sources */,
 				C929034B1DCAC68000796369 /* SettingsTableViewController.swift in Sources */,
 				C9F80B4B1DD3BB0A00B38DEF /* Style+CoreDataProperties.swift in Sources */,
 				C9E785821DCA6E8300B337F4 /* ColorPickerViewController.swift in Sources */,
 				C93E19831DCFC3C100A5CD7F /* CollageImageView.swift in Sources */,
+				C96A7B011DD3EA5500A2386C /* StyleViewController+TableView.swift in Sources */,
 				C9F0730F1DCA497B0014F0E7 /* EditorViewController.swift in Sources */,
+				C94426B71DD45022003F34C4 /* PositionRescurer.swift in Sources */,
 				C929034E1DCAD41200796369 /* FontViewController.swift in Sources */,
+				C94426B31DD42B6F003F34C4 /* WatermarkLabel.swift in Sources */,
 				C9E785841DCA85E500B337F4 /* UserDefaults+UIColor.swift in Sources */,
+				C96A7B0D1DD3F1E300A2386C /* SavedLabel+CoreDataProperties.swift in Sources */,
 				C97E9FF41DD0147200A9C5BD /* LabelContainerView.swift in Sources */,
+				C94426AF1DD418FF003F34C4 /* SettingsTableViewController+ImagePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

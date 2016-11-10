@@ -13,6 +13,7 @@ class StyleTableViewCell: UITableViewCell {
      */
     
     @IBOutlet weak var primaryLabel: UILabel!
+    @IBOutlet weak var mapLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     /*
@@ -32,8 +33,22 @@ class StyleTableViewCell: UITableViewCell {
      // MARK: - Configuration
      */
     
-    func configureCell(primaryText: String) {
-        self.primaryLabel.text = primaryText
+    func configureCell(style: Style) {
+        self.style = style
+        primaryLabel.text = style.name
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        
+        var priceString = "N/A"
+        
+        if style.price > 0 {
+            if let newPriceString = formatter.string(from: NSNumber(value: style.price)) {
+                priceString = newPriceString
+            }
+        }
+        
+        mapLabel.text = priceString
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,9 +57,11 @@ class StyleTableViewCell: UITableViewCell {
         if (selected) {
             self.backgroundColor = ColorPalette.Primary
             self.primaryLabel.textColor = UIColor.white
+            self.mapLabel.textColor = ColorPalette.Accent
         } else {
             self.backgroundColor = UIColor.white
             self.primaryLabel.textColor = ColorPalette.Primary
+            self.mapLabel.textColor = ColorPalette.Primary
             deselectAllInCollectionView()
         }
     }
@@ -56,7 +73,6 @@ class StyleTableViewCell: UITableViewCell {
             }
         }
     }
-    
     
     func setCollectionViewDataSourceDelegate
         <D: UICollectionViewDataSource & UICollectionViewDelegate>
