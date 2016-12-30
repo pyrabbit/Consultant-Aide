@@ -5,49 +5,256 @@
 //  Created by Matt Orahood on 9/27/16.
 //  Copyright © 2016 Matt Orahood. All rights reserved.
 //
-import UIKit
 
-class StyleView: UIView {
-    
-    var primaryLabel: UILabel!
+import UIKit
+import CoreData
+
+final class StyleView: UIView {
+    var primaryLabel: UILabel?
     var priceLabel: UILabel?
     var sizeContainer: UIView?
+    var containerView: UIView?
+    var animator: UIDynamicAnimator?
+    var savedLabel: SavedLabel?
     
-    var price: Float!
-    var style: String!
-    var sizes: [String]!
-    
-    var defaultFontSize:Float = 32.0
-    var defaultAccentFontSize:Float = 22.0
-    
-    private var snap: UISnapBehavior!
-    private var animator: UIDynamicAnimator!
-    private var containerView: UIView!
+    var style: String = ""
+    var price: Float = 0.0
+    var sizes: [String]?
+    private let primaryPadding: CGFloat = 20.0
+    private let secondaryPadding: CGFloat = 5.0
+    private var defaultFontSize:Float = 24.0
+    private var defaultAccentFontSize:Float = 12.0
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     init(style: String, price: Float = 0.0, sizes: [String]?) {
+        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        internalInitializer(style: style, price: price, sizes: sizes)
+    }
+    
+    init(savedLabel: SavedLabel) {
+        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        internalInitializer(style: savedLabel.name, price: savedLabel.price, sizes: savedLabel.sizes)
         
-        if let x = UserDefaults.standard.value(forKey: "defaultLabelXPosition") as? Int,
-            let y = UserDefaults.standard.value(forKey: "defaultLabelYPosition") as? Int {
-            
-            super.init(frame: CGRect(x: x, y: y, width: 0, height: 0))
-        } else {
-            super.init(frame: CGRect(x: 20, y: 60, width: 0, height: 0))
+        self.savedLabel = savedLabel
+    }
+    
+    func containWithin(view: UIView?) {
+        guard let view = view else {
+            print("Cannot containWithin nil optional")
+            return
         }
         
+        containerView = view
+        animator = UIDynamicAnimator(referenceView: view)
+    }
+    
+    func moveToSavedPosition() {
+        guard let savedLabel = self.savedLabel else {
+            print("Cannot moved to saved position, no saved object")
+            return
+        }
+        
+        if let container = containerView {
+            if ((CGFloat(savedLabel.yPos) + frame.height) > container.frame.maxY) {
+                frame.origin = CGPoint(x: 0, y: 0)
+                return
+            }
+        }
+        
+        frame.origin = CGPoint(x: Int(savedLabel.xPos), y: Int(savedLabel.yPos))
+    }
+    
+    private func internalInitializer(style: String, price: Float = 0.0, sizes: [String]?) {
         self.style = style
         self.price = price
         self.sizes = sizes
         
-        initializeSubviews(style: style, price: price, sizes: sizes)
+        // Create UILabel for primaryLabel
+        if let primaryLabel = generateStyleLabel(style: style) {
+            let styledLabel = applyPrimaryStyle(to: primaryLabel)
+            self.primaryLabel = styledLabel
+            addSubview(styledLabel)
+        }
+        
+        // Create UIView for sizeContainer
+        let sizeLabels = generateSizeLabels(sizes: sizes)
+        let styledSizeLabels = applySecondaryStyle(to: sizeLabels)
+        if let container = generateSizeContainer(sizes: styledSizeLabels) {
+            self.sizeContainer = container
+            addSubview(container)
+        }
+        
+        // Create the UILabel for the price
+        var mapDecider: Bool = true
+        
+        if let savedDecider = UserDefaults.standard.value(forKey: "mapPrice") as? Bool {
+            mapDecider = savedDecider
+        }
+        
+        if price > 0 && mapDecider {
+            if let priceLabel = generatePriceLabel(price: price) {
+                let styledLabel = applySecondaryStyle(to: priceLabel)
+                self.priceLabel = styledLabel
+                addSubview(styledLabel)
+            }
+        }
+        
+        sizeToFitStyleInformation()
+        positionStyleInformation()
         isUserInteractionEnabled = true
     }
     
-    func initializeSubviews(style: String, price: Float, sizes: [String]?) {
-        // Initialize Font Scale
+    private func generateStyleLabel(style: String?) -> UILabel? {
+        guard let style = style else {
+            return nil
+        }
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        label.text = style
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        label.layer.cornerRadius = 5.0
+        label.clipsToBounds = true
+        label.sizeToFit()
+        
+        return label
+    }
+    
+    private func generateSizeContainer(sizes: [UILabel]?) -> UIView? {
+        guard let labels = sizes else {
+            return nil
+        }
+        
+        if !(labels.isEmpty) {
+            let container = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+            var spacingBuffer: CGFloat = 0.0
+            var tallestHeight: CGFloat = 0.0
+            
+            
+            for label in labels {
+                let rect = CGRect(x: spacingBuffer, y: 0, width: label.frame.width, height: label.frame.height)
+                label.frame = rect
+                container.addSubview(label)
+                
+                if label.frame.height > tallestHeight {
+                    tallestHeight = label.frame.height
+                }
+                
+                spacingBuffer += label.frame.width + 5
+            }
+            
+            let rect = CGRect(x: 0, y: 0, width: spacingBuffer-5, height: tallestHeight)
+            container.frame = rect
+            
+            return container
+        } else {
+            return nil
+        }
+    }
+    
+    private func generateSizeLabels(sizes: [String]?) -> [UILabel]? {
+        guard let sizes = sizes else {
+            return nil
+        }
+        
+        var labels: [UILabel] = []
+        
+        if !(sizes.isEmpty) {
+            for size in sizes {
+                let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+                label.text = size
+                label.numberOfLines = 1
+                label.textAlignment = .center
+                label.sizeToFit()
+                label.layer.cornerRadius = 5
+                label.clipsToBounds = true
+                labels.append(label)
+            }
+            
+            return labels
+        } else {
+            return nil
+        }
+    }
+    
+    private func childLabels(view: UIView?) -> [UILabel]? {
+        guard let view = view else {
+            print("The view is nil, cannot find subviews.")
+            return nil
+        }
+        
+        return view.subviews.filter { $0 is UILabel } as? [UILabel]
+    }
+    
+    private func applySecondaryStyle(to labels: [UILabel]?) -> [UILabel]? {
+        guard let labels = labels else {
+            return nil
+        }
+        
+        return labels.map { applySecondaryStyle(to: $0) }
+    }
+    
+    private func applySecondaryStyle(to label: UILabel) -> UILabel {
+        // Reset default font sizes if saved values exists
+        if let size = UserDefaults.standard.value(forKey: "secondaryFontSize") as? Float {
+            defaultAccentFontSize = size
+        }
+        
+        // Set default font or saved font for primary label
+        if let fontFamily = UserDefaults.standard.object(forKey: "defaultFont") as? String {
+            let font = UIFont(name: fontFamily, size: CGFloat(defaultFontSize))
+            primaryLabel?.font = font
+        } else {
+            let font = UIFont(name: "Gill Sans", size: CGFloat(defaultFontSize))
+            primaryLabel?.font = font
+        }
+        
+        // Set default values
+        var font = UIFont(name: "Gill Sans", size: CGFloat(defaultAccentFontSize))
+        var color = ColorPalette.Accent
+        var fontColor: UIColor = .white
+        
+        // Override default values with custom secondary setting values
+        if let fontFamily = UserDefaults.standard.object(forKey: "defaultFont") as? String {
+            font = UIFont(name: fontFamily, size: CGFloat(defaultAccentFontSize))
+        }
+        
+        if let secondary = UserDefaults.standard.colorForKey(key: "secondary") {
+            color = secondary
+        }
+        
+        if let secondaryFont = UserDefaults.standard.colorForKey(key: "secondaryFont") {
+            fontColor = secondaryFont
+        }
+        
+        // Apply the styles
+        label.backgroundColor = color
+        label.font = font
+        label.textColor = fontColor
+        label.sizeToFit()
+        label.frame.size.width += secondaryPadding
+        label.frame.size.height += secondaryPadding
+        
+        return label
+    }
+    
+    private func generatePriceLabel(price: Float) -> UILabel? {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        label.text = String(format: "$%.0f", price)
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        label.sizeToFit()
+        label.layer.cornerRadius = 5
+        label.clipsToBounds = true
+        
+        return label
+    }
+    
+    private func applyPrimaryStyle(to label: UILabel) -> UILabel {
+        // Reset default font sizes if saved values exists
         if let size = UserDefaults.standard.value(forKey: "fontSize") as? Float {
             defaultFontSize = size
         }
@@ -56,297 +263,163 @@ class StyleView: UIView {
             defaultAccentFontSize = size
         }
         
-        // Create the UILabel for the style
-        initializeStyle(superview: self, style: style)
-        
-        // Create the UILabel for the price
-        var mapDecider: Bool = false
-        
-        if let savedDecider = UserDefaults.standard.value(forKey: "mapPrice") as? Bool {
-            mapDecider = savedDecider
-        }
-        
-        if price > 0 && mapDecider {
-            initializePrice(superview: self, price: price)
-        }
-        
-        // Create the UIView for the sizeCollection
-        initializeSizes(superview: self, sizes: sizes)
-        
-        // Resize self to match size of content
-        var priceHeight:CGFloat = 0.0
-        var priceWidth:CGFloat = 0.0
-        if let label = priceLabel {
-            priceHeight = label.frame.size.height
-            priceWidth = label.frame.size.width
-        }
-        
-        var sizeHeight:CGFloat = 0.0
-        var sizeWidth:CGFloat = 0.0
-        if let container = sizeContainer {
-            sizeHeight = container.frame.size.height
-            sizeWidth = container.frame.size.width
-        }
-        
-        var totalWidth:CGFloat = 0.0
-        let labelWithPriceWidth = primaryLabel.frame.size.width + (priceWidth/2)
-        if (sizeWidth > (primaryLabel.frame.size.width + (priceWidth/2))) {
-            totalWidth = sizeWidth
-        } else {
-            totalWidth = labelWithPriceWidth
-        }
-        
-        let totalHeight:CGFloat = (priceHeight/2) + (sizeHeight/2) + primaryLabel.frame.size.height
-        
-        frame.size.width = totalWidth
-        frame.size.height = totalHeight
-        
-        if let label = priceLabel {
-            let heightBuffer = label.frame.size.height / 2
-            primaryLabel.center.y += heightBuffer
-            label.center.y += heightBuffer
-            
-            if let container = sizeContainer {
-                container.center.y += heightBuffer
-            }
-        }
-        
-        if (sizeWidth > (primaryLabel.frame.size.width + (priceWidth/2))) {
-            if let container = sizeContainer {
-                let widthBuffer = frame.size.width / 2
-                let newFrame = CGRect(x: 0,
-                                      y: frame.size.height - container.frame.size.height,
-                                      width: container.frame.size.width,
-                                      height: container.frame.size.height)
-                
-                container.frame = newFrame
-                primaryLabel.center.x = widthBuffer
-                
-                if let label = priceLabel {
-                    label.center.x = primaryLabel.frame.maxX
-                }
-            }
-        }
-        
-        if let x = UserDefaults.standard.value(forKey: "defaultLabelXPosition") as? Float,
-            let y = UserDefaults.standard.value(forKey: "defaultLabelYPosition") as? Float {
-            
-            let xPos = CGFloat(x)
-            let yPos = CGFloat(y)
-            
-            frame.origin.x = xPos
-            frame.origin.y = yPos
-        }
-        
-        if let x = UserDefaults.standard.value(forKey: "defaultLabelXPosition") as? Int,
-            let y = UserDefaults.standard.value(forKey: "defaultLabelYPosition") as? Int {
-            
-            let point = CGPoint(x: x, y: y)
-            center = point
-        }
-    }
-    
-    func initializeStyle(superview: UIView, style: String) {
-        primaryLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        primaryLabel.text = style
-        primaryLabel.numberOfLines = 1
-        primaryLabel.textAlignment = .center
-        
+        // Set default font or saved font for primary label
         if let fontFamily = UserDefaults.standard.object(forKey: "defaultFont") as? String {
             let font = UIFont(name: fontFamily, size: CGFloat(defaultFontSize))
-            primaryLabel.font = font
+            label.font = font
         } else {
             let font = UIFont(name: "Gill Sans", size: CGFloat(defaultFontSize))
-            primaryLabel.font = font
+            label.font = font
         }
         
+        // Set default color or saved color for primary label background
         if let color = UserDefaults.standard.colorForKey(key: "primary") {
-            primaryLabel.backgroundColor = color
+            label.backgroundColor = color
         } else {
-            primaryLabel.backgroundColor = ColorPalette.Primary
+            label.backgroundColor = ColorPalette.Primary
         }
         
+        // Set default color or saved color for primary label font
         if let color = UserDefaults.standard.colorForKey(key: "primaryFont") {
-            primaryLabel.textColor = color
+            label.textColor = color
         } else {
-            primaryLabel.textColor = UIColor.white
+            label.textColor = UIColor.white
         }
         
-        primaryLabel.layer.cornerRadius = 5.0
-        primaryLabel.clipsToBounds = true
+        label.sizeToFit()
+        label.frame.size.width += primaryPadding
+        label.frame.size.height += primaryPadding
         
-        // Size the primary label to fit its size and add some additional padding
-        primaryLabel.sizeToFit()
-        primaryLabel.frame.size.width += 20
-        primaryLabel.frame.size.height += 20
-        
-        superview.addSubview(primaryLabel)
+        return label
     }
     
-    func initializeSizes(superview: UIView, sizes: [String]?) {
-        guard let sizes = sizes else {
+    private func sizeToFitStyleInformation() {
+        guard let primaryLabel = self.primaryLabel else {
+            print("Primary label is reuqired, cannot sizeToFitStyleInformation")
             return
         }
         
-        if !sizes.isEmpty {
-            sizeContainer = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        var totalWidth: CGFloat = 0.0
+        var totalHeight: CGFloat = 0.0
+        
+        totalWidth += primaryLabel.frame.width
+        totalHeight += primaryLabel.frame.height
+        
+        if let price = priceLabel {
+            totalWidth += price.frame.width/2
+            totalHeight += price.frame.height/2
+        }
+        
+        if let container = sizeContainer {
+            totalHeight += (container.frame.height/2)
             
-            if let sizeContainer = self.sizeContainer {
+            if totalWidth < container.frame.width {
+                totalWidth = container.frame.width
+            }
+        }
+        
+        frame = CGRect(x: 0.0, y: 0.0, width: totalWidth, height: totalHeight)
+    }
+    
+    private func positionStyleInformation() {
+        guard let primaryLabel = self.primaryLabel else {
+            print("Primary label is required, cannot positionStyleInformation")
+            return
+        }
+        
+        if let container = sizeContainer {
+            if frame.width <= container.frame.width {
+                // Size container needs to be the centered object
+                let y = frame.height - container.frame.height
+                container.frame = CGRect(x: 0, y: y, width: container.frame.width, height: container.frame.height)
                 
-                var rightBoundary: CGFloat = 0
-                
-                for size in sizes {
-                    let label = UILabel(frame: CGRect(x: rightBoundary, y: 0, width: 0, height: 0))
-                    label.text = size
-                    label.numberOfLines = 1
-                    label.textAlignment = .center
-                    
-                    if let fontFamily = UserDefaults.standard.object(forKey: "defaultFont") as? String {
-                        let font = UIFont(name: fontFamily, size: CGFloat(defaultAccentFontSize))
-                        label.font = font
-                    }  else {
-                        let font = UIFont(name: "Gill Sans", size: CGFloat(defaultAccentFontSize))
-                        label.font = font
-                    }
-                    
-                    if let color = UserDefaults.standard.colorForKey(key: "secondary") {
-                        label.backgroundColor = color
-                    } else {
-                        label.backgroundColor = ColorPalette.Accent
-                    }
-                    
-                    if let color = UserDefaults.standard.colorForKey(key: "secondaryFont") {
-                        label.textColor = color
-                    } else {
-                        label.textColor = UIColor.white
-                    }
-                    
-                    label.sizeToFit()
-                    label.layer.cornerRadius = 5
-                    label.clipsToBounds = true
-                    label.frame.size.width += 10
-                    label.frame.size.height += 10
-                    
-                    rightBoundary = rightBoundary + label.frame.size.width + 2
-                    sizeContainer.addSubview(label)
-                }
-                
-                sizeContainer.sizeToFit()
-                
-                // sizeToFit() wont work on this view so we have to do it manually
-                // change the center position to the bottom middle of the primaryLabel
-                if let lastSize = sizeContainer.subviews.last {
-                    let newWidth = rightBoundary
-                    let newHeight = lastSize.frame.height
-                    
-                    sizeContainer.frame = CGRect(x: 0, y: 0, width: newWidth, height: newHeight)
-                    
-                    let xPosition = primaryLabel.frame.width / 2
-                    let yPosition = primaryLabel.frame.height
-                    let newPosition = CGPoint(x: xPosition, y: yPosition)
-                    
-                    sizeContainer.center = newPosition
-                }
-                
-                superview.addSubview(sizeContainer)
+                primaryLabel.center = center
+            } else {
+                primaryLabel.frame = CGRect(x: 0, y: center.y-(primaryLabel.frame.height/2), width: primaryLabel.frame.width, height: primaryLabel.frame.height)
+                container.center = CGPoint(x: primaryLabel.center.x, y: primaryLabel.frame.maxY)
+            }
+        }
+        
+        if let price = priceLabel {
+            if sizeContainer == nil {
+                primaryLabel.frame = CGRect(x: 0, y: price.frame.height/2, width: primaryLabel.frame.width, height: primaryLabel.frame.height)
+            }
+            
+            price.center = CGPoint(x: primaryLabel.frame.maxX, y: primaryLabel.frame.minY)
+        } else {
+            primaryLabel.frame = CGRect(x: (frame.width/2)-(primaryLabel.frame.width/2), y: 0, width: primaryLabel.frame.width, height: primaryLabel.frame.height)
+            if let container = sizeContainer {
+                container.center = CGPoint(x: primaryLabel.center.x, y: primaryLabel.frame.maxY)
             }
         }
     }
-    
-    func initializePrice(superview: UIView, price: Float) {
-        priceLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        
-        if let priceLabel = self.priceLabel {
-            
-            priceLabel.text = String(format: "$%.0f", price)
-            priceLabel.numberOfLines = 1
-            priceLabel.textAlignment = .center
-            
-            if let fontFamily = UserDefaults.standard.object(forKey: "defaultFont") as? String {
-                let font = UIFont(name: fontFamily, size: CGFloat(defaultAccentFontSize))
-                priceLabel.font = font
-            } else {
-                let font = UIFont(name: "Gill Sans", size: CGFloat(defaultAccentFontSize))
-                priceLabel.font = font
-            }
-            
-            if let color = UserDefaults.standard.colorForKey(key: "secondary") {
-                priceLabel.backgroundColor = color
-            } else {
-                priceLabel.backgroundColor = ColorPalette.Accent
-            }
-            
-            if let color = UserDefaults.standard.colorForKey(key: "secondaryFont") {
-                priceLabel.textColor = color
-            } else {
-                priceLabel.textColor = UIColor.white
-            }
-            
-            priceLabel.sizeToFit()
-            priceLabel.layer.cornerRadius = 5
-            priceLabel.clipsToBounds = true
-            priceLabel.frame.size.width += 10
-            priceLabel.frame.size.height += 10
-            
-            // Move price label to top right of view
-            let xPosition = primaryLabel.frame.size.width
-            let yPosition:CGFloat = 0.0
-            let newPosition = CGPoint(x: xPosition, y: yPosition)
-            
-            priceLabel.center = newPosition
-            
-            superview.addSubview(priceLabel)
-        }
-        
-    }
-    
-    func containWithin(view: UIView) {
-        containerView = view
-        animator = UIDynamicAnimator(referenceView: view)
-    }
-    
-    func reset() {
-        primaryLabel.removeFromSuperview()
-        priceLabel?.removeFromSuperview()
-        sizeContainer?.removeFromSuperview()
-        
-        initializeSubviews(style: self.style, price: self.price, sizes: self.sizes)
-    }
-    
+}
+
+extension StyleView: UICollisionBehaviorDelegate {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let animator = self.animator {
-            animator.removeAllBehaviors()
+        guard let containerView = self.containerView else {
+            print("No container view present, will not apply movement behavior")
+            return
+        }
+        
+        guard let animator = self.animator else {
+            print("No animator found, will not apply movement behavior")
+            return
+        }
+        
+        animator.removeAllBehaviors()
+        
+        for touch in touches {
+            let location = touch.location(in: containerView)
             
-            for touch in touches {
-                let location = touch.location(in: containerView)
-                let snap = UISnapBehavior(item: self, snapTo: location)
-                
-                if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
-                    if fullWidthLabels {
-                        transform = CGAffineTransform(rotationAngle: 0)
-                        frame.origin.x = 0
-                    }
-                }
-                
-                snap.damping = 0.2
-                animator.addBehavior(snap)
-                
-                let boundry = UICollisionBehavior(items: [self])
-                boundry.translatesReferenceBoundsIntoBoundary = true
-                animator.addBehavior(boundry)
-            }
+            let snap = UISnapBehavior(item: self, snapTo: location)
+            snap.damping = 0.2
+            animator.addBehavior(snap)
+            
+            let boundry = UICollisionBehavior(items: [self])
+            boundry.collisionDelegate = self
+            boundry.translatesReferenceBoundsIntoBoundary = true
+            animator.addBehavior(boundry)
         }
     }
-    
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         var point = CGPoint(x: 0, y: 0)
-        
+
         for _ in touches {
-            point = center
+            if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
+                if fullWidthLabels {
+                    point = CGPoint(x: 0, y: frame.origin.y)
+                } else {
+                    point = frame.origin
+                }
+            } else {
+                point = frame.origin
+            }
+            
         }
 
-        UserDefaults.standard.set(point.x, forKey: "defaultLabelXPosition")
-        UserDefaults.standard.set(point.y, forKey: "defaultLabelYPosition")
+        savePosition(x: Int(point.x), y: Int(point.y))
     }
-    
+
+    func savePosition(x: Int, y: Int) {
+        guard let label = savedLabel, savedLabel != nil else {
+            print("No saved label object")
+            return
+        }
+
+        let predicate = NSPredicate(format: "self = %@", label.objectID)
+        let fetchRequest = NSFetchRequest<SavedLabel>(entityName: "SavedLabel")
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = predicate
+
+        do {
+            let result = try context.fetch(fetchRequest)
+            result.first?.xPos = Int16(x)
+            result.first?.yPos = Int16(y)
+            ad.saveContext()
+        } catch {
+            print("Failed to load SavedLabel from CoreData")
+        }
+    }
 }

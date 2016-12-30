@@ -17,8 +17,10 @@ extension Style {
     }
 
     @NSManaged public var brand: String?
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
+    @NSManaged public var styleId: String
     @NSManaged public var sizes: [String]?
     @NSManaged public var price: Float
+    @NSManaged public var forKids: Bool
 
 }

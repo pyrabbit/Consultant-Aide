@@ -28,4 +28,5 @@ class SizeCollectionViewCell: UICollectionViewCell {
     func configureCell(labelText: String) {
         label.text = labelText
     }
+    
 }

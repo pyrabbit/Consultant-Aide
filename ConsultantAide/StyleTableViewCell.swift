@@ -8,17 +8,12 @@
 import UIKit
 
 class StyleTableViewCell: UITableViewCell {
-    /*
-     // MARK: - IBOutlet Definitions
-     */
-    
+
     @IBOutlet weak var primaryLabel: UILabel!
     @IBOutlet weak var mapLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    /*
-     // MARK: - Initialization
-     */
+    @IBOutlet weak var brandLabel: UILabel!
+    @IBOutlet weak var kidsImage: UIImageView!
     
     var style: Style!
     
@@ -29,13 +24,10 @@ class StyleTableViewCell: UITableViewCell {
         collectionView.allowsMultipleSelection = true
     }
     
-    /*
-     // MARK: - Configuration
-     */
-    
     func configureCell(style: Style) {
         self.style = style
         primaryLabel.text = style.name
+        brandLabel.text = style.brand
         
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -48,7 +40,25 @@ class StyleTableViewCell: UITableViewCell {
             }
         }
         
+        if style.forKids {
+            kidsImage.isHidden = false
+        } else {
+            kidsImage.isHidden = true
+        }
+        
         mapLabel.text = priceString
+    }
+    
+    func belongsToCustomLabel() -> Bool {
+        guard let brand = style.brand else {
+            return false
+        }
+        
+        if brand == "Custom" {
+            return true
+        }
+        
+        return false
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -83,4 +93,5 @@ class StyleTableViewCell: UITableViewCell {
         collectionView.tag = row
         collectionView.reloadData()
     }
+    
 }

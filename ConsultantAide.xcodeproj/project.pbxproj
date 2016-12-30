@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C912F9371DD11E2A00E1C9B5 /* CameraAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C912F9361DD11E2A00E1C9B5 /* CameraAuthorization.swift */; };
 		C912F9391DD11E5700E1C9B5 /* PhotosAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C912F9381DD11E5700E1C9B5 /* PhotosAuthorization.swift */; };
+		C9198FE81E0C2439000DF029 /* StyleViewController+SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9198FE71E0C2439000DF029 /* StyleViewController+SearchBar.swift */; };
 		C929034B1DCAC68000796369 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C929034A1DCAC68000796369 /* SettingsTableViewController.swift */; };
 		C929034E1DCAD41200796369 /* FontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C929034D1DCAD41200796369 /* FontViewController.swift */; };
 		C92903501DCAD48300796369 /* FontTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C929034F1DCAD48300796369 /* FontTableViewCell.swift */; };
@@ -34,9 +35,15 @@
 		C97E9FF61DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */; };
 		C980CFB31DCFD26B00A75425 /* StyleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB21DCFD26B00A75425 /* StyleService.swift */; };
 		C980CFB51DCFE90400A75425 /* EditorViewController+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB41DCFE90400A75425 /* EditorViewController+ScrollView.swift */; };
-		C980CFB71DCFE93500A75425 /* EditorViewController+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB61DCFE93500A75425 /* EditorViewController+ImagePicker.swift */; };
-		C9868FD31DD2A52500589230 /* api-v2-import.json in Resources */ = {isa = PBXBuildFile; fileRef = C9868FD21DD2A52500589230 /* api-v2-import.json */; };
+		C9868FD31DD2A52500589230 /* api-v2.1-import.json in Resources */ = {isa = PBXBuildFile; fileRef = C9868FD21DD2A52500589230 /* api-v2.1-import.json */; };
+		C9885FBC1DFD15E900FEF73F /* LabelEditorViewController+CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9885FBB1DFD15E900FEF73F /* LabelEditorViewController+CustomLabelView.swift */; };
 		C9CECBEE1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */; };
+		C9D3240E1DFCB23D00B49444 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D3240D1DFCB23D00B49444 /* PhotoSelectorViewController.swift */; };
+		C9D324151DFCC28900B49444 /* PhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D324141DFCC28900B49444 /* PhotoEditorViewController.swift */; };
+		C9D324181DFCEF8800B49444 /* LabelEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D324171DFCEF8800B49444 /* LabelEditorViewController.swift */; };
+		C9DE75491E1344F500747900 /* CustomStyleFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE75481E1344F500747900 /* CustomStyleFormView.swift */; };
+		C9DE754B1E13463500747900 /* CustomStyleFormDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE754A1E13463500747900 /* CustomStyleFormDelegate.swift */; };
+		C9DE754D1E13473100747900 /* StyleViewController+CustomStyleForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE754C1E13473100747900 /* StyleViewController+CustomStyleForm.swift */; };
 		C9E785791DCA575400B337F4 /* RoundedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E785781DCA575400B337F4 /* RoundedTableView.swift */; };
 		C9E7857B1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7857A1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift */; };
 		C9E7857D1DCA5FC100B337F4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7857C1DCA5FC100B337F4 /* RoundedView.swift */; };
@@ -56,6 +63,7 @@
 /* Begin PBXFileReference section */
 		C912F9361DD11E2A00E1C9B5 /* CameraAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraAuthorization.swift; sourceTree = "<group>"; };
 		C912F9381DD11E5700E1C9B5 /* PhotosAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosAuthorization.swift; sourceTree = "<group>"; };
+		C9198FE71E0C2439000DF029 /* StyleViewController+SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StyleViewController+SearchBar.swift"; sourceTree = "<group>"; };
 		C929034A1DCAC68000796369 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C929034D1DCAD41200796369 /* FontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontViewController.swift; sourceTree = "<group>"; };
 		C929034F1DCAD48300796369 /* FontTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontTableViewCell.swift; sourceTree = "<group>"; };
@@ -81,9 +89,15 @@
 		C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewControler+PhotoSaving.swift"; sourceTree = "<group>"; };
 		C980CFB21DCFD26B00A75425 /* StyleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleService.swift; sourceTree = "<group>"; };
 		C980CFB41DCFE90400A75425 /* EditorViewController+ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+ScrollView.swift"; sourceTree = "<group>"; };
-		C980CFB61DCFE93500A75425 /* EditorViewController+ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+ImagePicker.swift"; sourceTree = "<group>"; };
-		C9868FD21DD2A52500589230 /* api-v2-import.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "api-v2-import.json"; sourceTree = "<group>"; };
+		C9868FD21DD2A52500589230 /* api-v2.1-import.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "api-v2.1-import.json"; sourceTree = "<group>"; };
+		C9885FBB1DFD15E900FEF73F /* LabelEditorViewController+CustomLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LabelEditorViewController+CustomLabelView.swift"; sourceTree = "<group>"; };
 		C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+CustomLabelView.swift"; sourceTree = "<group>"; };
+		C9D3240D1DFCB23D00B49444 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
+		C9D324141DFCC28900B49444 /* PhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEditorViewController.swift; sourceTree = "<group>"; };
+		C9D324171DFCEF8800B49444 /* LabelEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelEditorViewController.swift; sourceTree = "<group>"; };
+		C9DE75481E1344F500747900 /* CustomStyleFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleFormView.swift; sourceTree = "<group>"; };
+		C9DE754A1E13463500747900 /* CustomStyleFormDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleFormDelegate.swift; sourceTree = "<group>"; };
+		C9DE754C1E13473100747900 /* StyleViewController+CustomStyleForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StyleViewController+CustomStyleForm.swift"; sourceTree = "<group>"; };
 		C9E785781DCA575400B337F4 /* RoundedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTableView.swift; sourceTree = "<group>"; };
 		C9E7857A1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+NoStatusBar.swift"; sourceTree = "<group>"; };
 		C9E7857C1DCA5FC100B337F4 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
@@ -131,6 +145,10 @@
 				C93E198D1DCFC61000A5CD7F /* SizeCollectionViewCell.swift */,
 				C96A7B001DD3EA5500A2386C /* StyleViewController+TableView.swift */,
 				C96A7B021DD3EBD200A2386C /* StyleViewController+CollectionView.swift */,
+				C9198FE71E0C2439000DF029 /* StyleViewController+SearchBar.swift */,
+				C9DE75481E1344F500747900 /* CustomStyleFormView.swift */,
+				C9DE754A1E13463500747900 /* CustomStyleFormDelegate.swift */,
+				C9DE754C1E13473100747900 /* StyleViewController+CustomStyleForm.swift */,
 			);
 			name = "Style Selector";
 			sourceTree = "<group>";
@@ -147,6 +165,31 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		C9D3240C1DFCB04F00B49444 /* Photo Selector */ = {
+			isa = PBXGroup;
+			children = (
+				C9D3240D1DFCB23D00B49444 /* PhotoSelectorViewController.swift */,
+			);
+			name = "Photo Selector";
+			sourceTree = "<group>";
+		};
+		C9D324131DFCC26C00B49444 /* Photo Editor */ = {
+			isa = PBXGroup;
+			children = (
+				C9D324141DFCC28900B49444 /* PhotoEditorViewController.swift */,
+			);
+			name = "Photo Editor";
+			sourceTree = "<group>";
+		};
+		C9D324161DFCEF7300B49444 /* Label Editor */ = {
+			isa = PBXGroup;
+			children = (
+				C9D324171DFCEF8800B49444 /* LabelEditorViewController.swift */,
+				C9885FBB1DFD15E900FEF73F /* LabelEditorViewController+CustomLabelView.swift */,
+			);
+			name = "Label Editor";
+			sourceTree = "<group>";
+		};
 		C9E785771DCA573A00B337F4 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,7 +200,6 @@
 				C93E19801DCFC36500A5CD7F /* ColorPallete.swift */,
 				C93E19871DCFC59600A5CD7F /* UserDefaults+SavedStyles.swift */,
 				C93E19981DCFCD8200A5CD7F /* PrimaryButton.swift */,
-				C980CFB21DCFD26B00A75425 /* StyleService.swift */,
 				C912F9361DD11E2A00E1C9B5 /* CameraAuthorization.swift */,
 				C912F9381DD11E5700E1C9B5 /* PhotosAuthorization.swift */,
 				C94426B01DD41C7F003F34C4 /* RoundedImageView.swift */,
@@ -173,7 +215,6 @@
 				C93E19821DCFC3C100A5CD7F /* CollageImageView.swift */,
 				C93E19851DCFC4B800A5CD7F /* StyleView.swift */,
 				C980CFB41DCFE90400A75425 /* EditorViewController+ScrollView.swift */,
-				C980CFB61DCFE93500A75425 /* EditorViewController+ImagePicker.swift */,
 				C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */,
 				C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */,
 				C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */,
@@ -221,9 +262,13 @@
 		C9F072F81DCA49240014F0E7 /* ConsultantAide */ = {
 			isa = PBXGroup;
 			children = (
+				C9F99DC51E05840F00DAC5B4 /* Services */,
 				C9F80B4C1DD3C47700B38DEF /* Resources */,
 				C93E198F1DCFC6AF00A5CD7F /* Models */,
 				C9E7857E1DCA6E1500B337F4 /* Editor */,
+				C9D324161DFCEF7300B49444 /* Label Editor */,
+				C9D324131DFCC26C00B49444 /* Photo Editor */,
+				C9D3240C1DFCB04F00B49444 /* Photo Selector */,
 				C93E19841DCFC43200A5CD7F /* Style Selector */,
 				C9E7857F1DCA6E1F00B337F4 /* Settings */,
 				C9E785801DCA6E6300B337F4 /* Color Picker */,
@@ -241,10 +286,18 @@
 		C9F80B4C1DD3C47700B38DEF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C9868FD21DD2A52500589230 /* api-v2-import.json */,
+				C9868FD21DD2A52500589230 /* api-v2.1-import.json */,
 				C9F80B4E1DD3D43B00B38DEF /* firebase-master.json */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		C9F99DC51E05840F00DAC5B4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C980CFB21DCFD26B00A75425 /* StyleService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,7 +362,7 @@
 			files = (
 				C9F073071DCA49240014F0E7 /* LaunchScreen.storyboard in Resources */,
 				C9F073041DCA49240014F0E7 /* Assets.xcassets in Resources */,
-				C9868FD31DD2A52500589230 /* api-v2-import.json in Resources */,
+				C9868FD31DD2A52500589230 /* api-v2.1-import.json in Resources */,
 				C9F072FF1DCA49240014F0E7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,11 +374,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9DE75491E1344F500747900 /* CustomStyleFormView.swift in Sources */,
+				C9DE754D1E13473100747900 /* StyleViewController+CustomStyleForm.swift in Sources */,
 				C93E19861DCFC4B800A5CD7F /* StyleView.swift in Sources */,
 				C92903501DCAD48300796369 /* FontTableViewCell.swift in Sources */,
 				C93E19881DCFC59600A5CD7F /* UserDefaults+SavedStyles.swift in Sources */,
 				C93E198C1DCFC5EE00A5CD7F /* StyleTableViewCell.swift in Sources */,
+				C9D3240E1DFCB23D00B49444 /* PhotoSelectorViewController.swift in Sources */,
 				C9E7857D1DCA5FC100B337F4 /* RoundedView.swift in Sources */,
+				C9885FBC1DFD15E900FEF73F /* LabelEditorViewController+CustomLabelView.swift in Sources */,
 				C94426B51DD43CE1003F34C4 /* WatermarkImage.swift in Sources */,
 				C96A7B031DD3EBD200A2386C /* StyleViewController+CollectionView.swift in Sources */,
 				C9F80B4A1DD3BB0A00B38DEF /* Style+CoreDataClass.swift in Sources */,
@@ -335,7 +392,7 @@
 				C9F073021DCA49240014F0E7 /* ConsultantAide.xcdatamodeld in Sources */,
 				C93E198E1DCFC61000A5CD7F /* SizeCollectionViewCell.swift in Sources */,
 				C912F9391DD11E5700E1C9B5 /* PhotosAuthorization.swift in Sources */,
-				C980CFB71DCFE93500A75425 /* EditorViewController+ImagePicker.swift in Sources */,
+				C9198FE81E0C2439000DF029 /* StyleViewController+SearchBar.swift in Sources */,
 				C94426B11DD41C7F003F34C4 /* RoundedImageView.swift in Sources */,
 				C97E9FF61DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift in Sources */,
 				C9CECBEE1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift in Sources */,
@@ -352,7 +409,10 @@
 				C9F80B4B1DD3BB0A00B38DEF /* Style+CoreDataProperties.swift in Sources */,
 				C9E785821DCA6E8300B337F4 /* ColorPickerViewController.swift in Sources */,
 				C93E19831DCFC3C100A5CD7F /* CollageImageView.swift in Sources */,
+				C9D324151DFCC28900B49444 /* PhotoEditorViewController.swift in Sources */,
+				C9D324181DFCEF8800B49444 /* LabelEditorViewController.swift in Sources */,
 				C96A7B011DD3EA5500A2386C /* StyleViewController+TableView.swift in Sources */,
+				C9DE754B1E13463500747900 /* CustomStyleFormDelegate.swift in Sources */,
 				C9F0730F1DCA497B0014F0E7 /* EditorViewController.swift in Sources */,
 				C94426B71DD45022003F34C4 /* PositionRescurer.swift in Sources */,
 				C929034E1DCAD41200796369 /* FontViewController.swift in Sources */,

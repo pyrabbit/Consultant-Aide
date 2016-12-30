@@ -19,17 +19,7 @@ class CollageImageView: UIImageView {
     }
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        // Set default center position if applicable
-        if let x = UserDefaults.standard.value(forKey: "defaultCollageXPosition") as? Float,
-            let y = UserDefaults.standard.value(forKey: "defaultCollageYPosition") as? Float {
-            
-            let xPos = CGFloat(x)
-            let yPos = CGFloat(y)
-            
-            center = CGPoint(x: xPos, y: yPos)
-        }
+        super.init(frame: frame) 
         
         if let scale = UserDefaults.standard.value(forKey: "collageSize") as? CGFloat {
             contentScaleFactor = scale
@@ -44,6 +34,25 @@ class CollageImageView: UIImageView {
         
         contentMode = UIViewContentMode.scaleAspectFill
         clipsToBounds = true
+    }
+    
+    func movetoSavedPosition() {
+        // Set default center position if applicable
+        if let x = UserDefaults.standard.value(forKey: "defaultCollageXPosition") as? Float,
+            let y = UserDefaults.standard.value(forKey: "defaultCollageYPosition") as? Float {
+            
+            let xPos = CGFloat(x)
+            let yPos = CGFloat(y)
+            
+            if let container = containerView {
+                if ((yPos + frame.height) > container.frame.maxY) {
+                    frame.origin = CGPoint(x: 0, y: 0)
+                    return
+                }
+            }
+            
+            frame.origin = CGPoint(x: xPos, y: yPos)
+        }
     }
     
     func containWithin(view: UIView) {
@@ -73,7 +82,7 @@ class CollageImageView: UIImageView {
         var point = CGPoint(x: 0, y: 0)
         
         for _ in touches {
-            point = center
+            point = frame.origin
         }
         
         UserDefaults.standard.set(point.x, forKey: "defaultCollageXPosition")

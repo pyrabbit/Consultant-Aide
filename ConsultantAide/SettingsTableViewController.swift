@@ -20,6 +20,8 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var defaultCollageSize: UISlider!
     @IBOutlet weak var fullWidthLabels: UISwitch!
     @IBOutlet weak var mapPrice: UISwitch!
+    @IBOutlet weak var watermarkColor: UIView!
+    @IBOutlet weak var watermarkFontColor: UIView!
     @IBOutlet weak var watermarkImage: UIImageView!
     @IBOutlet weak var watermarkTransparency: UISlider!
     @IBOutlet weak var watermarkToggle: UISwitch!
@@ -81,6 +83,12 @@ class SettingsTableViewController: UITableViewController {
             case "secondaryFontColor":
                 secondaryFontColor.backgroundColor = selectedColor
                 UserDefaults.standard.setColor(color: selectedColor, forKey: "secondaryFont")
+            case "watermarkColor":
+                watermarkColor.backgroundColor = selectedColor
+                UserDefaults.standard.setColor(color: selectedColor, forKey: "watermarkColor")
+            case "watermarkFontColor":
+                watermarkFontColor.backgroundColor = selectedColor
+                UserDefaults.standard.setColor(color: selectedColor, forKey: "watermarkFontColor")
             default:
                 print("Color is for unknown")
             }
@@ -112,20 +120,29 @@ class SettingsTableViewController: UITableViewController {
             color = secondaryColor.backgroundColor
             performSegue(withIdentifier: "segueToColorPicker", sender: self)
         case 3:
-            colorFor = "secondaryFont"
+            colorFor = "secondaryFontColor"
             color = secondaryFontColor.backgroundColor
             performSegue(withIdentifier: "segueToColorPicker", sender: self)
         case 4:
             performSegue(withIdentifier: "segueToFontPicker", sender: self)
         case 11:
             showWatermarkAlert()
+        case 13:
+            colorFor = "watermarkColor"
+            color = watermarkColor.backgroundColor
+            performSegue(withIdentifier: "segueToColorPicker", sender: self)
         case 14:
-            presentPhotoLibraryController()
+            colorFor = "watermarkFontColor"
+            color = watermarkFontColor.backgroundColor
+            performSegue(withIdentifier: "segueToColorPicker", sender: self)
         case 16:
+            presentPhotoLibraryController()
+        case 18:
             showRescueAlert()
         default:
             print("Some other path was selected.")
         }
+
     }
     
     func showRescueAlert() {
@@ -222,6 +239,14 @@ class SettingsTableViewController: UITableViewController {
         
         if let size = UserDefaults.standard.value(forKey: "watermarkFontSize") as? Float {
             watermarkFontSize.value = size
+        }
+        
+        if let savedColor = UserDefaults.standard.colorForKey(key: "watermarkColor") {
+            watermarkColor.backgroundColor = savedColor
+        }
+        
+        if let savedColor = UserDefaults.standard.colorForKey(key: "watermarkFontColor") {
+            watermarkFontColor.backgroundColor = savedColor
         }
         
         if let decider = UserDefaults.standard.value(forKey: "watermarkImage") as? Bool {

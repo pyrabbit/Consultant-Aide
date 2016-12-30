@@ -18,7 +18,8 @@ extension SavedLabel {
 
     @NSManaged public var sizes: [String]?
     @NSManaged public var price: Float
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var brand: String?
-
+    @NSManaged public var xPos: Int16
+    @NSManaged public var yPos: Int16
 }

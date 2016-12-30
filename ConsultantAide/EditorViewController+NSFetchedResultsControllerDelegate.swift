@@ -22,13 +22,10 @@ extension EditorViewController: NSFetchedResultsControllerDelegate {
         }
         
         for label in fetchedLabels {
-            guard let name = label.name else {
-                print("Saved label name was null")
-                return
-            }
-            
-            let styleView = StyleView(style: name, price: label.price, sizes: label.sizes)
+            let styleView = StyleView(savedLabel: label)
             styleView.containWithin(view: containerView)
+            styleView.moveToSavedPosition()
+            
             labels.append(styleView)
             containerView.addSubview(styleView)
         }

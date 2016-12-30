@@ -50,11 +50,23 @@ extension EditorViewController {
                             let savedAlert = UIAlertController(title: "Saved!", message: "", preferredStyle: .alert)
                             self.present(savedAlert, animated: true, completion: nil)
                             
+                            self.assistantToolbar.isHidden = true
+                            self.noImageMessage.isHidden = false
+                            self.toggleRatioButton.isHidden = true
+                            self.primaryImageView.image = nil
+                            self.collage?.image = nil
+                            self.collage?.isHidden = true
+                            self.watermark?.isHidden = true
+                            self.watermarkImage?.isHidden = true
+                            self.hideLabels()
+                            
                             let maxDisplayTime = DispatchTime.now() + 1
                             DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
                                 savedAlert.dismiss(animated: true, completion: nil)
                             })
                         })
+                        
+
                     }
                 }
             }

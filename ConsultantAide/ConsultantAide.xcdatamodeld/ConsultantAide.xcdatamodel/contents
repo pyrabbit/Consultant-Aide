@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2657" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="SavedLabel" representedClassName="SavedLabel" syncable="YES">
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="price" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sizes" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="xPos" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="yPos" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Style" representedClassName="Style" syncable="YES">
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="forKids" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sizes" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="styleId" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="styleId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Style" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="SavedLabel" positionX="-63" positionY="9" width="128" height="105"/>
+        <element name="SavedLabel" positionX="-63" positionY="9" width="128" height="135"/>
+        <element name="Style" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

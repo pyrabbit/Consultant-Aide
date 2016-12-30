@@ -12,42 +12,79 @@ import CoreData
 class StyleService {
     
     static func updateFromServer() {
-        let baseURL = "https://consultant-aide.firebaseio.com/api-v2.json"
-        let url = URL(string: baseURL)!
+        guard let url = URL(string: "https://consultant-aide.firebaseio.com/api-v2-1.json") else {
+            return
+        }
+        
+        fetchDataFromServer(url: url, completion: { data, success in
+            if !(success) {
+                updateFromDevice()
+                return
+            }
+            
+            updateDeviceWithData(data: data)
+        })
+    }
+    
+    static func fetchAll() -> [Style]? {
+        let fetchRequest: NSFetchRequest<Style> = Style.fetchRequest()
+        let brandSort = NSSortDescriptor(key: "brand", ascending: true)
+        let nameSort = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [brandSort,nameSort]
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try controller.performFetch()
+            return controller.fetchedObjects
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+            return nil
+        }
+    }
+    
+    static func saveCustomStyle(name: String, price: Float = 0.0, sizes: [String]?) {
+        let style = Style(context: context)
+        style.brand = "Custom"
+        style.name = name
+        style.price = price
+        style.sizes = sizes
+        style.styleId = UUID().uuidString
+        ad.saveContext()
+    }
+    
+    
+    private static func fetchDataFromServer(url: URL, completion: @escaping (Dictionary<String, AnyObject>?, Bool) -> ()) {
+        var serializedData: Dictionary<String, AnyObject>?
         
         URLSession.shared.dataTask(with: url) { data, response, error in
-            
             guard error == nil else {
-                if let _ = error {
-                    print("Error reaching server, check if app should load from device")
-                    updateFromDevice()
-                }
+                print("Error reaching server, check if app should load from device")
+                completion(nil, false)
                 return
             }
             
             guard let data = data else {
                 print("There was no data in the request.")
+                completion(nil, false)
                 return
             }
             
-            if let brandData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, AnyObject> {
-                
-                let didRemoveStylesFromDevice = removedStylesFromDevice()
-                
-                if didRemoveStylesFromDevice {
-                    print("Updating styles from server.")
-                    updateStyles(brandData)
-                }
-            }
+            serializedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, AnyObject>
+            completion(serializedData, true)
         }.resume()
     }
-    
+
     private static func updateFromDevice() {
         let fetchRequest: NSFetchRequest<Style> = Style.fetchRequest()
-        let nameSort = NSSortDescriptor(key: "name", ascending: true)
+        let nameSort = NSSortDescriptor(key: "styleId", ascending: true)
         fetchRequest.sortDescriptors = [nameSort]
         
-        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        moc.parent = context
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
         
         do {
             try controller.performFetch()
@@ -56,8 +93,8 @@ class StyleService {
                 if items.count < 1 {
                     print("There was nothing in the CoreData database so we are going to load from device.")
                     
-                    guard let path = Bundle.main.path(forResource: "api-v2-import", ofType: "json") else {
-                        print("Could not load api-v2-import.json")
+                    guard let path = Bundle.main.path(forResource: "api-v2.1-import", ofType: "json") else {
+                        print("Could not load api-v2.1-import.json")
                         return
                     }
 
@@ -65,19 +102,14 @@ class StyleService {
                         let data = try NSData(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
 
                         guard let brandData = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? Dictionary<String, AnyObject> else {
-                            
-                            print("Could not read api-v2-import.json into an json data object.")
+                            print("Could not read api-v2.1-import.json into an json data object.")
                             return
                         }
-
-                        let didRemoveStylesFromDevice = removedStylesFromDevice()
                         
-                        if didRemoveStylesFromDevice {
-                            print("Updating styles from device.")
-                            updateStyles(brandData)
-                        }
+                        updateDeviceWithData(data: brandData)
+                        
                     } catch {
-                        print("Could not read api-v2-import.json into initialized Data object.")
+                        print("Could not read api-v2.1-import.json into initialized Data object.")
                     }
 
                 } else {
@@ -90,53 +122,77 @@ class StyleService {
         }
     }
     
-    private static func updateStyles(_ data: Dictionary<String, AnyObject>) {
-        for (brand, items) in data  {
-            for item in items as! [Dictionary<String, AnyObject>] {
-                let style = Style(context: context)
-                style.brand = brand
-                
-                if let name = item["name"] as? String {
-                    style.name = name
-                }
-                
-                if let sizes = item["sizes"] as? [String] {
-                    style.sizes = sizes
-                }
-                
-                if let price = item["price"] as? Float {
-                    style.price = price
-                }
-            }
-        }
-        
-        ad.saveContext()
-    }
-    
-    private static func removedStylesFromDevice() -> Bool {
+    private static func findOrCreateBy(styleId: String) -> Style? {
         let fetchRequest: NSFetchRequest<Style> = Style.fetchRequest()
-        let nameSort = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [nameSort]
+        let styleIdPredicate = NSPredicate(format: "styleId like %@", styleId)
+        let brandSort = NSSortDescriptor(key: "styleId", ascending: true)
+        fetchRequest.sortDescriptors = [brandSort]
+        
+        fetchRequest.predicate = styleIdPredicate
+        fetchRequest.fetchLimit = 1
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         
         do {
             try controller.performFetch()
             
-            if let items = controller.fetchedObjects {
-                for item in items {
-                    context.delete(item)
+            if let results = controller.fetchedObjects {
+                if !(results.isEmpty) {
+                    print("Found \(styleId)")
+                    return results.first
+                } else {
+                    print("Creating \(styleId)")
+                    let newStyleObject = Style(context: context)
+                    newStyleObject.styleId = styleId
+                    return newStyleObject
                 }
             }
-            
-            ad.saveContext()
-            
-            return true
         } catch {
             let error = error as NSError
             print("\(error)")
-            
-            return false
         }
+        
+        return nil
     }
+    
+    private static func updateDeviceWithData(data: Dictionary<String, AnyObject>?) {
+        guard let sourceData = data else {
+            return
+        }
+        
+        for (styleId, styleData) in sourceData {
+            guard let data = styleData as? Dictionary<String, AnyObject> else {
+                continue
+            }
+            
+            updateDeviceWithData(data: data)
+            
+            guard let style = findOrCreateBy(styleId: styleId) else {
+                continue
+            }
+            
+            if let brand = data["brand"] as? String {
+                style.brand = brand
+            }
+            
+            if let name = data["name"] as? String {
+                style.name = name
+            }
+            
+            if let sizes = data["sizes"] as? [String] {
+                style.sizes = sizes
+            }
+            
+            if let price = data["price"] as? Float {
+                style.price = price
+            }
+            
+            if let decider = data["forKids"] as? Bool {
+                style.forKids = decider
+            }
+        }
+        
+        ad.saveContext()
+    }
+    
 }

@@ -33,8 +33,8 @@ class WatermarkImage: UIImageView {
     }
     
     func setWatermarkStyle() {
-        if let x = UserDefaults.standard.object(forKey: "defaultWatermarkImageXCenter") as? Int,
-            let y = UserDefaults.standard.object(forKey: "defaultWatermarkImageYCenter") as? Int {
+        if let x = UserDefaults.standard.object(forKey: "defaultWatermarkImageX") as? Int,
+            let y = UserDefaults.standard.object(forKey: "defaultWatermarkImageY") as? Int {
             center = CGPoint(x: x, y: y)
         } else {
             center = CGPoint(x: 150, y: 150)
@@ -59,6 +59,25 @@ class WatermarkImage: UIImageView {
         sizeToFit()
     }
     
+    func moveToSavedPosition() {
+        guard let x = UserDefaults.standard.object(forKey: "defaultWatermarkImageX") as? Int else {
+            return
+        }
+        
+        guard let y = UserDefaults.standard.object(forKey: "defaultWatermarkImageY") as? Int else {
+            return
+        }
+        
+        if let container = containerView {
+            if ((CGFloat(y) + frame.height) > container.frame.maxY) {
+                frame.origin = CGPoint(x: 0, y: 0)
+                return
+            }
+        }
+        frame.origin = CGPoint(x: x, y: y)
+    }
+    
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let animator = self.animator {
             animator.removeAllBehaviors()
@@ -80,11 +99,11 @@ class WatermarkImage: UIImageView {
         var point = CGPoint(x: 0, y: 0)
         
         for _ in touches {
-            point = center
+            point = frame.origin
         }
         
-        UserDefaults.standard.set(point.y, forKey: "defaultWatermarkImageYCenter")
-        UserDefaults.standard.set(point.x, forKey: "defaultWatermarkImageXCenter")
+        UserDefaults.standard.set(point.x, forKey: "defaultWatermarkImageX")
+        UserDefaults.standard.set(point.y, forKey: "defaultWatermarkImageY")
     }
 
 }

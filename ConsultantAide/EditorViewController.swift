@@ -9,11 +9,7 @@
 import UIKit
 
 class EditorViewController: UIViewController {
-
-    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var save: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var primaryImageView: UIImageView!
     @IBOutlet weak var noImageMessage: UILabel!
     @IBOutlet weak var effectView: UIVisualEffectView!
     @IBOutlet weak var photoSourceView: UIView!
@@ -25,6 +21,7 @@ class EditorViewController: UIViewController {
     @IBOutlet weak var assistantToolbar: UIToolbar!
     @IBOutlet weak var removeCollageButton: UIBarButtonItem!
     @IBOutlet weak var toggleRatioButton: UIButton!
+    @IBOutlet weak var branding: UILabel!
     
     var captureIsForPrimaryImage = true
     var labels = [StyleView]()
@@ -36,8 +33,33 @@ class EditorViewController: UIViewController {
     var watermark: WatermarkLabel?
     var watermarkImage: WatermarkImage?
     
+    var scrollView: UIScrollView!
+    var primaryImageView: UIImageView!
+    var containerView: LabelContainerView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let size = view.bounds.width
+        let rect = CGRect(x: 0, y: 0, width: size, height: size)
+        let center = editorCenter()
+        
+        scrollView = UIScrollView(frame: rect)
+        scrollView.center = center
+        primaryImageView = UIImageView(frame: rect)
+        primaryImageView.contentMode = .scaleAspectFit
+        scrollView.addSubview(primaryImageView)
+        scrollView.isUserInteractionEnabled = true
+        scrollView.delegate = self
+        
+        containerView = LabelContainerView(frame: rect)
+        containerView.center = center
+
+        view.addSubview(scrollView)
+        view.addSubview(containerView)
+        view.bringSubview(toFront: effectView)
+        view.bringSubview(toFront: branding)
         
         styleField.delegate = self
         priceField.delegate = self
@@ -74,8 +96,7 @@ class EditorViewController: UIViewController {
         } else {
             removeCollageButton.isEnabled = false
         }
-        
-        resetLabels()
+         
         setWatermark()
         setWatermarkImage()
         
@@ -136,6 +157,7 @@ class EditorViewController: UIViewController {
                 watermark?.text = text
                 watermark?.containWithin(view: containerView)
                 watermark?.sizeToFit()
+                watermark?.moveToSavedPosition()
                 
                 if let label = watermark {
                     containerView.addSubview(label)
@@ -194,10 +216,14 @@ class EditorViewController: UIViewController {
        
     func makeLabelsWide() {
         for styleView in labels {
+            guard let primaryLabel = styleView.primaryLabel else {
+                continue
+            }
+            
             styleView.frame.size.width = view.frame.size.width
             styleView.frame.origin.x = 0
-            styleView.primaryLabel.frame.size.width = view.frame.size.width
-            styleView.primaryLabel.layer.cornerRadius = 0
+            primaryLabel.frame.size.width = view.frame.size.width
+            primaryLabel.layer.cornerRadius = 0
             
             if let priceLabel = styleView.priceLabel {
                 priceLabel.frame.origin.x = styleView.frame.width - priceLabel.frame.width
@@ -218,16 +244,6 @@ class EditorViewController: UIViewController {
     func hideLabels() {
         for label in labels {
             label.isHidden = true
-        }
-    }
-    
-    func resetLabels() {
-        for label in labels {
-            label.reset()
-        }
-        
-        if collage != nil {
-            setCollage(image: collage?.image)
         }
     }
     
@@ -259,6 +275,7 @@ class EditorViewController: UIViewController {
         collage?.image = image
         collage?.isUserInteractionEnabled = true
         collage?.containWithin(view: self.containerView)
+        collage?.movetoSavedPosition()
         removeCollageButton.isEnabled = true
         
         if let collageView = collage {
@@ -273,7 +290,8 @@ class EditorViewController: UIViewController {
     }
     
     @IBAction func unwindToEditor(segue: UIStoryboardSegue) {
-        resetLabels()
+        print("Executing unwindToEditor method")
+        resetEverything()
     }
     
     @IBAction func toggleRatio() {
@@ -286,11 +304,83 @@ class EditorViewController: UIViewController {
         }
     }
     
-    func makeEditorRectangular() {
-        containerView.translatesAutoresizingMaskIntoConstraints = true
-        scrollView.translatesAutoresizingMaskIntoConstraints = true
+    func resetEverything() {
+        // Reset the labels
+        for (index, label) in labels.enumerated() {
+            labels.remove(at: index)
+            label.removeFromSuperview()
+            var resetLabel: StyleView
+            if let savedLabel = label.savedLabel {
+                resetLabel = StyleView(savedLabel: savedLabel)
+            } else {
+                resetLabel = StyleView(style: label.style, price: label.price, sizes: label.sizes)
+            }
+            
+            labels.append(resetLabel)
+        }
         
-        UIView.animate(withDuration: 0.25, animations: {
+        // Make the labels wide if necessary
+        if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
+            if fullWidthLabels {
+                print("Making labels wide after reset")
+                makeLabelsWide()
+            }
+        }
+        
+        // Add reset labels to container view
+        for label in labels {
+            label.containWithin(view: containerView)
+            label.moveToSavedPosition()
+            containerView.addSubview(label)
+        }
+        
+        // Reset watermark text
+        if let label = watermark {
+            let rect = CGRect(x: label.frame.origin.x,
+                              y: label.frame.origin.y,
+                              width: label.frame.width,
+                              height: label.frame.height)
+            let resetWatermark = WatermarkLabel(frame: rect)
+            watermark?.removeFromSuperview()
+            watermark = resetWatermark
+            watermark?.containWithin(view: containerView)
+            watermark?.moveToSavedPosition()
+            containerView.addSubview(resetWatermark)
+        }
+        
+        // Reset watermark image
+        if let image = watermarkImage {
+            let rect = CGRect(x: image.frame.origin.x,
+                              y: image.frame.origin.y,
+                              width: image.frame.width,
+                              height: image.frame.height)
+            let resetWatermarkImage = WatermarkImage(frame: rect)
+            resetWatermarkImage.image = image.image
+            image.removeFromSuperview()
+            watermarkImage = resetWatermarkImage
+            watermarkImage?.containWithin(view: containerView)
+            watermarkImage?.moveToSavedPosition()
+            containerView.addSubview(resetWatermarkImage)
+        }
+        
+        // Reset collage
+        if let image = collage {
+            let rect = CGRect(x: image.frame.origin.x,
+                              y: image.frame.origin.y,
+                              width: image.frame.width,
+                              height: image.frame.height)
+            let resetCollage = CollageImageView(frame: rect)
+            resetCollage.image = image.image
+            collage = resetCollage
+            collage?.containWithin(view: containerView)
+            collage?.movetoSavedPosition()
+            containerView.addSubview(resetCollage)
+        }
+    }
+    
+    func makeEditorRectangular() {
+        UIView.animate(withDuration: 0.25,
+          animations: {
             let rect = CGRect(x: 0, y: 40, width: self.view.frame.width, height: self.assistantToolbar.frame.minY - 40)
             self.containerView.frame = rect
             self.scrollView.frame = rect
@@ -298,13 +388,13 @@ class EditorViewController: UIViewController {
             let point = self.editorCenter()
             self.containerView.center = point
             self.scrollView.center = point
-        })
+          }
+        )
     }
     
     func makeEditorSquare() {
-        containerView.translatesAutoresizingMaskIntoConstraints = true
-        scrollView.translatesAutoresizingMaskIntoConstraints = true
-        UIView.animate(withDuration: 0.25, animations: {
+        UIView.animate(withDuration: 0.25,
+          animations: {
             let rect = CGRect(x: 0, y: 40, width: self.view.frame.width, height: self.view.frame.width)
             self.containerView.frame = rect
             self.scrollView.frame = rect
@@ -312,7 +402,20 @@ class EditorViewController: UIViewController {
             let point = self.editorCenter()
             self.containerView.center = point
             self.scrollView.center = point
-        })
+          },
+          completion: { complete in
+            if complete {
+                self.resetEverything()
+                self.containerView.layoutIfNeeded()
+            }
+          }
+        )
+    }
+    
+    func rescue(styleView: StyleView) -> StyleView {
+        let recoveredLabel = StyleView(style: styleView.style, price: styleView.price, sizes: styleView.sizes)
+        recoveredLabel.savedLabel = styleView.savedLabel
+        return recoveredLabel
     }
     
     func editorCenter() -> CGPoint {

@@ -11,88 +11,53 @@ import CoreData
 class StyleViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var deselectAllButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var customStyleView: CustomStyleFormView!
     
-    /*
-     // MARK: - Instance Variable Definitions
-     */
-    
-    var styleResultsController: NSFetchedResultsController<Style>!
-    var selectedPaths: [IndexPath:[IndexPath]] = [:]
-    var selectedItems: [String:Set<String>] = [:]
-    var selectedStyles: [Style: Set<String>] = [:]
-    
-    
-    /*
-     // MARK: - Initialization
-     */
-    
+    var styles = [Style]()
+    var filteredStyles = [Style]()
+    var isSearching = false
+    var modalBackground: UIView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadStyles()
-        self.tableView.layer.cornerRadius = 5
-        self.tableView.layer.masksToBounds = true
-    }
-    
-    
-    @IBAction func deselectAll() {
-        for (style,_) in selectedPaths {
-            tableView.deselectRow(at: style, animated: false)
-        }
         
-        selectedPaths = [:]
-        selectedStyles = [:]
-        
-        print("deselected paths: \(selectedPaths)")
-        print("deselected styles: \(selectedStyles)")
-    }
-    
-    @IBAction func saveStyles() {
-        if removeAllSavedLabels() {
-            for (style,sizes) in selectedStyles {
-                let savedLabel = SavedLabel(context: context)
-                savedLabel.brand = style.brand
-                savedLabel.name = style.name
-                savedLabel.price = style.price
-                savedLabel.sizes = Array(sizes)
-            }
-            
-            ad.saveContext()
-        }
-
-        performSegue(withIdentifier: "unwindFromStylePicker", sender: self)
-    }
-    
-    private func removeAllSavedLabels() -> Bool {
-        let fetchRequest: NSFetchRequest<SavedLabel> = SavedLabel.fetchRequest()
-        let nameSort = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [nameSort]
-        
-        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        do {
-            try controller.performFetch()
-            
-            if let items = controller.fetchedObjects {
-                for item in items {
-                    context.delete(item)
-                }
-            }
-            
-            ad.saveContext()
-            
-            return true
-        } catch {
-            let error = error as NSError
-            print("\(error)")
-            
-            return false
+        if let stylesFromDevice = StyleService.fetchAll() {
+            styles = stylesFromDevice
         }
     }
     
-    @IBAction func cancelChanges() {
-        performSegue(withIdentifier: "unwindFromStylePicker", sender: self)
+    @IBAction func addStyle(_ sender: Any) {
+        modalBackground = UIView(frame: view.bounds)
+        modalBackground?.backgroundColor = .black
+        modalBackground?.alpha = 0.8
+        
+        if let bg = modalBackground {
+            view.addSubview(bg)
+        }
+        
+        let xPos = view.center.x - (customStyleView.frame.width/2)
+        
+        let rect = CGRect(x: xPos, y: view.bounds.maxY + customStyleView.frame.height,
+                          width: customStyleView.frame.width,
+                          height: customStyleView.frame.height)
+        
+        customStyleView.frame = rect
+        customStyleView.delegate = self
+        
+        view.addSubview(customStyleView)
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: [], animations: {
+            let rect = CGRect(x: xPos, y: 20,
+                              width: self.customStyleView.frame.width,
+                              height: self.customStyleView.frame.height)
+            
+            self.customStyleView.frame = rect
+        })
+    }
+    
+    @IBAction func cancel(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -100,4 +65,5 @@ class StyleViewController: UIViewController {
             return true
         }
     }
+    
 }

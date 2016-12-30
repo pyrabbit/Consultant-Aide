@@ -39,13 +39,13 @@ class WatermarkLabel: UILabel {
     }
     
     func setWatermarkStyle() {
-        if let color = UserDefaults.standard.colorForKey(key: "secondary") {
+        if let color = UserDefaults.standard.colorForKey(key: "watermarkColor") {
             layer.backgroundColor = color.cgColor
         } else {
             layer.backgroundColor = ColorPalette.Accent.cgColor
         }
         
-        if let color = UserDefaults.standard.colorForKey(key: "secondaryFont") {
+        if let color = UserDefaults.standard.colorForKey(key: "watermarkFontColor") {
             textColor = color
         } else {
             textColor = .white
@@ -65,13 +65,6 @@ class WatermarkLabel: UILabel {
             font = newFont
         }
         
-        if let x = UserDefaults.standard.object(forKey: "defaultWatermarkTextXCenter") as? Int,
-            let y = UserDefaults.standard.object(forKey: "defaultWatermarkTextYCenter") as? Int {
-            center = CGPoint(x: x, y: y)
-        } else {
-            center = CGPoint(x: 150, y: 150)
-        }
-        
         if let transparency = UserDefaults.standard.object(forKey: "watermarkTransparency") as? Float {
             alpha = CGFloat(transparency)
         }
@@ -82,6 +75,25 @@ class WatermarkLabel: UILabel {
             frame.size.height += 5
             frame.size.width += 5
         }
+    }
+    
+    func moveToSavedPosition() {
+        guard let x = UserDefaults.standard.object(forKey: "defaultWatermarkTextX") as? Int else {
+            return
+        }
+        
+        guard let y = UserDefaults.standard.object(forKey: "defaultWatermarkTextY") as? Int else {
+            return
+        }
+        
+        if let container = containerView {
+            if ((CGFloat(y) + frame.height) > container.frame.maxY) {
+                frame.origin = CGPoint(x: 0, y: 0)
+                return
+            }
+        }
+        
+        frame.origin = CGPoint(x: x, y: y)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -105,10 +117,10 @@ class WatermarkLabel: UILabel {
         var point = CGPoint(x: 0, y: 0)
         
         for _ in touches {
-            point = center
+            point = frame.origin
         }
         
-        UserDefaults.standard.set(point.y, forKey: "defaultWatermarkTextYCenter")
-        UserDefaults.standard.set(point.x, forKey: "defaultWatermarkTextXCenter")
+        UserDefaults.standard.set(point.y, forKey: "defaultWatermarkTextY")
+        UserDefaults.standard.set(point.x, forKey: "defaultWatermarkTextX")
     }
 }

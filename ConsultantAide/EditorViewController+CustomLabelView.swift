@@ -23,6 +23,9 @@ extension EditorViewController: UITextFieldDelegate {
         customLabel.containWithin(view: containerView)
         containerView.addSubview(customLabel)
         
+        let savedObject = saveCustomLabel(style: customLabel.style, price: customLabel.price, sizes: customLabel.sizes)
+        customStyleView?.savedLabel = savedObject
+        
         if primaryImageView.image == nil {
             customLabel.isHidden = true
         }
@@ -99,6 +102,16 @@ extension EditorViewController: UITextFieldDelegate {
         return true
     }
     
+    func saveCustomLabel(style: String, price: Float, sizes: [String]?) -> SavedLabel {
+        let savedLabel = SavedLabel(context: context)
+        savedLabel.brand = "Custom"
+        savedLabel.name = style
+        savedLabel.price = price
+        savedLabel.sizes = sizes
+        ad.saveContext()
+        return savedLabel
+    }
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
