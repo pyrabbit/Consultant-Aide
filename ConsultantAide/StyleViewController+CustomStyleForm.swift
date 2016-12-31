@@ -22,6 +22,21 @@ extension StyleViewController: CustomStyleFormDelegate {
             styles = stylesFromDevice
         }
         
+        if var filters = UserDefaults.standard.value(forKey: "styleFilters") as? [String] {
+            if !(filters.contains("Custom")) {
+                filters.append("Custom")
+                UserDefaults.standard.set(filters, forKey: "styleFilters")
+            }
+            
+            if !(filterView.brands.contains("Custom")) {
+                filterView.brands.append("Custom")
+                filterView.brands = filterView.brands.sorted()
+                filterView.tableView.reloadData()
+            }
+            
+            tableView.reloadData()
+        }
+        
         tableView.reloadData()
     }
 }

@@ -50,11 +50,7 @@ class StyleTableViewCell: UITableViewCell {
     }
     
     func belongsToCustomLabel() -> Bool {
-        guard let brand = style.brand else {
-            return false
-        }
-        
-        if brand == "Custom" {
+        if style.brand == "Custom" {
             return true
         }
         

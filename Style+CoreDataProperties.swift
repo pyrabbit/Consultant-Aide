@@ -16,7 +16,7 @@ extension Style {
         return NSFetchRequest<Style>(entityName: "Style");
     }
 
-    @NSManaged public var brand: String?
+    @NSManaged public var brand: String
     @NSManaged public var name: String
     @NSManaged public var styleId: String
     @NSManaged public var sizes: [String]?
