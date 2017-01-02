@@ -9,20 +9,20 @@
 import UIKit
 
 class PhotoEditorViewController: UIViewController {
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var squareButton: UIButton!
+    @IBOutlet weak var portraitButton: UIButton!
+    @IBOutlet weak var containerView: UIView!
     
     var scrollView: UIScrollView!
     var primaryImageView: UIImageView!
     var selectedImage: UIImage?
     var modifiedImage: UIImage?
     
-    @IBOutlet weak var squareButton: UIButton!
-    @IBOutlet weak var portraitButton: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let size = view.bounds.width
-        let rect = CGRect(x: 0, y: 20, width: size, height: size)
+        let rect = CGRect(x: 0, y: 0, width: containerView.frame.width, height: containerView.frame.height)
         
         scrollView = UIScrollView(frame: rect)
         primaryImageView = UIImageView(frame: rect)
@@ -31,7 +31,7 @@ class PhotoEditorViewController: UIViewController {
         scrollView.addSubview(primaryImageView)
         scrollView.isUserInteractionEnabled = true
         scrollView.delegate = self
-        scrollView.backgroundColor = .lightGray
+        scrollView.backgroundColor = .white
         automaticallyAdjustsScrollViewInsets = false
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 6.0
@@ -40,8 +40,31 @@ class PhotoEditorViewController: UIViewController {
             scrollView.setZoomScale(scale, animated: true)
         }
         
-        setDefaultSize()
-        view.addSubview(scrollView)
+        containerView.addSubview(scrollView)
+        containerView.isHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+     
+        let decider = UserDefaults.standard.bool(forKey: "defaultImageSizeIsPortrait")
+        
+        if (decider) {
+            portraitButton.isEnabled = false
+            squareButton.isEnabled = true
+            
+            let rect = CGRect(x: 0, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+            self.scrollView.frame = rect
+        } else {
+            squareButton.isEnabled = false
+            portraitButton.isEnabled = true
+            
+            let yPos = (self.containerView.frame.height/2)-(self.view.bounds.width/2)
+            let rect = CGRect(x: 0, y: yPos, width: self.view.bounds.width, height: self.view.bounds.width)
+            self.scrollView.frame = rect
+        }
+        
+        containerView.isHidden = false
     }
 
     @IBAction func cancel(_ sender: Any) {
@@ -53,10 +76,9 @@ class PhotoEditorViewController: UIViewController {
         squareButton.isEnabled = true
         UserDefaults.standard.set(true, forKey: "defaultImageSizeIsPortrait")
         
-        UIView.animate(withDuration: 0.25,
-                       animations: {
-                        let rect = CGRect(x: 0, y: 20, width: self.view.frame.width, height: self.scrollView.frame.height + (self.scrollView.frame.height*0.35))
-                        self.scrollView.frame = rect
+        UIView.animate(withDuration: 0.25, animations: {
+            let rect = CGRect(x: 0, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+            self.scrollView.frame = rect
         })
     }
     
@@ -67,12 +89,16 @@ class PhotoEditorViewController: UIViewController {
         
         UIView.animate(withDuration: 0.25,
                        animations: {
-                        let rect = CGRect(x: 0, y: 20, width: self.view.frame.width, height: self.view.frame.width)
+                        
+                        let yPos = (self.containerView.frame.height/2)-(self.view.bounds.width/2)
+                        
+                        let rect = CGRect(x: 0, y: yPos, width: self.view.bounds.width, height: self.view.bounds.width)
                         self.scrollView.frame = rect
         })
+
     }
     
-    @IBAction func finishedEditing(_ sender: Any) {
+    @IBAction func nextStep(_ sender: Any) {
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
         
@@ -98,6 +124,7 @@ class PhotoEditorViewController: UIViewController {
         
         UIGraphicsEndImageContext()
         performSegue(withIdentifier: "segueToLabelEditor", sender: nil)
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
