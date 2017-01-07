@@ -14,6 +14,7 @@ class CustomStyleFormView: UIView {
     @IBOutlet weak var priceTextInput: UITextField!
     @IBOutlet weak var sizeTextInput: UITextField!
     @IBOutlet weak var finishedButton: UIButton!
+    @IBOutlet weak var forKidsSwitch: UISwitch!
     
     var delegate: CustomStyleFormDelegate?
     var customName: String?
@@ -30,7 +31,7 @@ class CustomStyleFormView: UIView {
             return
         }
         
-        StyleService.saveCustomStyle(name: name, price: customPrice, sizes: customSizes)
+        StyleService.saveCustomStyle(name: name, price: customPrice, sizes: customSizes, forKids: forKidsSwitch.isOn)
         resetForm()
         delegate?.didFinish(view: self)
     }
@@ -77,6 +78,7 @@ class CustomStyleFormView: UIView {
         customName = nil
         customPrice = 0.0
         customSizes = nil
+        forKidsSwitch.isOn = false
     }
     
 }

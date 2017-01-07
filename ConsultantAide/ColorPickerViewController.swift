@@ -15,6 +15,10 @@ class ColorPickerViewController: UIViewController {
     @IBOutlet weak var blue: UISlider!
     @IBOutlet weak var alpha: UISlider!
     @IBOutlet weak var preview: UIView!
+    @IBOutlet weak var redValueLabel: UILabel!
+    @IBOutlet weak var greenValueLabel: UILabel!
+    @IBOutlet weak var blueValueLabel: UILabel!
+    @IBOutlet weak var alphaValueLabel: UILabel!
     
     var selectedColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
     
@@ -25,6 +29,11 @@ class ColorPickerViewController: UIViewController {
                                 alpha: CGFloat(alpha.value))
         
         preview.backgroundColor = selectedColor
+        
+        redValueLabel.text = String(Int(red.value * 255))
+        greenValueLabel.text = String(Int(green.value * 255))
+        blueValueLabel.text = String(Int(blue.value * 255))
+        alphaValueLabel.text = String.init(format: "%.2f", alpha.value)
     }
     
     @IBAction func saveColor(sender: UIButton) {
@@ -51,6 +60,11 @@ class ColorPickerViewController: UIViewController {
         green.value = Float(g)
         blue.value = Float(b)
         alpha.value = Float(a)
+        
+        redValueLabel.text = String(Int(red.value * 255))
+        greenValueLabel.text = String(Int(green.value * 255))
+        blueValueLabel.text = String(Int(blue.value * 255))
+        alphaValueLabel.text = String.init(format: "%.2f", alpha.value)
     }
     
     override var prefersStatusBarHidden: Bool {

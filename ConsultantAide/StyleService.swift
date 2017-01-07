@@ -44,12 +44,13 @@ class StyleService {
         }
     }
     
-    static func saveCustomStyle(name: String, price: Float = 0.0, sizes: [String]?) {
+    static func saveCustomStyle(name: String, price: Float = 0.0, sizes: [String]?, forKids: Bool) {
         let style = Style(context: context)
         style.brand = "Custom"
         style.name = name
         style.price = price
         style.sizes = sizes
+        style.forKids = forKids
         style.styleId = UUID().uuidString
         ad.saveContext()
     }

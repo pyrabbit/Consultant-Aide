@@ -20,6 +20,8 @@ final class StyleView: UIView {
     var style: String = ""
     var price: Float = 0.0
     var sizes: [String]?
+    var forKids = false
+    
     private let primaryPadding: CGFloat = 20.0
     private let secondaryPadding: CGFloat = 5.0
     private var defaultFontSize:Float = 24.0
@@ -29,13 +31,15 @@ final class StyleView: UIView {
         super.init(coder: aDecoder)
     }
     
-    init(style: String, price: Float = 0.0, sizes: [String]?) {
+    init(style: String, price: Float = 0.0, sizes: [String]?, forKids: Bool) {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.forKids = forKids
         internalInitializer(style: style, price: price, sizes: sizes)
     }
     
     init(savedLabel: SavedLabel) {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.forKids = savedLabel.forKids
         internalInitializer(style: savedLabel.name, price: savedLabel.price, sizes: savedLabel.sizes)
         
         self.savedLabel = savedLabel
@@ -114,6 +118,11 @@ final class StyleView: UIView {
         
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         label.text = style
+        
+        if (forKids) {
+            label.text?.append(" - Kids")
+        }
+        
         label.numberOfLines = 1
         label.textAlignment = .center
         label.layer.cornerRadius = 5.0

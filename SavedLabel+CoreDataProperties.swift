@@ -22,4 +22,5 @@ extension SavedLabel {
     @NSManaged public var brand: String?
     @NSManaged public var xPos: Int16
     @NSManaged public var yPos: Int16
+    @NSManaged public var forKids: Bool
 }
