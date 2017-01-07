@@ -1,31 +1,14 @@
 //
-//  PhotoSelectorViewController.swift
+//  LabelEditorViewController+ImagePicker.swift
 //  ConsultantAide
 //
-//  Created by Matthew Orahood on 12/10/16.
-//  Copyright © 2016 Matthew Orahood. All rights reserved.
+//  Created by Matthew Orahood on 1/7/17.
+//  Copyright © 2017 Matthew Orahood. All rights reserved.
 //
 
 import UIKit
-import AVFoundation
 
-class PhotoSelectorViewController: UIViewController {
-    var selectedImage: UIImage?
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        let vc = segue.destination as! PhotoEditorViewController
-        vc.selectedImage = selectedImage
-    }
-    
-    @IBAction func openFacebookGroup(_ sender: Any) {
-        if let url = URL(string: "fb://group?id=898845000237494") {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-    }
-}
-
-extension PhotoSelectorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension LabelEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBAction func presentCameraController() {
         DispatchQueue.global(qos: .userInitiated).async {
             CameraAuthorization.GetAuthorizationStatus(completion: { granted in
@@ -72,8 +55,9 @@ extension PhotoSelectorViewController: UIImagePickerControllerDelegate, UINaviga
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
         dismiss(animated: true, completion: {
-            self.selectedImage = image
-            self.performSegue(withIdentifier: "segueToPhotoEditor", sender: nil)
+            self.setCollage(image: image)
+            self.collageSourceView.removeFromSuperview()
+            self.modalBackground?.removeFromSuperview()
         })
     }
 }

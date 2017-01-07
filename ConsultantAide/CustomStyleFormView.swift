@@ -6,6 +6,7 @@
 //  Copyright © 2016 Matthew Orahood. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class CustomStyleFormView: UIView {
@@ -54,13 +55,17 @@ class CustomStyleFormView: UIView {
             }
         }
         
-        var sizes: [String]?
+        var sizes = [String]()
         
         if let text = sizeTextInput.text {
             if text.isEmpty {
-                sizes = nil
+                sizes = []
             } else {
                 sizes = text.components(separatedBy: ",")
+                
+                for (index,size) in sizes.enumerated() {
+                    sizes[index] = size.trimmingCharacters(in: .whitespacesAndNewlines)
+                }
             }
         }
         
