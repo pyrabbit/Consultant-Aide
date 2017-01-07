@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,59 +21,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HeI-Xb-k0c">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dk-DW-OhY">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="lLI-Wc-HSH">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IsI-ZU-Hrb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GGd-08-I4b">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    </view>
-                                                    <vibrancyEffect>
-                                                        <blurEffect style="light"/>
-                                                    </vibrancyEffect>
-                                                </visualEffectView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="IsI-ZU-Hrb" secondAttribute="bottom" id="3AX-aB-2Mn"/>
-                                                <constraint firstAttribute="trailing" secondItem="IsI-ZU-Hrb" secondAttribute="trailing" id="8c4-j1-UmM"/>
-                                                <constraint firstItem="IsI-ZU-Hrb" firstAttribute="top" secondItem="lLI-Wc-HSH" secondAttribute="top" id="cZc-4x-QcG"/>
-                                                <constraint firstItem="IsI-ZU-Hrb" firstAttribute="leading" secondItem="lLI-Wc-HSH" secondAttribute="leading" id="tVs-DB-vv1"/>
-                                            </constraints>
-                                        </view>
-                                        <blurEffect style="light"/>
-                                    </visualEffectView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consultant Aide" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="cUE-HA-7Sa">
-                                        <rect key="frame" x="18" y="303" width="339" height="61.5"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="47"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.34901960780000002" green="0.83921568629999999" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconTransparent" translatesAutoresizingMaskIntoConstraints="NO" id="fQc-XF-p1C">
+                                <rect key="frame" x="112.5" y="258.5" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstItem="2dk-DW-OhY" firstAttribute="top" secondItem="HeI-Xb-k0c" secondAttribute="top" id="1SY-Ed-Fac"/>
-                                    <constraint firstItem="cUE-HA-7Sa" firstAttribute="centerX" secondItem="HeI-Xb-k0c" secondAttribute="centerX" id="CQl-Z4-hQ0"/>
-                                    <constraint firstItem="cUE-HA-7Sa" firstAttribute="centerY" secondItem="HeI-Xb-k0c" secondAttribute="centerY" id="Hsk-FT-TZa"/>
-                                    <constraint firstItem="2dk-DW-OhY" firstAttribute="leading" secondItem="HeI-Xb-k0c" secondAttribute="leading" id="WTH-7M-xrX"/>
-                                    <constraint firstAttribute="trailing" secondItem="2dk-DW-OhY" secondAttribute="trailing" id="ZqW-lI-f4p"/>
-                                    <constraint firstAttribute="bottom" secondItem="2dk-DW-OhY" secondAttribute="bottom" id="yTW-lT-O6c"/>
+                                    <constraint firstAttribute="width" constant="150" id="ZAg-WB-rPc"/>
+                                    <constraint firstAttribute="height" constant="150" id="tva-Ol-stT"/>
                                 </constraints>
-                            </view>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HeI-Xb-k0c" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="CAb-vS-jhq"/>
-                            <constraint firstItem="HeI-Xb-k0c" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="Hd5-Ov-Ihb"/>
-                            <constraint firstItem="HeI-Xb-k0c" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="SOg-FR-s1d"/>
-                            <constraint firstAttribute="trailing" secondItem="HeI-Xb-k0c" secondAttribute="trailing" id="i3J-se-clZ"/>
+                            <constraint firstItem="fQc-XF-p1C" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="S5m-LA-dX3"/>
+                            <constraint firstItem="fQc-XF-p1C" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gXc-Kc-4IL"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -82,4 +41,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="IconTransparent" width="300" height="300"/>
+    </resources>
 </document>

@@ -68,6 +68,10 @@ extension PhotoSelectorViewController: UIImagePickerControllerDelegate, UINaviga
         }
     }
     
+    func popBackHome(segue: UIStoryboardSegue) {
+        
+    }
+    
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         

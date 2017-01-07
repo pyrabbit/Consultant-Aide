@@ -19,8 +19,13 @@ class PhotoEditorViewController: UIViewController {
     var selectedImage: UIImage?
     var modifiedImage: UIImage?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         let rect = CGRect(x: 0, y: 0, width: containerView.frame.width, height: containerView.frame.height)
         
@@ -35,17 +40,10 @@ class PhotoEditorViewController: UIViewController {
         automaticallyAdjustsScrollViewInsets = false
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 6.0
-
-        if let scale = UserDefaults.standard.value(forKey: "defaultScrollViewScale") as? CGFloat {
-            scrollView.setZoomScale(scale, animated: true)
-        }
+        
         
         containerView.addSubview(scrollView)
         containerView.isHidden = true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
      
         let decider = UserDefaults.standard.bool(forKey: "defaultImageSizeIsPortrait")
         
@@ -53,15 +51,21 @@ class PhotoEditorViewController: UIViewController {
             portraitButton.isEnabled = false
             squareButton.isEnabled = true
             
-            let rect = CGRect(x: 0, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
-            self.scrollView.frame = rect
+            let rect = CGRect(x: 0, y: 0, width: containerView.frame.width, height: containerView.frame.height)
+            scrollView.frame = rect
+            primaryImageView.frame = rect
         } else {
             squareButton.isEnabled = false
             portraitButton.isEnabled = true
             
-            let yPos = (self.containerView.frame.height/2)-(self.view.bounds.width/2)
-            let rect = CGRect(x: 0, y: yPos, width: self.view.bounds.width, height: self.view.bounds.width)
-            self.scrollView.frame = rect
+            let yPos = (containerView.frame.height/2)-(view.bounds.width/2)
+            let rect = CGRect(x: 0, y: yPos, width: view.bounds.width, height: view.bounds.width)
+            scrollView.frame = rect
+            primaryImageView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.width)
+        }
+        
+        if let scale = UserDefaults.standard.value(forKey: "defaultScrollViewScale") as? CGFloat {
+            scrollView.setZoomScale(scale, animated: true)
         }
         
         containerView.isHidden = false
@@ -87,13 +91,10 @@ class PhotoEditorViewController: UIViewController {
         portraitButton.isEnabled = true
         UserDefaults.standard.set(false, forKey: "defaultImageSizeIsPortrait")
         
-        UIView.animate(withDuration: 0.25,
-                       animations: {
-                        
-                        let yPos = (self.containerView.frame.height/2)-(self.view.bounds.width/2)
-                        
-                        let rect = CGRect(x: 0, y: yPos, width: self.view.bounds.width, height: self.view.bounds.width)
-                        self.scrollView.frame = rect
+        UIView.animate(withDuration: 0.25, animations: {
+            let yPos = (self.containerView.frame.height/2)-(self.view.bounds.width/2)
+            let rect = CGRect(x: 0, y: yPos, width: self.view.bounds.width, height: self.view.bounds.width)
+            self.scrollView.frame = rect
         })
 
     }
@@ -102,29 +103,35 @@ class PhotoEditorViewController: UIViewController {
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
         
-        if let image = UIGraphicsGetImageFromCurrentImageContext() {
-            let scale = image.scale
-            
-            if let ciImageConversion = CIImage(image: image) {
-                let context = CIContext(options: nil)
-                
-                if let newCGImage = context.createCGImage(ciImageConversion, from: ciImageConversion.extent) {
-                    
-                    let cropRect = CGRect(x: scrollView.frame.origin.x * scale,
-                                          y: scrollView.frame.origin.y * scale,
-                                          width: scrollView.frame.width * scale,
-                                          height: scrollView.frame.height * scale)
-                    
-                    if let croppedImage = newCGImage.cropping(to: cropRect) {
-                        self.modifiedImage = UIImage(cgImage: croppedImage)
-                    }
-                }
-            }
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
+            return
         }
         
+        guard let ciImageConversion = CIImage(image: image) else {
+            return
+        }
+        
+        let context = CIContext(options: nil)
+        
+        guard let newCGImage = context.createCGImage(ciImageConversion, from: ciImageConversion.extent) else {
+            return
+        }
+        
+        let scale = image.scale
+        let cropRect = CGRect(x: scrollView.frame.origin.x * scale,
+                              y: (scrollView.frame.origin.y * scale)+40,
+                              width: scrollView.frame.width * scale,
+                              height: scrollView.frame.height * scale)
+        
+        guard let croppedImage = newCGImage.cropping(to: cropRect) else {
+            return
+        }
+        
+        modifiedImage = UIImage(cgImage: croppedImage)
+        
         UIGraphicsEndImageContext()
-        performSegue(withIdentifier: "segueToLabelEditor", sender: nil)
-
+        
+        performSegue(withIdentifier: "segueToLabelEditor",  sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

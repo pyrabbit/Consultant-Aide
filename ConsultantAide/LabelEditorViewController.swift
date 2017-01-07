@@ -10,44 +10,50 @@ import UIKit
 
 class LabelEditorViewController: UIViewController {
 
-    var primaryImageView: UIImageView?
-    var containerView: UIView!
-    var labels = [StyleView]()
-    var customStyleView: StyleView?
+    @IBOutlet weak var containerView: UIView!
     
-    @IBOutlet weak var effectView: UIVisualEffectView!
-    @IBOutlet weak var styleField: UITextField!
-    @IBOutlet weak var priceField: UITextField!
-    @IBOutlet weak var sizeField: UITextField!
-    @IBOutlet weak var customStyleLabelView: UIView!
-    @IBOutlet weak var customLabelViewFinishButton: UIButton!
+    var primaryImageView: UIImageView!
+    var labelContainer: UIView!
+    var labels = [StyleView]()
+    var labelService: SavedLabelService?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        labelService = SavedLabelService()
+        labelService?.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let yPos = (containerView.frame.height/2)-(primaryImageView.frame.height/2)
+        let rect = CGRect(x: 0, y: yPos, width: primaryImageView.frame.width, height: primaryImageView.frame.height)
+        primaryImageView.frame = rect
+        labelContainer = UIView(frame: rect)
+        
+        containerView.addSubview(primaryImageView)
+        containerView.addSubview(labelContainer)
+        
+        labelService?.fetch()
+    }
     
     func setPrimaryImageView(frame: CGRect, image: UIImage?) {
-        if let existingImageView = primaryImageView {
-            existingImageView.removeFromSuperview()
-        }
-        
-        if containerView != nil {
-            containerView.removeFromSuperview()
-        }
-        
         primaryImageView = UIImageView(frame: frame)
-        primaryImageView?.image = image
-        primaryImageView?.contentMode = .scaleAspectFit
-        
-        if let newView = primaryImageView {
-            view.addSubview(newView)
-            containerView = UIView(frame: newView.frame)
-            containerView.backgroundColor = .clear
-            view.addSubview(containerView)
-        }
+        primaryImageView.image = image
+        primaryImageView.contentMode = .scaleAspectFit
+    }
+    
+    func unwindToEditor(segue: UIStoryboardSegue) {
+        labelService?.fetch()
     }
     
     @IBAction func cancel(_ sender: Any) {
-        _ = navigationController?.popViewController(animated: true)
+        _ = navigationController?.popToRootViewController(animated: true)
     }
     
     override var prefersStatusBarHidden: Bool {
         get { return true }
     }
+    
 }

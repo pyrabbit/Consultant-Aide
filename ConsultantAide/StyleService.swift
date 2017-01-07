@@ -122,7 +122,7 @@ class StyleService {
         }
     }
     
-    private static func findOrCreateBy(styleId: String) -> Style? {
+    private static func findOrCreateBy(styleId: String, completion: @escaping (Style?) -> ()) {
         let fetchRequest: NSFetchRequest<Style> = Style.fetchRequest()
         let styleIdPredicate = NSPredicate(format: "styleId like %@", styleId)
         let brandSort = NSSortDescriptor(key: "styleId", ascending: true)
@@ -131,28 +131,31 @@ class StyleService {
         fetchRequest.predicate = styleIdPredicate
         fetchRequest.fetchLimit = 1
         
-        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        do {
-            try controller.performFetch()
+        ad.persistentContainer.performBackgroundTask { context in
+            let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
             
-            if let results = controller.fetchedObjects {
-                if !(results.isEmpty) {
-                    print("Found \(styleId)")
-                    return results.first
-                } else {
-                    print("Creating \(styleId)")
-                    let newStyleObject = Style(context: context)
-                    newStyleObject.styleId = styleId
-                    return newStyleObject
+            do {
+                try controller.performFetch()
+                
+                if let results = controller.fetchedObjects {
+                    if !(results.isEmpty) {
+                        print("Found \(styleId)")
+                        completion(results.first)
+                    } else {
+                        print("Creating \(styleId)")
+                        let newStyleObject = Style(context: context)
+                        newStyleObject.styleId = styleId
+                        completion(newStyleObject)
+                    }
                 }
+            } catch {
+                let error = error as NSError
+                print("\(error)")
             }
-        } catch {
-            let error = error as NSError
-            print("\(error)")
+            
+            completion(nil)
         }
-        
-        return nil
+
     }
     
     private static func updateDeviceWithData(data: Dictionary<String, AnyObject>?) {
@@ -167,29 +170,31 @@ class StyleService {
             
             updateDeviceWithData(data: data)
             
-            guard let style = findOrCreateBy(styleId: styleId) else {
-                continue
-            }
-            
-            if let brand = data["brand"] as? String {
-                style.brand = brand
-            }
-            
-            if let name = data["name"] as? String {
-                style.name = name
-            }
-            
-            if let sizes = data["sizes"] as? [String] {
-                style.sizes = sizes
-            }
-            
-            if let price = data["price"] as? Float {
-                style.price = price
-            }
-            
-            if let decider = data["forKids"] as? Bool {
-                style.forKids = decider
-            }
+            findOrCreateBy(styleId: styleId, completion: { retrieved in
+                guard let style = retrieved else {
+                    return
+                }
+                
+                if let brand = data["brand"] as? String {
+                    style.brand = brand
+                }
+                
+                if let name = data["name"] as? String {
+                    style.name = name
+                }
+                
+                if let sizes = data["sizes"] as? [String] {
+                    style.sizes = sizes
+                }
+                
+                if let price = data["price"] as? Float {
+                    style.price = price
+                }
+                
+                if let decider = data["forKids"] as? Bool {
+                    style.forKids = decider
+                }
+            })
         }
         
         ad.saveContext()

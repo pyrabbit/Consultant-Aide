@@ -14,11 +14,13 @@ class StyleViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var customStyleView: CustomStyleFormView!
     @IBOutlet var filterView: FilterView!
+    @IBOutlet weak var addToEditorBtn: UIBarButtonItem!
     
     var styles = [Style]()
     var filteredStyles = [Style]()
     var isSearching = false
     var modalBackground: UIView?
+    var selectedStyle: SavedLabel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +90,50 @@ class StyleViewController: UIViewController {
     
     
     @IBAction func cancel(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func addToEditor(_ sender: Any) {
+        guard let path = tableView.indexPathForSelectedRow else {
+            return
+        }
+        
+        guard let styleCell = tableView.cellForRow(at: path) as? StyleTableViewCell else {
+            return
+        }
+        
+        guard let sizeCollection = styleCell.collectionView else {
+            return
+        }
+        
+        guard let sizePaths = sizeCollection.indexPathsForSelectedItems else {
+            return
+        }
+        
+        var sizes = [String]()
+        
+        for path in sizePaths {
+            guard let cell = sizeCollection.cellForItem(at: path) as? SizeCollectionViewCell else {
+                continue
+            }
+            
+            guard let sizeText = cell.label.text else {
+                continue
+            }
+            
+            sizes.append(sizeText)
+        }
+        
+        let style = SavedLabel(context: context)
+        
+        style.name = styleCell.style.name
+        style.brand = styleCell.style.brand
+        style.price = styleCell.style.price
+        style.sizes = sizes
+        
+        ad.saveContext()
+        selectedStyle = style
+        
         _ = navigationController?.popViewController(animated: true)
     }
     

@@ -50,18 +50,4 @@ extension StyleViewController: UICollectionViewDelegate, UICollectionViewDataSou
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let index = IndexPath(row: collectionView.tag, section: 0)
-        
-        guard let cell = tableView.cellForRow(at: index) as? StyleTableViewCell else {
-            return
-        }
-        
-        if (!cell.isSelected) {
-            tableView.selectRow(at: index, animated: false, scrollPosition: .none)
-        }
-        
-        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-    }
-    
 }

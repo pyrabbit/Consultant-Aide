@@ -34,11 +34,8 @@
 		C97E9FF41DD0147200A9C5BD /* LabelContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */; };
 		C97E9FF61DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */; };
 		C980CFB31DCFD26B00A75425 /* StyleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB21DCFD26B00A75425 /* StyleService.swift */; };
-		C980CFB51DCFE90400A75425 /* EditorViewController+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB41DCFE90400A75425 /* EditorViewController+ScrollView.swift */; };
 		C9868FD31DD2A52500589230 /* api-v2.1-import.json in Resources */ = {isa = PBXBuildFile; fileRef = C9868FD21DD2A52500589230 /* api-v2.1-import.json */; };
-		C9885FBC1DFD15E900FEF73F /* LabelEditorViewController+CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9885FBB1DFD15E900FEF73F /* LabelEditorViewController+CustomLabelView.swift */; };
 		C9A181A91E180877009B3B4F /* StyleViewController+FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A181A81E180877009B3B4F /* StyleViewController+FilterView.swift */; };
-		C9CECBEE1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */; };
 		C9D3240E1DFCB23D00B49444 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D3240D1DFCB23D00B49444 /* PhotoSelectorViewController.swift */; };
 		C9D324151DFCC28900B49444 /* PhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D324141DFCC28900B49444 /* PhotoEditorViewController.swift */; };
 		C9D324181DFCEF8800B49444 /* LabelEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D324171DFCEF8800B49444 /* LabelEditorViewController.swift */; };
@@ -58,6 +55,8 @@
 		C9F073071DCA49240014F0E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F073051DCA49240014F0E7 /* LaunchScreen.storyboard */; };
 		C9F0730F1DCA497B0014F0E7 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F0730E1DCA497B0014F0E7 /* EditorViewController.swift */; };
 		C9F073111DCA4A110014F0E7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F073101DCA4A110014F0E7 /* SettingsViewController.swift */; };
+		C9F7FBCF1E21380E008C836A /* SavedLabelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F7FBCE1E21380E008C836A /* SavedLabelService.swift */; };
+		C9F7FBD11E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F7FBD01E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift */; };
 		C9F80B4A1DD3BB0A00B38DEF /* Style+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F80B481DD3BB0A00B38DEF /* Style+CoreDataClass.swift */; };
 		C9F80B4B1DD3BB0A00B38DEF /* Style+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F80B491DD3BB0A00B38DEF /* Style+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
@@ -90,11 +89,8 @@
 		C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelContainerView.swift; sourceTree = "<group>"; };
 		C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewControler+PhotoSaving.swift"; sourceTree = "<group>"; };
 		C980CFB21DCFD26B00A75425 /* StyleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleService.swift; sourceTree = "<group>"; };
-		C980CFB41DCFE90400A75425 /* EditorViewController+ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+ScrollView.swift"; sourceTree = "<group>"; };
 		C9868FD21DD2A52500589230 /* api-v2.1-import.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "api-v2.1-import.json"; sourceTree = "<group>"; };
-		C9885FBB1DFD15E900FEF73F /* LabelEditorViewController+CustomLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LabelEditorViewController+CustomLabelView.swift"; sourceTree = "<group>"; };
 		C9A181A81E180877009B3B4F /* StyleViewController+FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StyleViewController+FilterView.swift"; sourceTree = "<group>"; };
-		C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+CustomLabelView.swift"; sourceTree = "<group>"; };
 		C9D3240D1DFCB23D00B49444 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		C9D324141DFCC28900B49444 /* PhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEditorViewController.swift; sourceTree = "<group>"; };
 		C9D324171DFCEF8800B49444 /* LabelEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelEditorViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +112,8 @@
 		C9F073081DCA49240014F0E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9F0730E1DCA497B0014F0E7 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		C9F073101DCA4A110014F0E7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C9F7FBCE1E21380E008C836A /* SavedLabelService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedLabelService.swift; sourceTree = "<group>"; };
+		C9F7FBD01E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LabelEditorViewController+SavedLabelServiceDelegate.swift"; sourceTree = "<group>"; };
 		C9F80B481DD3BB0A00B38DEF /* Style+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Style+CoreDataClass.swift"; path = "../Style+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C9F80B491DD3BB0A00B38DEF /* Style+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Style+CoreDataProperties.swift"; path = "../Style+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C9F80B4E1DD3D43B00B38DEF /* firebase-master.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "firebase-master.json"; sourceTree = "<group>"; };
@@ -190,8 +188,9 @@
 		C9D324161DFCEF7300B49444 /* Label Editor */ = {
 			isa = PBXGroup;
 			children = (
+				C93E19851DCFC4B800A5CD7F /* StyleView.swift */,
 				C9D324171DFCEF8800B49444 /* LabelEditorViewController.swift */,
-				C9885FBB1DFD15E900FEF73F /* LabelEditorViewController+CustomLabelView.swift */,
+				C9F7FBD01E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift */,
 			);
 			name = "Label Editor";
 			sourceTree = "<group>";
@@ -219,11 +218,8 @@
 			children = (
 				C9F0730E1DCA497B0014F0E7 /* EditorViewController.swift */,
 				C93E19821DCFC3C100A5CD7F /* CollageImageView.swift */,
-				C93E19851DCFC4B800A5CD7F /* StyleView.swift */,
-				C980CFB41DCFE90400A75425 /* EditorViewController+ScrollView.swift */,
 				C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */,
 				C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */,
-				C9CECBED1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift */,
 				C96A7B0E1DD3F57000A2386C /* EditorViewController+NSFetchedResultsControllerDelegate.swift */,
 				C94426B21DD42B6F003F34C4 /* WatermarkLabel.swift */,
 				C94426B41DD43CE1003F34C4 /* WatermarkImage.swift */,
@@ -302,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				C980CFB21DCFD26B00A75425 /* StyleService.swift */,
+				C9F7FBCE1E21380E008C836A /* SavedLabelService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -333,7 +330,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Matthew Orahood";
 				TargetAttributes = {
 					C9F072F51DCA49240014F0E7 = {
@@ -381,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9DE75491E1344F500747900 /* CustomStyleFormView.swift in Sources */,
+				C9F7FBCF1E21380E008C836A /* SavedLabelService.swift in Sources */,
 				C9DE754D1E13473100747900 /* StyleViewController+CustomStyleForm.swift in Sources */,
 				C93E19861DCFC4B800A5CD7F /* StyleView.swift in Sources */,
 				C92903501DCAD48300796369 /* FontTableViewCell.swift in Sources */,
@@ -389,7 +387,6 @@
 				C9D3240E1DFCB23D00B49444 /* PhotoSelectorViewController.swift in Sources */,
 				C9A181A91E180877009B3B4F /* StyleViewController+FilterView.swift in Sources */,
 				C9E7857D1DCA5FC100B337F4 /* RoundedView.swift in Sources */,
-				C9885FBC1DFD15E900FEF73F /* LabelEditorViewController+CustomLabelView.swift in Sources */,
 				C94426B51DD43CE1003F34C4 /* WatermarkImage.swift in Sources */,
 				C96A7B031DD3EBD200A2386C /* StyleViewController+CollectionView.swift in Sources */,
 				C9F80B4A1DD3BB0A00B38DEF /* Style+CoreDataClass.swift in Sources */,
@@ -402,9 +399,7 @@
 				C9198FE81E0C2439000DF029 /* StyleViewController+SearchBar.swift in Sources */,
 				C94426B11DD41C7F003F34C4 /* RoundedImageView.swift in Sources */,
 				C97E9FF61DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift in Sources */,
-				C9CECBEE1DD2443F0077B7C4 /* EditorViewController+CustomLabelView.swift in Sources */,
 				C9E785791DCA575400B337F4 /* RoundedTableView.swift in Sources */,
-				C980CFB51DCFE90400A75425 /* EditorViewController+ScrollView.swift in Sources */,
 				C96A7B0F1DD3F57000A2386C /* EditorViewController+NSFetchedResultsControllerDelegate.swift in Sources */,
 				C93E198A1DCFC5D000A5CD7F /* StyleViewController.swift in Sources */,
 				C9F072FA1DCA49240014F0E7 /* AppDelegate.swift in Sources */,
@@ -418,6 +413,7 @@
 				C9E785821DCA6E8300B337F4 /* ColorPickerViewController.swift in Sources */,
 				C93E19831DCFC3C100A5CD7F /* CollageImageView.swift in Sources */,
 				C9D324151DFCC28900B49444 /* PhotoEditorViewController.swift in Sources */,
+				C9F7FBD11E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift in Sources */,
 				C9D324181DFCEF8800B49444 /* LabelEditorViewController.swift in Sources */,
 				C96A7B011DD3EA5500A2386C /* StyleViewController+TableView.swift in Sources */,
 				C9DE754B1E13463500747900 /* CustomStyleFormDelegate.swift in Sources */,
@@ -472,6 +468,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -522,6 +519,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
