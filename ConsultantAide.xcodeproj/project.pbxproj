@@ -31,6 +31,7 @@
 		C96A7B0C1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B0A1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift */; };
 		C96A7B0D1DD3F1E300A2386C /* SavedLabel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B0B1DD3F1E300A2386C /* SavedLabel+CoreDataProperties.swift */; };
 		C96A7B0F1DD3F57000A2386C /* EditorViewController+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B0E1DD3F57000A2386C /* EditorViewController+NSFetchedResultsControllerDelegate.swift */; };
+		C97774C51E217BC3009E562A /* RemoveSavedLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97774C41E217BC3009E562A /* RemoveSavedLabelViewController.swift */; };
 		C97E9FF41DD0147200A9C5BD /* LabelContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */; };
 		C97E9FF61DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */; };
 		C980CFB31DCFD26B00A75425 /* StyleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB21DCFD26B00A75425 /* StyleService.swift */; };
@@ -86,6 +87,7 @@
 		C96A7B0A1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedLabel+CoreDataClass.swift"; path = "../SavedLabel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C96A7B0B1DD3F1E300A2386C /* SavedLabel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedLabel+CoreDataProperties.swift"; path = "../SavedLabel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C96A7B0E1DD3F57000A2386C /* EditorViewController+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
+		C97774C41E217BC3009E562A /* RemoveSavedLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveSavedLabelViewController.swift; sourceTree = "<group>"; };
 		C97E9FF31DD0147200A9C5BD /* LabelContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelContainerView.swift; sourceTree = "<group>"; };
 		C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewControler+PhotoSaving.swift"; sourceTree = "<group>"; };
 		C980CFB21DCFD26B00A75425 /* StyleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleService.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				C93E19851DCFC4B800A5CD7F /* StyleView.swift */,
 				C9D324171DFCEF8800B49444 /* LabelEditorViewController.swift */,
 				C9F7FBD01E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift */,
+				C97774C41E217BC3009E562A /* RemoveSavedLabelViewController.swift */,
 			);
 			name = "Label Editor";
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				C93E19861DCFC4B800A5CD7F /* StyleView.swift in Sources */,
 				C92903501DCAD48300796369 /* FontTableViewCell.swift in Sources */,
 				C93E19881DCFC59600A5CD7F /* UserDefaults+SavedStyles.swift in Sources */,
+				C97774C51E217BC3009E562A /* RemoveSavedLabelViewController.swift in Sources */,
 				C93E198C1DCFC5EE00A5CD7F /* StyleTableViewCell.swift in Sources */,
 				C9D3240E1DFCB23D00B49444 /* PhotoSelectorViewController.swift in Sources */,
 				C9A181A91E180877009B3B4F /* StyleViewController+FilterView.swift in Sources */,

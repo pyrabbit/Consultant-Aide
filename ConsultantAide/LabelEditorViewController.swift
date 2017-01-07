@@ -11,6 +11,7 @@ import UIKit
 class LabelEditorViewController: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var removeItemsBtn: UIButton!
     
     var primaryImageView: UIImageView!
     var labelContainer: UIView!
@@ -36,16 +37,16 @@ class LabelEditorViewController: UIViewController {
         containerView.addSubview(labelContainer)
         
         labelService?.fetch()
+        
+        if (labelContainer.subviews.count > 0) {
+            removeItemsBtn.isEnabled = true
+        }
     }
     
     func setPrimaryImageView(frame: CGRect, image: UIImage?) {
         primaryImageView = UIImageView(frame: frame)
         primaryImageView.image = image
         primaryImageView.contentMode = .scaleAspectFit
-    }
-    
-    func unwindToEditor(segue: UIStoryboardSegue) {
-        labelService?.fetch()
     }
     
     @IBAction func cancel(_ sender: Any) {
