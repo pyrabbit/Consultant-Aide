@@ -45,6 +45,34 @@ class LabelEditorViewController: UIViewController {
         if (labelContainer.subviews.count > 0) {
             removeItemsBtn.isEnabled = true
         }
+        
+        // Make the labels wide if necessary
+        if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
+            if fullWidthLabels {
+                makeLabelsWide()
+            }
+        }
+    }
+    
+    func makeLabelsWide() {
+        for styleView in labels {
+            guard let primaryLabel = styleView.primaryLabel else {
+                continue
+            }
+
+            styleView.frame.size.width = view.frame.size.width
+            styleView.frame.origin.x = 0
+            primaryLabel.frame.size.width = view.frame.size.width
+            primaryLabel.layer.cornerRadius = 0
+
+            if let priceLabel = styleView.priceLabel {
+                priceLabel.frame.origin.x = styleView.frame.width - priceLabel.frame.width
+            }
+
+            if let sizeContainer = styleView.sizeContainer {
+                sizeContainer.frame.origin.x = (styleView.frame.width / 2) - (sizeContainer.frame.width / 2)
+            }
+        }
     }
     
     func setPrimaryImageView(frame: CGRect, image: UIImage?) {

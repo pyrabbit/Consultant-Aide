@@ -126,30 +126,7 @@ class EditorViewController: UIViewController {
 //        initializeLabels()
 //        showLabels()
 //    }
-//    
-       
-//    func makeLabelsWide() {
-//        for styleView in labels {
-//            guard let primaryLabel = styleView.primaryLabel else {
-//                continue
-//            }
-//            
-//            styleView.frame.size.width = view.frame.size.width
-//            styleView.frame.origin.x = 0
-//            primaryLabel.frame.size.width = view.frame.size.width
-//            primaryLabel.layer.cornerRadius = 0
-//            
-//            if let priceLabel = styleView.priceLabel {
-//                priceLabel.frame.origin.x = styleView.frame.width - priceLabel.frame.width
-//            }
-//            
-//            if let sizeContainer = styleView.sizeContainer {
-//                sizeContainer.frame.origin.x = (styleView.frame.width / 2) - (sizeContainer.frame.width / 2)
-//            }
-//        }
-//    }
 //
-//    
 //    func setCollage(image: UIImage?) {
 //        guard image != nil else {
 //            print("exiting set collage")
@@ -191,80 +168,7 @@ class EditorViewController: UIViewController {
 //        collage = nil
 //        removeCollageButton.isEnabled = false
 //    }
-//
-//    func resetEverything() {
-//        // Reset the labels
-//        for (index, label) in labels.enumerated() {
-//            labels.remove(at: index)
-//            label.removeFromSuperview()
-//            var resetLabel: StyleView
-//            if let savedLabel = label.savedLabel {
-//                resetLabel = StyleView(savedLabel: savedLabel)
-//            } else {
-//                resetLabel = StyleView(style: label.style, price: label.price, sizes: label.sizes)
-//            }
-//            
-//            labels.append(resetLabel)
-//        }
-//        
-//        // Make the labels wide if necessary
-//        if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
-//            if fullWidthLabels {
-//                print("Making labels wide after reset")
-//                makeLabelsWide()
-//            }
-//        }
-//        
-//        // Add reset labels to container view
-//        for label in labels {
-//            label.containWithin(view: containerView)
-//            label.moveToSavedPosition()
-//            containerView.addSubview(label)
-//        }
-//        
-//        // Reset watermark text
-//        if let label = watermark {
-//            let rect = CGRect(x: label.frame.origin.x,
-//                              y: label.frame.origin.y,
-//                              width: label.frame.width,
-//                              height: label.frame.height)
-//            let resetWatermark = WatermarkLabel(frame: rect)
-//            watermark?.removeFromSuperview()
-//            watermark = resetWatermark
-//            watermark?.containWithin(view: containerView)
-//            watermark?.moveToSavedPosition()
-//            containerView.addSubview(resetWatermark)
-//        }
-//        
-//        // Reset watermark image
-//        if let image = watermarkImage {
-//            let rect = CGRect(x: image.frame.origin.x,
-//                              y: image.frame.origin.y,
-//                              width: image.frame.width,
-//                              height: image.frame.height)
-//            let resetWatermarkImage = WatermarkImage(frame: rect)
-//            resetWatermarkImage.image = image.image
-//            image.removeFromSuperview()
-//            watermarkImage = resetWatermarkImage
-//            watermarkImage?.containWithin(view: containerView)
-//            watermarkImage?.moveToSavedPosition()
-//            containerView.addSubview(resetWatermarkImage)
-//        }
-//        
-//        // Reset collage
-//        if let image = collage {
-//            let rect = CGRect(x: image.frame.origin.x,
-//                              y: image.frame.origin.y,
-//                              width: image.frame.width,
-//                              height: image.frame.height)
-//            let resetCollage = CollageImageView(frame: rect)
-//            resetCollage.image = image.image
-//            collage = resetCollage
-//            collage?.containWithin(view: containerView)
-//            collage?.movetoSavedPosition()
-//            containerView.addSubview(resetCollage)
-//        }
-//    }
+
     
     override var prefersStatusBarHidden: Bool {
         get {
