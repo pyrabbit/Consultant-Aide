@@ -148,12 +148,6 @@ class LabelEditorViewController: UIViewController {
     }
     
     func setWatermarkImage() {
-        guard watermarkImage == nil else {
-            watermarkImage?.reset()
-            toggleWatermarkImageVisibility()
-            return
-        }
-
         if let decider = UserDefaults.standard.value(forKey: "watermarkImage") as? Bool {
 
             if decider {
@@ -167,12 +161,11 @@ class LabelEditorViewController: UIViewController {
                         watermarkImage?.image = img
                         watermarkImage?.containWithin(view: labelContainer)
                         watermarkImage?.sizeToFit()
-                        watermarkImage?.center = labelContainer.center
+                        watermarkImage?.moveToSavedPosition()
 
 
                         if let image = watermarkImage {
                             labelContainer.addSubview(image)
-                            image.reset()
                             toggleWatermarkImageVisibility()
                         }
                     }
@@ -182,12 +175,6 @@ class LabelEditorViewController: UIViewController {
     }
 
     func setWatermark() {
-        guard watermark == nil else {
-            watermark?.reset()
-            toggleWatermarkVisibility()
-            return
-        }
-
         if let decider = UserDefaults.standard.value(forKey: "watermark") as? Bool,
             let text = UserDefaults.standard.value(forKey: "watermarkText") as? String {
 
@@ -201,7 +188,6 @@ class LabelEditorViewController: UIViewController {
 
                 if let label = watermark {
                     labelContainer.addSubview(label)
-                    label.reset()
                     toggleWatermarkVisibility()
                 }
             }

@@ -20,9 +20,6 @@ class WatermarkImage: UIImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-    }
-    
-    func reset() {
         setWatermarkStyle()
     }
     
@@ -33,13 +30,6 @@ class WatermarkImage: UIImageView {
     }
     
     func setWatermarkStyle() {
-        if let x = UserDefaults.standard.object(forKey: "defaultWatermarkImageX") as? Int,
-            let y = UserDefaults.standard.object(forKey: "defaultWatermarkImageY") as? Int {
-            center = CGPoint(x: x, y: y)
-        } else {
-            center = CGPoint(x: 150, y: 150)
-        }
-        
         if let transparency = UserDefaults.standard.object(forKey: "watermarkTransparency") as? Float {
             alpha = CGFloat(transparency)
         }

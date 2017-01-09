@@ -24,6 +24,8 @@ class PhotoEditorViewController: UIViewController {
         
         let decider = UserDefaults.standard.bool(forKey: "defaultImageSizeIsPortrait")
 
+        // Decide whether or not to start in square or portrait mode, this is based off the users 
+        // previous decision
         if (decider) {
             portraitButton.isEnabled = false
             squareButton.isEnabled = true
@@ -41,10 +43,6 @@ class PhotoEditorViewController: UIViewController {
             scrollView = UIScrollView(frame: rect)
         }
 
-        if let scale = UserDefaults.standard.value(forKey: "defaultScrollViewScale") as? CGFloat {
-            scrollView.setZoomScale(scale, animated: true)
-        }
-        
         // ScrollView Specifications
         scrollView.backgroundColor = .white
         scrollView.isUserInteractionEnabled = true
@@ -59,46 +57,11 @@ class PhotoEditorViewController: UIViewController {
         primaryImageView.contentMode = .scaleAspectFit
         primaryImageView.image = selectedImage
         scrollView.addSubview(primaryImageView)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-//        
-//        let decider = UserDefaults.standard.bool(forKey: "defaultImageSizeIsPortrait")
-//        
-//        if (decider) {
-//            portraitButton.isEnabled = false
-//            squareButton.isEnabled = true
-//            
-//            let rect = CGRect(x: 0, y: 0, width: containerView.frame.width, height: containerView.frame.height)
-//            scrollView = UIScrollView(frame: rect)
-//            primaryImageView = UIImageView(frame: rect)
-//        } else {
-//            squareButton.isEnabled = false
-//            portraitButton.isEnabled = true
-//            
-//            let yPos = (containerView.frame.height/2)-(view.bounds.width/2)
-//            let rect = CGRect(x: 0, y: yPos, width: view.bounds.width, height: view.bounds.width)
-//            scrollView = UIScrollView(frame: rect)
-//            primaryImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.width))
-//        }
-//        
-//        if let scale = UserDefaults.standard.value(forKey: "defaultScrollViewScale") as? CGFloat {
-//            scrollView.setZoomScale(scale, animated: true)
-//        }
-//        
-//        scrollView.isUserInteractionEnabled = true
-//        scrollView.delegate = self
-//        scrollView.backgroundColor = .white
-//        automaticallyAdjustsScrollViewInsets = false
-//        scrollView.minimumZoomScale = 1.0
-//        scrollView.maximumZoomScale = 6.0
-//        primaryImageView.image = selectedImage
-//        primaryImageView.contentMode = .scaleAspectFit
-//        containerView.addSubview(scrollView)
-//        scrollView.addSubview(primaryImageView)
-
+        
+        // Set to default image scale
+        if let scale = UserDefaults.standard.value(forKey: "defaultScrollViewScale") as? CGFloat {
+            scrollView.setZoomScale(scale, animated: true)
+        }
     }
 
     @IBAction func cancel(_ sender: Any) {

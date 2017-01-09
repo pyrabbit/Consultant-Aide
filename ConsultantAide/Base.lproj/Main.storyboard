@@ -368,6 +368,7 @@
                                         <state key="normal" image="CheckIcon"/>
                                         <connections>
                                             <action selector="finishedEditing:" destination="dj3-XG-kKg" eventType="touchUpInside" id="zeG-v4-MBQ"/>
+                                            <action selector="savePhotoWithSender:" destination="ttX-TL-oz3" eventType="touchUpInside" id="zUf-Eb-fHF"/>
                                         </connections>
                                     </button>
                                 </subviews>

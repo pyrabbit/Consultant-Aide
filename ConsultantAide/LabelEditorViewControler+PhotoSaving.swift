@@ -18,6 +18,8 @@ extension LabelEditorViewController {
                 }
             })
         }
+        
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     
@@ -34,9 +36,11 @@ extension LabelEditorViewController {
                 if let newCGImage = context.createCGImage(ciImageConversion, from: ciImageConversion.extent) {
                     
                     let cropRect = CGRect(x: labelContainer.frame.origin.x * scale,
-                                          y: labelContainer.frame.origin.y * scale,
+                                          y: labelContainer.frame.origin.y * scale + (20*scale),
                                           width: labelContainer.frame.width * scale,
                                           height: labelContainer.frame.height * scale)
+                    
+                    print("cropRect: \(cropRect)")
                     
                     if let croppedImage = newCGImage.cropping(to: cropRect) {
                         let finalImage = UIImage(cgImage: croppedImage)
@@ -50,19 +54,11 @@ extension LabelEditorViewController {
                             let savedAlert = UIAlertController(title: "Saved!", message: "", preferredStyle: .alert)
                             self.present(savedAlert, animated: true, completion: nil)
                             
-                            self.primaryImageView.image = nil
-                            self.collage?.image = nil
-                            self.collage?.isHidden = true
-                            self.watermark?.isHidden = true
-                            self.watermarkImage?.isHidden = true
-                            
                             let maxDisplayTime = DispatchTime.now() + 1
                             DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
                                 savedAlert.dismiss(animated: true, completion: nil)
                             })
                         })
-                        
-
                     }
                 }
             }

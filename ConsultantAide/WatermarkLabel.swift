@@ -34,10 +34,6 @@ class WatermarkLabel: UILabel {
         isUserInteractionEnabled = true
     }
     
-    func reset() {
-        setWatermarkStyle()
-    }
-    
     func setWatermarkStyle() {
         if let color = UserDefaults.standard.colorForKey(key: "watermarkColor") {
             layer.backgroundColor = color.cgColor
