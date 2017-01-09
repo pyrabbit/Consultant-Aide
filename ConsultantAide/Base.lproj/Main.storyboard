@@ -26,15 +26,15 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8z-fz-GTd">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GVj-Cv-oLb">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w8z-kr-TrQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PLJ-zH-gMp">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                             <vibrancyEffect>
@@ -43,10 +43,14 @@
                                         </visualEffectView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="w8z-kr-TrQ" firstAttribute="leading" secondItem="GVj-Cv-oLb" secondAttribute="leading" id="86z-Wk-HXr"/>
                                         <constraint firstAttribute="bottom" secondItem="w8z-kr-TrQ" secondAttribute="bottom" id="AiR-fT-1BG"/>
                                         <constraint firstItem="w8z-kr-TrQ" firstAttribute="top" secondItem="GVj-Cv-oLb" secondAttribute="top" id="ICk-Sj-eh8"/>
                                         <constraint firstAttribute="trailing" secondItem="w8z-kr-TrQ" secondAttribute="trailing" id="QZi-Kp-VcQ"/>
                                         <constraint firstItem="w8z-kr-TrQ" firstAttribute="leading" secondItem="GVj-Cv-oLb" secondAttribute="leading" id="dje-FS-qaI"/>
+                                        <constraint firstAttribute="bottom" secondItem="w8z-kr-TrQ" secondAttribute="bottom" id="enA-l2-LID"/>
+                                        <constraint firstItem="w8z-kr-TrQ" firstAttribute="top" secondItem="GVj-Cv-oLb" secondAttribute="top" id="sqq-2b-7qR"/>
+                                        <constraint firstAttribute="trailing" secondItem="w8z-kr-TrQ" secondAttribute="trailing" id="vRH-rJ-W55"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="light"/>
@@ -153,7 +157,7 @@
                             <constraint firstAttribute="trailing" secondItem="t8z-fz-GTd" secondAttribute="trailing" id="fLw-Xs-mnj"/>
                             <constraint firstItem="2l2-uE-cdX" firstAttribute="top" secondItem="QIG-4a-3GQ" secondAttribute="bottom" constant="8" id="fr4-7m-IN1"/>
                             <constraint firstAttribute="bottom" secondItem="t8z-fz-GTd" secondAttribute="bottom" id="hc6-Ki-gNT"/>
-                            <constraint firstItem="t8z-fz-GTd" firstAttribute="top" secondItem="dNn-au-zSn" secondAttribute="bottom" id="xbI-ef-ZIG"/>
+                            <constraint firstItem="t8z-fz-GTd" firstAttribute="top" secondItem="dNn-au-zSn" secondAttribute="bottom" constant="-20" id="xbI-ef-ZIG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Unm-yt-gd3"/>
@@ -163,7 +167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y7n-hH-Us4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1023.1884057971015" y="945.6521739130435"/>
+            <point key="canvasLocation" x="-1023.75" y="945.42253521126759"/>
         </scene>
         <!--Photo Editor View Controller-->
         <scene sceneID="J1P-k6-UkJ">
@@ -1833,8 +1837,6 @@
                             </state>
                             <connections>
                                 <action selector="cancel:" destination="SQ9-Sz-ROH" eventType="touchUpInside" id="6mb-ZV-S1n"/>
-                                <action selector="finished:" destination="SQ9-Sz-ROH" eventType="touchUpInside" id="181-RX-ffz"/>
-                                <action selector="finished:" destination="x8F-pK-lKX" eventType="touchUpInside" id="cOK-Mv-S6M"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBJ-oi-XKf">
@@ -1845,7 +1847,6 @@
                             </state>
                             <connections>
                                 <action selector="finished:" destination="SQ9-Sz-ROH" eventType="touchUpInside" id="ZgR-BT-8mt"/>
-                                <action selector="finished:" destination="x8F-pK-lKX" eventType="touchUpInside" id="jPg-09-plf"/>
                             </connections>
                         </button>
                     </subviews>

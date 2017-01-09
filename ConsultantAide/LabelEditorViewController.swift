@@ -114,7 +114,6 @@ class LabelEditorViewController: UIViewController {
     
     func setCollage(image: UIImage?) {
         guard image != nil else {
-            print("exiting set collage")
             return
         }
 

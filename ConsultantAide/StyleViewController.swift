@@ -22,8 +22,8 @@ class StyleViewController: UIViewController {
     var modalBackground: UIView?
     var selectedStyle: SavedLabel?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         if let stylesFromDevice = StyleService.fetchAll() {
             styles = stylesFromDevice

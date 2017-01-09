@@ -27,14 +27,16 @@ extension StyleViewController: FilterViewDelegate {
     func didCancelFilter(view: FilterView) {
         modalBackground?.removeFromSuperview()
         filterView.removeFromSuperview()
-        
-        if let filters = UserDefaults.standard.value(forKey: "styleFilters") as? [String] {
-            styles = styles.filter { filters.contains($0.brand) }
-            filterView.filters = Set(filters)
-            filterView.tableView.reloadData()
-            tableView.reloadData()
-        }
-        
-        tableView.reloadData()
+//        
+//        if let filters = UserDefaults.standard.value(forKey: "styleFilters") as? [String] {
+//            if filters.count > 0 {
+//                styles = styles.filter { filters.contains($0.brand) }
+//                filterView.filters = Set(filters)
+//                filterView.tableView.reloadData()
+//                tableView.reloadData()
+//            }
+//        }
+//        
+//        tableView.reloadData()
     }
 }
