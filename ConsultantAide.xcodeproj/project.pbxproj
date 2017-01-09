@@ -34,7 +34,7 @@
 		C97774C81E219B4B009E562A /* CollageSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97774C71E219B4B009E562A /* CollageSourceView.swift */; };
 		C97774CA1E219EC9009E562A /* LabelEditorViewController+CollageSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97774C91E219EC9009E562A /* LabelEditorViewController+CollageSourceDelegate.swift */; };
 		C97774CC1E21A103009E562A /* LabelEditorViewController+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97774CB1E21A103009E562A /* LabelEditorViewController+ImagePicker.swift */; };
-		C97E9FF61DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */; };
+		C97E9FF61DD0200000A9C5BD /* LabelEditorViewControler+PhotoSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E9FF51DD0200000A9C5BD /* LabelEditorViewControler+PhotoSaving.swift */; };
 		C980CFB31DCFD26B00A75425 /* StyleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980CFB21DCFD26B00A75425 /* StyleService.swift */; };
 		C9868FD31DD2A52500589230 /* api-v2.1-import.json in Resources */ = {isa = PBXBuildFile; fileRef = C9868FD21DD2A52500589230 /* api-v2.1-import.json */; };
 		C9A181A91E180877009B3B4F /* StyleViewController+FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A181A81E180877009B3B4F /* StyleViewController+FilterView.swift */; };
@@ -55,7 +55,6 @@
 		C9F073021DCA49240014F0E7 /* ConsultantAide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9F073001DCA49240014F0E7 /* ConsultantAide.xcdatamodeld */; };
 		C9F073041DCA49240014F0E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F073031DCA49240014F0E7 /* Assets.xcassets */; };
 		C9F073071DCA49240014F0E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F073051DCA49240014F0E7 /* LaunchScreen.storyboard */; };
-		C9F0730F1DCA497B0014F0E7 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F0730E1DCA497B0014F0E7 /* EditorViewController.swift */; };
 		C9F073111DCA4A110014F0E7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F073101DCA4A110014F0E7 /* SettingsViewController.swift */; };
 		C9F7FBCF1E21380E008C836A /* SavedLabelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F7FBCE1E21380E008C836A /* SavedLabelService.swift */; };
 		C9F7FBD11E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F7FBD01E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift */; };
@@ -91,7 +90,7 @@
 		C97774C71E219B4B009E562A /* CollageSourceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageSourceView.swift; sourceTree = "<group>"; };
 		C97774C91E219EC9009E562A /* LabelEditorViewController+CollageSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LabelEditorViewController+CollageSourceDelegate.swift"; sourceTree = "<group>"; };
 		C97774CB1E21A103009E562A /* LabelEditorViewController+ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LabelEditorViewController+ImagePicker.swift"; sourceTree = "<group>"; };
-		C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewControler+PhotoSaving.swift"; sourceTree = "<group>"; };
+		C97E9FF51DD0200000A9C5BD /* LabelEditorViewControler+PhotoSaving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LabelEditorViewControler+PhotoSaving.swift"; sourceTree = "<group>"; };
 		C980CFB21DCFD26B00A75425 /* StyleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleService.swift; sourceTree = "<group>"; };
 		C9868FD21DD2A52500589230 /* api-v2.1-import.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "api-v2.1-import.json"; sourceTree = "<group>"; };
 		C9A181A81E180877009B3B4F /* StyleViewController+FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StyleViewController+FilterView.swift"; sourceTree = "<group>"; };
@@ -114,7 +113,6 @@
 		C9F073031DCA49240014F0E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9F073061DCA49240014F0E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9F073081DCA49240014F0E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9F0730E1DCA497B0014F0E7 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		C9F073101DCA4A110014F0E7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C9F7FBCE1E21380E008C836A /* SavedLabelService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedLabelService.swift; sourceTree = "<group>"; };
 		C9F7FBD01E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LabelEditorViewController+SavedLabelServiceDelegate.swift"; sourceTree = "<group>"; };
@@ -205,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				C9D324171DFCEF8800B49444 /* LabelEditorViewController.swift */,
+				C97E9FF51DD0200000A9C5BD /* LabelEditorViewControler+PhotoSaving.swift */,
 				C9F7FBD01E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift */,
 				C97774C41E217BC3009E562A /* RemoveSavedLabelViewController.swift */,
 				C97774C91E219EC9009E562A /* LabelEditorViewController+CollageSourceDelegate.swift */,
@@ -230,15 +229,6 @@
 				C94426B61DD45022003F34C4 /* PositionRescurer.swift */,
 			);
 			name = Utility;
-			sourceTree = "<group>";
-		};
-		C9E7857E1DCA6E1500B337F4 /* Editor */ = {
-			isa = PBXGroup;
-			children = (
-				C9F0730E1DCA497B0014F0E7 /* EditorViewController.swift */,
-				C97E9FF51DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift */,
-			);
-			name = Editor;
 			sourceTree = "<group>";
 		};
 		C9E7857F1DCA6E1F00B337F4 /* Settings */ = {
@@ -281,7 +271,6 @@
 				C9F99DC51E05840F00DAC5B4 /* Services */,
 				C9F80B4C1DD3C47700B38DEF /* Resources */,
 				C93E198F1DCFC6AF00A5CD7F /* Models */,
-				C9E7857E1DCA6E1500B337F4 /* Editor */,
 				C9D324161DFCEF7300B49444 /* Label Editor */,
 				C9D324131DFCC26C00B49444 /* Photo Editor */,
 				C9D3240C1DFCB04F00B49444 /* Photo Selector */,
@@ -416,7 +405,7 @@
 				C9198FE81E0C2439000DF029 /* StyleViewController+SearchBar.swift in Sources */,
 				C97774C81E219B4B009E562A /* CollageSourceView.swift in Sources */,
 				C94426B11DD41C7F003F34C4 /* RoundedImageView.swift in Sources */,
-				C97E9FF61DD0200000A9C5BD /* EditorViewControler+PhotoSaving.swift in Sources */,
+				C97E9FF61DD0200000A9C5BD /* LabelEditorViewControler+PhotoSaving.swift in Sources */,
 				C9E785791DCA575400B337F4 /* RoundedTableView.swift in Sources */,
 				C93E198A1DCFC5D000A5CD7F /* StyleViewController.swift in Sources */,
 				C9F072FA1DCA49240014F0E7 /* AppDelegate.swift in Sources */,
@@ -434,7 +423,6 @@
 				C9D324181DFCEF8800B49444 /* LabelEditorViewController.swift in Sources */,
 				C96A7B011DD3EA5500A2386C /* StyleViewController+TableView.swift in Sources */,
 				C9DE754B1E13463500747900 /* CustomStyleFormDelegate.swift in Sources */,
-				C9F0730F1DCA497B0014F0E7 /* EditorViewController.swift in Sources */,
 				C94426B71DD45022003F34C4 /* PositionRescurer.swift in Sources */,
 				C929034E1DCAD41200796369 /* FontViewController.swift in Sources */,
 				C94426B31DD42B6F003F34C4 /* WatermarkLabel.swift in Sources */,

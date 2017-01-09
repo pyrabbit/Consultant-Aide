@@ -20,6 +20,8 @@ class LabelEditorViewController: UIViewController {
     var labelService: SavedLabelService?
     var collage: CollageImageView?
     var modalBackground: UIView?
+    var watermarkImage: WatermarkImage?
+    var watermark: WatermarkLabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +59,8 @@ class LabelEditorViewController: UIViewController {
         }
         
         setCollage(image: collage?.image)
+        setWatermark()
+        setWatermarkImage()
     }
 
     @IBAction func addCollage(_ sender: Any) {
@@ -140,6 +144,101 @@ class LabelEditorViewController: UIViewController {
 
         if let collageView = collage {
             labelContainer.addSubview(collageView)
+        }
+    }
+    
+    func setWatermarkImage() {
+        guard watermarkImage == nil else {
+            watermarkImage?.reset()
+            toggleWatermarkImageVisibility()
+            return
+        }
+
+        if let decider = UserDefaults.standard.value(forKey: "watermarkImage") as? Bool {
+
+            if decider {
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let filePath = documentsURL.appendingPathComponent("watermark.png").path
+
+                if FileManager.default.fileExists(atPath: filePath) {
+                    if let img = UIImage(contentsOfFile: filePath) {
+                        let rect = CGRect(x: 0, y: 0, width: 200, height: 100)
+                        watermarkImage = WatermarkImage(frame: rect)
+                        watermarkImage?.image = img
+                        watermarkImage?.containWithin(view: labelContainer)
+                        watermarkImage?.sizeToFit()
+                        watermarkImage?.center = labelContainer.center
+
+
+                        if let image = watermarkImage {
+                            labelContainer.addSubview(image)
+                            image.reset()
+                            toggleWatermarkImageVisibility()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    func setWatermark() {
+        guard watermark == nil else {
+            watermark?.reset()
+            toggleWatermarkVisibility()
+            return
+        }
+
+        if let decider = UserDefaults.standard.value(forKey: "watermark") as? Bool,
+            let text = UserDefaults.standard.value(forKey: "watermarkText") as? String {
+
+            if decider {
+                let rect = CGRect(x: 0, y: 0, width: 200, height: 100)
+                watermark = WatermarkLabel(frame: rect)
+                watermark?.text = text
+                watermark?.containWithin(view: labelContainer)
+                watermark?.sizeToFit()
+                watermark?.moveToSavedPosition()
+
+                if let label = watermark {
+                    labelContainer.addSubview(label)
+                    label.reset()
+                    toggleWatermarkVisibility()
+                }
+            }
+        }
+    }
+
+    func toggleWatermarkVisibility() {
+        if let decider = UserDefaults.standard.value(forKey: "watermark") as? Bool {
+            if decider {
+                watermark?.isHidden = false
+            } else {
+                watermark?.isHidden = true
+                return
+            }
+        }
+
+        if primaryImageView.image != nil {
+            watermark?.isHidden = false
+        } else {
+            watermark?.isHidden = true
+        }
+    }
+
+    func toggleWatermarkImageVisibility() {
+        if let decider = UserDefaults.standard.value(forKey: "watermarkImage") as? Bool {
+            if decider {
+                watermarkImage?.isHidden = false
+            } else {
+                watermarkImage?.isHidden = true
+                return
+            }
+        }
+        
+        if primaryImageView.image != nil {
+            watermarkImage?.isHidden = false
+        } else {
+            watermarkImage?.isHidden = true
         }
     }
     

@@ -19,56 +19,86 @@ class PhotoEditorViewController: UIViewController {
     var selectedImage: UIImage?
     var modifiedImage: UIImage?
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let rect = CGRect(x: 0, y: 0, width: containerView.frame.width, height: containerView.frame.height)
-        
-        scrollView = UIScrollView(frame: rect)
-        primaryImageView = UIImageView(frame: rect)
-        primaryImageView.image = selectedImage
-        primaryImageView.contentMode = .scaleAspectFit
-        scrollView.addSubview(primaryImageView)
-        scrollView.isUserInteractionEnabled = true
-        scrollView.delegate = self
-        scrollView.backgroundColor = .white
-        automaticallyAdjustsScrollViewInsets = false
-        scrollView.minimumZoomScale = 1.0
-        scrollView.maximumZoomScale = 6.0
-        
-        
-        containerView.addSubview(scrollView)
-        containerView.isHidden = true
-     
         let decider = UserDefaults.standard.bool(forKey: "defaultImageSizeIsPortrait")
-        
+
         if (decider) {
             portraitButton.isEnabled = false
             squareButton.isEnabled = true
-            
-            let rect = CGRect(x: 0, y: 0, width: containerView.frame.width, height: containerView.frame.height)
-            scrollView.frame = rect
-            primaryImageView.frame = rect
+
+            // Initialize ScrollView For Portrait AspectRatio
+            let rect = CGRect(x: 0, y: 0, width: containerView.bounds.width, height: containerView.bounds.height)
+            scrollView = UIScrollView(frame: rect)
         } else {
             squareButton.isEnabled = false
             portraitButton.isEnabled = true
-            
-            let yPos = (containerView.frame.height/2)-(view.bounds.width/2)
+
+            // Initialize ScrollView For Square AspectRatio
+            let yPos = (containerView.bounds.height/2)-(view.bounds.width/2)
             let rect = CGRect(x: 0, y: yPos, width: view.bounds.width, height: view.bounds.width)
-            scrollView.frame = rect
-            primaryImageView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.width)
+            scrollView = UIScrollView(frame: rect)
         }
-        
+
         if let scale = UserDefaults.standard.value(forKey: "defaultScrollViewScale") as? CGFloat {
             scrollView.setZoomScale(scale, animated: true)
         }
         
-        containerView.isHidden = false
+        // ScrollView Specifications
+        scrollView.backgroundColor = .white
+        scrollView.isUserInteractionEnabled = true
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 6.0
+        containerView.addSubview(scrollView)
+        
+        // ImageView Initialization
+        let rect = CGRect(x: 0, y: 0, width: scrollView.bounds.width, height: scrollView.bounds.height)
+        primaryImageView = UIImageView(frame: rect)
+        primaryImageView.contentMode = .scaleAspectFit
+        primaryImageView.image = selectedImage
+        scrollView.addSubview(primaryImageView)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+//        
+//        let decider = UserDefaults.standard.bool(forKey: "defaultImageSizeIsPortrait")
+//        
+//        if (decider) {
+//            portraitButton.isEnabled = false
+//            squareButton.isEnabled = true
+//            
+//            let rect = CGRect(x: 0, y: 0, width: containerView.frame.width, height: containerView.frame.height)
+//            scrollView = UIScrollView(frame: rect)
+//            primaryImageView = UIImageView(frame: rect)
+//        } else {
+//            squareButton.isEnabled = false
+//            portraitButton.isEnabled = true
+//            
+//            let yPos = (containerView.frame.height/2)-(view.bounds.width/2)
+//            let rect = CGRect(x: 0, y: yPos, width: view.bounds.width, height: view.bounds.width)
+//            scrollView = UIScrollView(frame: rect)
+//            primaryImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.width))
+//        }
+//        
+//        if let scale = UserDefaults.standard.value(forKey: "defaultScrollViewScale") as? CGFloat {
+//            scrollView.setZoomScale(scale, animated: true)
+//        }
+//        
+//        scrollView.isUserInteractionEnabled = true
+//        scrollView.delegate = self
+//        scrollView.backgroundColor = .white
+//        automaticallyAdjustsScrollViewInsets = false
+//        scrollView.minimumZoomScale = 1.0
+//        scrollView.maximumZoomScale = 6.0
+//        primaryImageView.image = selectedImage
+//        primaryImageView.contentMode = .scaleAspectFit
+//        containerView.addSubview(scrollView)
+//        scrollView.addSubview(primaryImageView)
+
     }
 
     @IBAction func cancel(_ sender: Any) {
