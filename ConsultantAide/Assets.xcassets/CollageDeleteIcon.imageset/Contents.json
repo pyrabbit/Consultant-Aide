@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "CollageDeleteIcon40.png",
+      "filename" : "CollageDeleteIcon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "CollageDeleteIcon40@2x.png",
+      "filename" : "CollageDeleteIcon@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "CollageDeleteIcon40@3x.png",
+      "filename" : "CollageDeleteIcon@3x.png",
       "scale" : "3x"
     }
   ],

@@ -341,7 +341,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpd-4P-Vvs">
-                                        <rect key="frame" x="90" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="67.5" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="daR-fE-PZj"/>
                                             <constraint firstAttribute="height" constant="50" id="kDv-Gr-fLR"/>
@@ -351,8 +351,16 @@
                                             <action selector="addCollage:" destination="ttX-TL-oz3" eventType="touchUpInside" id="BKU-mk-bFU"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bet-Bw-L0c">
+                                        <rect key="frame" x="135" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="6d6-i8-amI"/>
+                                            <constraint firstAttribute="height" constant="50" id="Kv1-Yf-Uts"/>
+                                        </constraints>
+                                        <state key="normal" image="CollageDeleteIcon"/>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Bq-hE-rcM">
-                                        <rect key="frame" x="180" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="202.5" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="24h-WZ-WTu"/>
                                             <constraint firstAttribute="height" constant="50" id="XnU-P2-r6U"/>
@@ -2032,6 +2040,7 @@
     </scenes>
     <resources>
         <image name="CheckIcon" width="300" height="300"/>
+        <image name="CollageDeleteIcon" width="300" height="300"/>
         <image name="CollageIcon" width="300" height="300"/>
         <image name="FB-FindUsonFacebook-online-512" width="512" height="98"/>
         <image name="IconTransparent" width="300" height="300"/>
