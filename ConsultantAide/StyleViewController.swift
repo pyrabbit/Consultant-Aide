@@ -32,8 +32,10 @@ class StyleViewController: UIViewController {
         filterView.brands = Set(styles.flatMap { $0.brand }).sorted()
         
         if let filters = UserDefaults.standard.value(forKey: "styleFilters") as? [String] {
-            styles = styles.filter { filters.contains($0.brand) }
-            tableView.reloadData()
+            if filters.count > 0 {
+                styles = styles.filter { filters.contains($0.brand) }
+                tableView.reloadData()
+            }
         }
     }
 

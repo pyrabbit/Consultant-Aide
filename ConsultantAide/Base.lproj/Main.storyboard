@@ -32,7 +32,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w8z-kr-TrQ">
-                                            <rect key="frame" x="10" y="10" width="320" height="548"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PLJ-zH-gMp">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,10 +43,10 @@
                                         </visualEffectView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="w8z-kr-TrQ" secondAttribute="bottom" constant="-10" id="AiR-fT-1BG"/>
-                                        <constraint firstItem="w8z-kr-TrQ" firstAttribute="top" secondItem="GVj-Cv-oLb" secondAttribute="top" constant="10" id="ICk-Sj-eh8"/>
-                                        <constraint firstAttribute="trailing" secondItem="w8z-kr-TrQ" secondAttribute="trailing" constant="-10" id="QZi-Kp-VcQ"/>
-                                        <constraint firstItem="w8z-kr-TrQ" firstAttribute="leading" secondItem="GVj-Cv-oLb" secondAttribute="leading" constant="10" id="dje-FS-qaI"/>
+                                        <constraint firstAttribute="bottom" secondItem="w8z-kr-TrQ" secondAttribute="bottom" id="AiR-fT-1BG"/>
+                                        <constraint firstItem="w8z-kr-TrQ" firstAttribute="top" secondItem="GVj-Cv-oLb" secondAttribute="top" id="ICk-Sj-eh8"/>
+                                        <constraint firstAttribute="trailing" secondItem="w8z-kr-TrQ" secondAttribute="trailing" id="QZi-Kp-VcQ"/>
+                                        <constraint firstItem="w8z-kr-TrQ" firstAttribute="leading" secondItem="GVj-Cv-oLb" secondAttribute="leading" id="dje-FS-qaI"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="light"/>

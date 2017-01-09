@@ -123,7 +123,7 @@ class StyleService {
         }
     }
     
-    private static func findOrCreateBy(styleId: String, completion: @escaping (Style?) -> ()) {
+    private static func findOrCreateBy(styleId: String, completion: @escaping (Style?, NSManagedObjectContext) -> ()) {
         let fetchRequest: NSFetchRequest<Style> = Style.fetchRequest()
         let styleIdPredicate = NSPredicate(format: "styleId like %@", styleId)
         let brandSort = NSSortDescriptor(key: "styleId", ascending: true)
@@ -141,12 +141,12 @@ class StyleService {
                 if let results = controller.fetchedObjects {
                     if !(results.isEmpty) {
                         print("Found \(styleId)")
-                        completion(results.first)
+                        completion(results.first, context)
                     } else {
                         print("Creating \(styleId)")
                         let newStyleObject = Style(context: context)
                         newStyleObject.styleId = styleId
-                        completion(newStyleObject)
+                        completion(newStyleObject, context)
                     }
                 }
             } catch {
@@ -154,7 +154,7 @@ class StyleService {
                 print("\(error)")
             }
             
-            completion(nil)
+            completion(nil, context)
         }
 
     }
@@ -171,7 +171,7 @@ class StyleService {
             
             updateDeviceWithData(data: data)
             
-            findOrCreateBy(styleId: styleId, completion: { retrieved in
+            findOrCreateBy(styleId: styleId, completion: { retrieved, context in
                 guard let style = retrieved else {
                     return
                 }
@@ -195,10 +195,15 @@ class StyleService {
                 if let decider = data["forKids"] as? Bool {
                     style.forKids = decider
                 }
+                
+                do {
+                    try context.save()
+                } catch {
+                    print("Could not save style object!!!")
+                }
+                
             })
         }
-        
-        ad.saveContext()
     }
     
 }
