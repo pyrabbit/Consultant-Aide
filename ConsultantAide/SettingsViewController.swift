@@ -11,7 +11,6 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     @IBAction func returnToEditor(sender: UIButton) {
-//        performSegue(withIdentifier: "unwindToEditor", sender: self)
         _ = navigationController?.popViewController(animated: true)
     }
      

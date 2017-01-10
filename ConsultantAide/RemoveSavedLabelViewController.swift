@@ -58,6 +58,17 @@ extension RemoveSavedLabelViewController: UITableViewDelegate, UITableViewDataSo
         }
         
         cell.label.text = labels[indexPath.row].name
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        let savedPrice = labels[indexPath.row].price
+        if let  price = formatter.string(from: NSNumber(value: savedPrice)) {
+            cell.price.text = "MAP \(price)"
+        } else {
+            cell.price.text = "N/A"
+        }
+        
+        let sizes = labels[indexPath.row].sizes
+        cell.sizes.text = sizes?.joined(separator: ", ")
         return cell
     }
     
@@ -76,4 +87,6 @@ extension RemoveSavedLabelViewController: UITableViewDelegate, UITableViewDataSo
 
 class RemoveSavedLabelCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var sizes: UILabel!
 }

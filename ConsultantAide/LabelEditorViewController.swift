@@ -14,6 +14,7 @@ class LabelEditorViewController: UIViewController {
     @IBOutlet weak var removeItemsBtn: UIButton!
     @IBOutlet var collageSourceView: CollageSourceView!
     @IBOutlet weak var removeCollageBtn: UIButton!
+    @IBOutlet weak var setWatermarkBtn: UIButton!
     
     var primaryImageView: UIImageView!
     var labelContainer: UIView!
@@ -183,21 +184,29 @@ class LabelEditorViewController: UIViewController {
     }
 
     func setWatermark() {
+        setWatermarkBtn.isEnabled = false
+        
         if let decider = UserDefaults.standard.value(forKey: "watermark") as? Bool,
             let text = UserDefaults.standard.value(forKey: "watermarkText") as? String {
 
+            setWatermarkBtn.isEnabled = true
+            
             if decider {
                 let rect = CGRect(x: 0, y: 0, width: 200, height: 100)
                 watermark = WatermarkLabel(frame: rect)
                 watermark?.text = text
                 watermark?.containWithin(view: labelContainer)
                 watermark?.sizeToFit()
+                watermark?.frame.size.height += 5
+                watermark?.frame.size.width += 5
                 watermark?.moveToSavedPosition()
 
                 if let label = watermark {
                     labelContainer.addSubview(label)
                     toggleWatermarkVisibility()
                 }
+            } else {
+                setWatermarkBtn.isEnabled = false
             }
         }
     }
@@ -249,6 +258,38 @@ class LabelEditorViewController: UIViewController {
             view.addSubview(bg)
         }
         
+    }
+    
+    @IBAction func setWatermarkText(_ sender: Any) {
+        let alert = UIAlertController(title: "Watermark", message: "Enter any additional information to be displayed on the photo.", preferredStyle: .alert)
+        
+        alert.addTextField(configurationHandler: { (textfield) -> Void in
+            if let watermark = UserDefaults.standard.value(forKey: "watermarkText") {
+                textfield.text = watermark as? String
+            } else {
+                textfield.text = ""
+            }
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
+            let textField = alert.textFields![0] as UITextField
+            
+            guard let text = textField.text else {
+                alert.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            UserDefaults.standard.set(text, forKey: "watermarkText")
+
+            self.watermark?.text = text
+            self.watermark?.sizeToFit()
+            self.watermark?.frame.size.height += 5
+            self.watermark?.frame.size.width += 5
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
     
     override var prefersStatusBarHidden: Bool {
