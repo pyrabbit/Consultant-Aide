@@ -59,7 +59,7 @@ extension RemoveSavedLabelViewController: UITableViewDelegate, UITableViewDataSo
         
         cell.label.text = labels[indexPath.row].name
         let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
+        formatter.numberStyle = .currency   
         let savedPrice = labels[indexPath.row].price
         if let  price = formatter.string(from: NSNumber(value: savedPrice)) {
             cell.price.text = "MAP \(price)"
