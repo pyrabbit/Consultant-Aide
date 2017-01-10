@@ -21,9 +21,9 @@ class StyleViewController: UIViewController {
     var isSearching = false
     var modalBackground: UIView?
     var selectedStyle: SavedLabel?
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         if let stylesFromDevice = StyleService.fetchAll() {
             styles = stylesFromDevice
@@ -36,8 +36,8 @@ class StyleViewController: UIViewController {
             filterView.filters = Set(filters)
             
             if filters.count > 0 {
+                print("Filtering styles")
                 styles = styles.filter { filters.contains($0.brand) }
-                tableView.reloadData()
             }
         }
     }

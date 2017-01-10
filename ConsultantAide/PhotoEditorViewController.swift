@@ -63,7 +63,7 @@ class PhotoEditorViewController: UIViewController {
             scrollView.setZoomScale(scale, animated: true)
         }
     }
-
+    
     @IBAction func cancel(_ sender: Any) {
         _ = navigationController?.popToRootViewController(animated: true)
     }
@@ -146,6 +146,11 @@ class PhotoEditorViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         get { return true }
     }
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
+
 }
 
 extension PhotoEditorViewController: UIScrollViewDelegate {
