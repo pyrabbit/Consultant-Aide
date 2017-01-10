@@ -137,25 +137,10 @@ class SettingsTableViewController: UITableViewController {
             performSegue(withIdentifier: "segueToColorPicker", sender: self)
         case 16:
             presentPhotoLibraryController()
-        case 18:
-            showRescueAlert()
         default:
             print("Some other path was selected.")
         }
 
-    }
-    
-    func showRescueAlert() {
-        let alert = UIAlertController(title: "Rescue Label Positions", message: "If labels are stuck or missing this will reset them to a safe position.", preferredStyle: .alert)
-        
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        alert.addAction(UIAlertAction(title: "Do it.", style: .destructive, handler: { (action) -> Void in
-            PositionRescurer.rescue()
-        }))
-        
-        present(alert, animated: true, completion: nil)
     }
     
     func showWatermarkAlert() {

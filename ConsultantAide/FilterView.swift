@@ -12,6 +12,7 @@ class FilterView: UIView {
     @IBOutlet weak var tableView: UITableView!
     var filters = Set<String>()
     var brands = [String]()
+    var savedFilters = [String]()
     var delegate: FilterViewDelegate?
     
     @IBAction func finished(_ sender: Any) {
@@ -59,6 +60,7 @@ extension FilterView: UITableViewDelegate, UITableViewDataSource {
         
         let brand = brands[indexPath.row]
         
+
         if filters.contains(brand) {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             cell.contentView.backgroundColor = ColorPalette.Primary
@@ -69,6 +71,11 @@ extension FilterView: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FilterViewCell", for: indexPath) as? FilterViewCell {
             let brand = brands[indexPath.row]
             cell.label.text = brand
+            
+            if savedFilters.contains(brand) {
+                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+                cell.contentView.backgroundColor = ColorPalette.Primary
+            }
             
             return cell
         }

@@ -13,6 +13,7 @@ class LabelEditorViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var removeItemsBtn: UIButton!
     @IBOutlet var collageSourceView: CollageSourceView!
+    @IBOutlet weak var removeCollageBtn: UIButton!
     
     var primaryImageView: UIImageView!
     var labelContainer: UIView!
@@ -144,6 +145,14 @@ class LabelEditorViewController: UIViewController {
         if let collageView = collage {
             labelContainer.addSubview(collageView)
         }
+        
+        removeCollageBtn.isEnabled = true
+    }
+    
+    @IBAction func removeCollage(_ sender: UIButton) {
+        collage?.image = nil
+        collage?.removeFromSuperview()
+        sender.isEnabled = false
     }
     
     func setWatermarkImage() {

@@ -16,16 +16,13 @@
 		C93E19811DCFC36500A5CD7F /* ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19801DCFC36500A5CD7F /* ColorPallete.swift */; };
 		C93E19831DCFC3C100A5CD7F /* CollageImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19821DCFC3C100A5CD7F /* CollageImageView.swift */; };
 		C93E19861DCFC4B800A5CD7F /* StyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19851DCFC4B800A5CD7F /* StyleView.swift */; };
-		C93E19881DCFC59600A5CD7F /* UserDefaults+SavedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19871DCFC59600A5CD7F /* UserDefaults+SavedStyles.swift */; };
 		C93E198A1DCFC5D000A5CD7F /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19891DCFC5D000A5CD7F /* StyleViewController.swift */; };
 		C93E198C1DCFC5EE00A5CD7F /* StyleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E198B1DCFC5EE00A5CD7F /* StyleTableViewCell.swift */; };
 		C93E198E1DCFC61000A5CD7F /* SizeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E198D1DCFC61000A5CD7F /* SizeCollectionViewCell.swift */; };
-		C93E19991DCFCD8200A5CD7F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19981DCFCD8200A5CD7F /* PrimaryButton.swift */; };
 		C94426AF1DD418FF003F34C4 /* SettingsTableViewController+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94426AE1DD418FF003F34C4 /* SettingsTableViewController+ImagePicker.swift */; };
 		C94426B11DD41C7F003F34C4 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94426B01DD41C7F003F34C4 /* RoundedImageView.swift */; };
 		C94426B31DD42B6F003F34C4 /* WatermarkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94426B21DD42B6F003F34C4 /* WatermarkLabel.swift */; };
 		C94426B51DD43CE1003F34C4 /* WatermarkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94426B41DD43CE1003F34C4 /* WatermarkImage.swift */; };
-		C94426B71DD45022003F34C4 /* PositionRescurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94426B61DD45022003F34C4 /* PositionRescurer.swift */; };
 		C96A7B011DD3EA5500A2386C /* StyleViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B001DD3EA5500A2386C /* StyleViewController+TableView.swift */; };
 		C96A7B031DD3EBD200A2386C /* StyleViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B021DD3EBD200A2386C /* StyleViewController+CollectionView.swift */; };
 		C96A7B0C1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B0A1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift */; };
@@ -46,7 +43,6 @@
 		C9DE754B1E13463500747900 /* CustomStyleFormDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE754A1E13463500747900 /* CustomStyleFormDelegate.swift */; };
 		C9DE754D1E13473100747900 /* StyleViewController+CustomStyleForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE754C1E13473100747900 /* StyleViewController+CustomStyleForm.swift */; };
 		C9E785791DCA575400B337F4 /* RoundedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E785781DCA575400B337F4 /* RoundedTableView.swift */; };
-		C9E7857B1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7857A1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift */; };
 		C9E7857D1DCA5FC100B337F4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7857C1DCA5FC100B337F4 /* RoundedView.swift */; };
 		C9E785821DCA6E8300B337F4 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E785811DCA6E8300B337F4 /* ColorPickerViewController.swift */; };
 		C9E785841DCA85E500B337F4 /* UserDefaults+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E785831DCA85E500B337F4 /* UserDefaults+UIColor.swift */; };
@@ -72,16 +68,13 @@
 		C93E19801DCFC36500A5CD7F /* ColorPallete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPallete.swift; sourceTree = "<group>"; };
 		C93E19821DCFC3C100A5CD7F /* CollageImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageImageView.swift; sourceTree = "<group>"; };
 		C93E19851DCFC4B800A5CD7F /* StyleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleView.swift; sourceTree = "<group>"; };
-		C93E19871DCFC59600A5CD7F /* UserDefaults+SavedStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+SavedStyles.swift"; sourceTree = "<group>"; };
 		C93E19891DCFC5D000A5CD7F /* StyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
 		C93E198B1DCFC5EE00A5CD7F /* StyleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleTableViewCell.swift; sourceTree = "<group>"; };
 		C93E198D1DCFC61000A5CD7F /* SizeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeCollectionViewCell.swift; sourceTree = "<group>"; };
-		C93E19981DCFCD8200A5CD7F /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		C94426AE1DD418FF003F34C4 /* SettingsTableViewController+ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsTableViewController+ImagePicker.swift"; sourceTree = "<group>"; };
 		C94426B01DD41C7F003F34C4 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		C94426B21DD42B6F003F34C4 /* WatermarkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatermarkLabel.swift; sourceTree = "<group>"; };
 		C94426B41DD43CE1003F34C4 /* WatermarkImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatermarkImage.swift; sourceTree = "<group>"; };
-		C94426B61DD45022003F34C4 /* PositionRescurer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionRescurer.swift; sourceTree = "<group>"; };
 		C96A7B001DD3EA5500A2386C /* StyleViewController+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StyleViewController+TableView.swift"; sourceTree = "<group>"; };
 		C96A7B021DD3EBD200A2386C /* StyleViewController+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StyleViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		C96A7B0A1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedLabel+CoreDataClass.swift"; path = "../SavedLabel+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -102,7 +95,6 @@
 		C9DE754A1E13463500747900 /* CustomStyleFormDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleFormDelegate.swift; sourceTree = "<group>"; };
 		C9DE754C1E13473100747900 /* StyleViewController+CustomStyleForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StyleViewController+CustomStyleForm.swift"; sourceTree = "<group>"; };
 		C9E785781DCA575400B337F4 /* RoundedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTableView.swift; sourceTree = "<group>"; };
-		C9E7857A1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+NoStatusBar.swift"; sourceTree = "<group>"; };
 		C9E7857C1DCA5FC100B337F4 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		C9E785811DCA6E8300B337F4 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		C9E785831DCA85E500B337F4 /* UserDefaults+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+UIColor.swift"; sourceTree = "<group>"; };
@@ -217,16 +209,12 @@
 			isa = PBXGroup;
 			children = (
 				C9E785781DCA575400B337F4 /* RoundedTableView.swift */,
-				C9E7857A1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift */,
 				C9E7857C1DCA5FC100B337F4 /* RoundedView.swift */,
 				C9E785831DCA85E500B337F4 /* UserDefaults+UIColor.swift */,
 				C93E19801DCFC36500A5CD7F /* ColorPallete.swift */,
-				C93E19871DCFC59600A5CD7F /* UserDefaults+SavedStyles.swift */,
-				C93E19981DCFCD8200A5CD7F /* PrimaryButton.swift */,
 				C912F9361DD11E2A00E1C9B5 /* CameraAuthorization.swift */,
 				C912F9381DD11E5700E1C9B5 /* PhotosAuthorization.swift */,
 				C94426B01DD41C7F003F34C4 /* RoundedImageView.swift */,
-				C94426B61DD45022003F34C4 /* PositionRescurer.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -386,7 +374,6 @@
 				C93E19861DCFC4B800A5CD7F /* StyleView.swift in Sources */,
 				C97774CC1E21A103009E562A /* LabelEditorViewController+ImagePicker.swift in Sources */,
 				C92903501DCAD48300796369 /* FontTableViewCell.swift in Sources */,
-				C93E19881DCFC59600A5CD7F /* UserDefaults+SavedStyles.swift in Sources */,
 				C97774C51E217BC3009E562A /* RemoveSavedLabelViewController.swift in Sources */,
 				C93E198C1DCFC5EE00A5CD7F /* StyleTableViewCell.swift in Sources */,
 				C9D3240E1DFCB23D00B49444 /* PhotoSelectorViewController.swift in Sources */,
@@ -409,11 +396,9 @@
 				C9E785791DCA575400B337F4 /* RoundedTableView.swift in Sources */,
 				C93E198A1DCFC5D000A5CD7F /* StyleViewController.swift in Sources */,
 				C9F072FA1DCA49240014F0E7 /* AppDelegate.swift in Sources */,
-				C93E19991DCFCD8200A5CD7F /* PrimaryButton.swift in Sources */,
 				C9DD02AA1E16FE7C00F0E60A /* FilterView.swift in Sources */,
 				C9F073111DCA4A110014F0E7 /* SettingsViewController.swift in Sources */,
 				C96A7B0C1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift in Sources */,
-				C9E7857B1DCA5BD600B337F4 /* UIViewController+NoStatusBar.swift in Sources */,
 				C929034B1DCAC68000796369 /* SettingsTableViewController.swift in Sources */,
 				C9F80B4B1DD3BB0A00B38DEF /* Style+CoreDataProperties.swift in Sources */,
 				C9E785821DCA6E8300B337F4 /* ColorPickerViewController.swift in Sources */,
@@ -423,7 +408,6 @@
 				C9D324181DFCEF8800B49444 /* LabelEditorViewController.swift in Sources */,
 				C96A7B011DD3EA5500A2386C /* StyleViewController+TableView.swift in Sources */,
 				C9DE754B1E13463500747900 /* CustomStyleFormDelegate.swift in Sources */,
-				C94426B71DD45022003F34C4 /* PositionRescurer.swift in Sources */,
 				C929034E1DCAD41200796369 /* FontViewController.swift in Sources */,
 				C94426B31DD42B6F003F34C4 /* WatermarkLabel.swift in Sources */,
 				C9E785841DCA85E500B337F4 /* UserDefaults+UIColor.swift in Sources */,

@@ -358,6 +358,9 @@
                                             <constraint firstAttribute="height" constant="50" id="Kv1-Yf-Uts"/>
                                         </constraints>
                                         <state key="normal" image="CollageDeleteIcon"/>
+                                        <connections>
+                                            <action selector="removeCollage:" destination="ttX-TL-oz3" eventType="touchUpInside" id="spu-81-Qx3"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Bq-hE-rcM">
                                         <rect key="frame" x="202.5" y="0.0" width="50" height="50"/>
@@ -426,6 +429,7 @@
                     <connections>
                         <outlet property="collageSourceView" destination="rxv-ws-ZB7" id="YYh-Ct-wBs"/>
                         <outlet property="containerView" destination="gdM-Mn-RlY" id="Nc8-22-zJf"/>
+                        <outlet property="removeCollageBtn" destination="bet-Bw-L0c" id="rKe-XD-2H8"/>
                         <outlet property="removeItemsBtn" destination="Fiu-YJ-hpd" id="Ux7-xq-OzZ"/>
                     </connections>
                 </viewController>
@@ -1084,26 +1088,6 @@
                                                 <constraint firstItem="FjI-JN-WXR" firstAttribute="top" secondItem="LeQ-Iv-Mff" secondAttribute="bottom" constant="-4" id="cX5-5k-WZe"/>
                                                 <constraint firstItem="LeQ-Iv-Mff" firstAttribute="top" secondItem="moz-b0-6x0" secondAttribute="top" constant="8" id="lki-Go-mhN"/>
                                                 <constraint firstItem="FjI-JN-WXR" firstAttribute="leading" secondItem="moz-b0-6x0" secondAttribute="leading" constant="8" id="rUy-ak-6Q5"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="ofp-kR-c4A">
-                                        <rect key="frame" x="0.0" y="1080" width="343" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ofp-kR-c4A" id="WSk-9p-b3J">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rescue Label Positions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hab-Bq-a7W">
-                                                    <rect key="frame" x="8" y="19" width="166" height="21"/>
-                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
-                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="hab-Bq-a7W" firstAttribute="top" secondItem="WSk-9p-b3J" secondAttribute="top" constant="19" id="4aC-rL-vqf"/>
-                                                <constraint firstItem="hab-Bq-a7W" firstAttribute="leading" secondItem="WSk-9p-b3J" secondAttribute="leading" constant="8" id="CTO-sB-dhk"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
