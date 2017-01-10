@@ -112,7 +112,7 @@ class PhotoEditorViewController: UIViewController {
         
         let scale = image.scale
         let cropRect = CGRect(x: scrollView.frame.origin.x * scale,
-                              y: (scrollView.frame.origin.y * scale)+40,
+                              y: scrollView.frame.origin.y * scale + (20*scale),
                               width: scrollView.frame.width * scale,
                               height: scrollView.frame.height * scale)
         
