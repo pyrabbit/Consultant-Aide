@@ -77,6 +77,7 @@ extension StyleViewController: UITableViewDelegate, UITableViewDataSource, NSFet
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         addToEditorBtn.isEnabled = true
+        view.endEditing(true)
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

@@ -26,7 +26,7 @@ class RemoveSavedLabelViewController: UIViewController {
     @IBAction func back(_ sender: Any) {
         _ = navigationController?.popViewController(animated: true)
     }
-    
+
     override var prefersStatusBarHidden: Bool {
         get { return true }
     }

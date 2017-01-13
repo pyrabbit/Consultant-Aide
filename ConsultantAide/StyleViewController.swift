@@ -22,11 +22,6 @@ class StyleViewController: UIViewController {
     var modalBackground: UIView?
     var selectedStyle: SavedLabel?
     
-    override func viewDidLoad() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
-        view.addGestureRecognizer(tap)
-    }   
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -48,6 +43,7 @@ class StyleViewController: UIViewController {
     }
 
     @IBAction func addStyle(_ sender: Any) {
+        view.endEditing(true)
         addBackgroundModal()
         
         let xPos = view.center.x - (customStyleView.frame.width/2)
@@ -74,6 +70,7 @@ class StyleViewController: UIViewController {
     
 
     @IBAction func selectStyleFitlers(_ sender: Any) {
+        view.endEditing(true)
         addBackgroundModal()
         
         let xPos = view.center.x - (filterView.frame.width/2)
@@ -157,10 +154,6 @@ class StyleViewController: UIViewController {
             view.addSubview(bg)
         }
         
-    }
-    
-    func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
     }
     
     override var prefersStatusBarHidden: Bool {

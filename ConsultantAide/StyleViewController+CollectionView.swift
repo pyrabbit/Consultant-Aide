@@ -51,6 +51,9 @@ extension StyleViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        view.endEditing(true)
+        addToEditorBtn.isEnabled = true
+        
         let index = IndexPath(row: collectionView.tag, section: 0)
         if let cell = tableView.cellForRow(at: index) as? StyleTableViewCell {
             if (!cell.isSelected) {
