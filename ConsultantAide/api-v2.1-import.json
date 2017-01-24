@@ -155,7 +155,7 @@
             "brand": "Lularoe",
             "name": "Lola",
             "sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
-            "price": 52.00,
+            "price": 46.00,
             "forKids" : false
     },
     
@@ -163,7 +163,7 @@
             "brand": "Lularoe",
             "name": "Lucy",
             "sizes": ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"],
-            "price": 46.00,
+            "price": 52.00,
             "forKids" : false
     },
     
@@ -626,7 +626,7 @@
     "honey-leggings" : {
         "brand": "Honey and Lace",
         "name": "Leggings",
-        "sizes": ["ONE SIZE", "TALL/CURVY"],
+        "sizes": ["ONE SIZE", "CURVY"],
         "price": 19.00,
         "forKids" : false
     },
@@ -755,7 +755,7 @@
         "brand": "Honey and Lace",
         "name": "Napa",
         "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
-        "price": 35.00,
+        "price": 32.00,
         "forKids" : true
     },
     
