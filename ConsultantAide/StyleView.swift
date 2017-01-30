@@ -389,12 +389,16 @@ extension StyleView: UICollisionBehaviorDelegate {
             boundry.collisionDelegate = self
             boundry.translatesReferenceBoundsIntoBoundary = true
             animator.addBehavior(boundry)
+            
+            let noRotationBehavior = UIDynamicItemBehavior(items: [self])
+            noRotationBehavior.allowsRotation = false
+            animator.addBehavior(noRotationBehavior)
         }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         var point = CGPoint(x: 0, y: 0)
-
+            
         for _ in touches {
             if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
                 if fullWidthLabels {
