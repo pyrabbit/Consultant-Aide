@@ -189,6 +189,10 @@ class LabelEditorViewController: UIViewController {
         if let decider = UserDefaults.standard.value(forKey: "watermark") as? Bool,
             let text = UserDefaults.standard.value(forKey: "watermarkText") as? String {
 
+            if text.characters.count == 0 {
+                return
+            }
+            
             setWatermarkBtn.isEnabled = true
             
             if decider {
