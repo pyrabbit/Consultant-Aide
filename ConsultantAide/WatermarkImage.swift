@@ -81,6 +81,10 @@ class WatermarkImage: UIImageView {
                 let boundry = UICollisionBehavior(items: [self])
                 boundry.translatesReferenceBoundsIntoBoundary = true
                 animator.addBehavior(boundry)
+                
+                let noRotationBehavior = UIDynamicItemBehavior(items: [self])
+                noRotationBehavior.allowsRotation = false
+                animator.addBehavior(noRotationBehavior)
             }
         }
     }
