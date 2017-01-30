@@ -172,10 +172,10 @@ class LabelEditorViewController: UIViewController {
                         watermarkImage?.sizeToFit()
                         watermarkImage?.moveToSavedPosition()
 
-
                         if let image = watermarkImage {
                             labelContainer.addSubview(image)
                             toggleWatermarkImageVisibility()
+                            image.moveToSavedPosition()
                         }
                     }
                 }
@@ -203,10 +203,11 @@ class LabelEditorViewController: UIViewController {
                 watermark?.frame.size.height += 5
                 watermark?.frame.size.width += 5
                 watermark?.moveToSavedPosition()
-
+                
                 if let label = watermark {
                     labelContainer.addSubview(label)
                     toggleWatermarkVisibility()
+                    label.moveToSavedPosition()
                 }
             } else {
                 setWatermarkBtn.isEnabled = false

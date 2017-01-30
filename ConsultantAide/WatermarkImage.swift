@@ -59,7 +59,7 @@ class WatermarkImage: UIImageView {
         }
         
         if let container = containerView {
-            if ((CGFloat(y) + frame.height) > container.frame.maxY) {
+            if ((CGFloat(y) + frame.height) >= container.frame.height) {
                 frame.origin = CGPoint(x: 0, y: 0)
                 return
             }
