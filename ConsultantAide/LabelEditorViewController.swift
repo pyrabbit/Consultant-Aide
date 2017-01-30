@@ -193,6 +193,9 @@ class LabelEditorViewController: UIViewController {
             
             if decider {
                 let rect = CGRect(x: 0, y: 0, width: 200, height: 100)
+                
+                watermark?.removeFromSuperview()
+                
                 watermark = WatermarkLabel(frame: rect)
                 watermark?.text = text
                 watermark?.containWithin(view: labelContainer)
@@ -288,6 +291,8 @@ class LabelEditorViewController: UIViewController {
             self.watermark?.sizeToFit()
             self.watermark?.frame.size.height += 5
             self.watermark?.frame.size.width += 5
+            self.watermark?.updateConstraints()
+            
             
             if text.characters.count == 0 {
                 self.watermark?.isHidden = true
