@@ -172,10 +172,10 @@ class LabelEditorViewController: UIViewController {
                         watermarkImage?.sizeToFit()
                         watermarkImage?.moveToSavedPosition()
 
-
                         if let image = watermarkImage {
                             labelContainer.addSubview(image)
                             toggleWatermarkImageVisibility()
+                            image.moveToSavedPosition()
                         }
                     }
                 }
@@ -188,11 +188,14 @@ class LabelEditorViewController: UIViewController {
         
         if let decider = UserDefaults.standard.value(forKey: "watermark") as? Bool,
             let text = UserDefaults.standard.value(forKey: "watermarkText") as? String {
-
+            
             setWatermarkBtn.isEnabled = true
             
             if decider {
                 let rect = CGRect(x: 0, y: 0, width: 200, height: 100)
+                
+                watermark?.removeFromSuperview()
+                
                 watermark = WatermarkLabel(frame: rect)
                 watermark?.text = text
                 watermark?.containWithin(view: labelContainer)
@@ -200,10 +203,11 @@ class LabelEditorViewController: UIViewController {
                 watermark?.frame.size.height += 5
                 watermark?.frame.size.width += 5
                 watermark?.moveToSavedPosition()
-
+                
                 if let label = watermark {
                     labelContainer.addSubview(label)
                     toggleWatermarkVisibility()
+                    label.moveToSavedPosition()
                 }
             } else {
                 setWatermarkBtn.isEnabled = false
@@ -212,8 +216,9 @@ class LabelEditorViewController: UIViewController {
     }
 
     func toggleWatermarkVisibility() {
-        if let decider = UserDefaults.standard.value(forKey: "watermark") as? Bool {
-            if decider {
+        if let decider = UserDefaults.standard.value(forKey: "watermark") as? Bool,
+            let text = UserDefaults.standard.value(forKey: "watermarkText") as? String {
+            if decider && text.characters.count > 0 {
                 watermark?.isHidden = false
             } else {
                 watermark?.isHidden = true
@@ -287,6 +292,12 @@ class LabelEditorViewController: UIViewController {
             self.watermark?.sizeToFit()
             self.watermark?.frame.size.height += 5
             self.watermark?.frame.size.width += 5
+            self.watermark?.updateConstraints()
+            
+            
+            if text.characters.count == 0 {
+                self.watermark?.isHidden = true
+            }
         }))
         
         present(alert, animated: true, completion: nil)

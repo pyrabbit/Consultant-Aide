@@ -83,7 +83,7 @@ class WatermarkLabel: UILabel {
         }
         
         if let container = containerView {
-            if ((CGFloat(y) + frame.height) > container.frame.maxY) {
+            if ((CGFloat(y) + frame.height) >= container.frame.height) {
                 frame.origin = CGPoint(x: 0, y: 0)
                 return
             }
@@ -105,6 +105,10 @@ class WatermarkLabel: UILabel {
                 let boundry = UICollisionBehavior(items: [self])
                 boundry.translatesReferenceBoundsIntoBoundary = true
                 animator.addBehavior(boundry)
+                
+                let noRotationBehavior = UIDynamicItemBehavior(items: [self])
+                noRotationBehavior.allowsRotation = false
+                animator.addBehavior(noRotationBehavior)
             }
         }
     }
