@@ -20,6 +20,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         StyleService.updateFromServer()
         return true
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        if let host = url.host {
+            // Handle authorization return from ShopTheRoe
+            if (host == "strDidAuthorizeApp") {
+                print("STR authorized Consultant Aide!!!")
+                
+                let fields = url.fragment?.components(separatedBy: "&")
+                
+                var queryKeyPairs: [String: String] = [:]
+                fields?.forEach { queryKeyPairs[$0.components(separatedBy: "=")[0]] = $0.components(separatedBy: "=")[1] }
+                
+                if let access_token = queryKeyPairs["access_token"] {
+                    UserDefaults.standard.set(access_token, forKey: "strAccessToken")
+                }
+
+                if let error = getQueryStringParameter(url: url.absoluteString, param: "error") {
+                    print(error)
+                }
+            }
+        }
+
+        return true
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -43,6 +68,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    
+    private func getQueryStringParameter(url: String?, param: String) -> String? {
+        if let url = url, let urlComponents = URLComponents(string: url), let queryItems = (urlComponents.queryItems) {
+            return queryItems.filter({ (item) in item.name == param }).first?.value!
+        }
+        return nil
     }
 
     // MARK: - Core Data stack

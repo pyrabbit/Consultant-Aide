@@ -14,8 +14,15 @@ class PhotoSelectorViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        let vc = segue.destination as! PhotoEditorViewController
-        vc.selectedImage = selectedImage
+        
+        guard let identifier = segue.identifier else {
+            return
+        }
+        
+        if (identifier == "segueToPhotoEditor") {
+            let vc = segue.destination as! PhotoEditorViewController
+            vc.selectedImage = selectedImage
+        }
     }
     
     @IBAction func openFacebookGroup(_ sender: Any) {

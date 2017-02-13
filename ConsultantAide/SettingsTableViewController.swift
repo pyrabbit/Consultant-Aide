@@ -137,6 +137,8 @@ class SettingsTableViewController: UITableViewController {
             performSegue(withIdentifier: "segueToColorPicker", sender: self)
         case 16:
             presentPhotoLibraryController()
+        case 18:
+            performSegue(withIdentifier: "segueToSTRSettings", sender: self)
         default:
             print("Some other path was selected.")
         }

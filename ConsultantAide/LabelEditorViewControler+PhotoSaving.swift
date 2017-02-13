@@ -50,6 +50,11 @@ extension LabelEditorViewController {
                         
                         UIImageWriteToSavedPhotosAlbum(finalImage, nil, nil, nil)
                         
+                        if (true) {
+                            let service = STRService()
+                            service.createImage(image: finalImage)
+                        }
+                        
                         savingAlert.dismiss(animated: true, completion: {
                             let savedAlert = UIAlertController(title: "Saved!", message: "", preferredStyle: .alert)
                             self.present(savedAlert, animated: true, completion: nil)
