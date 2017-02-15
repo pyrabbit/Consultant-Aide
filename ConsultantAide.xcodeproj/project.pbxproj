@@ -13,6 +13,7 @@
 		C929034B1DCAC68000796369 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C929034A1DCAC68000796369 /* SettingsTableViewController.swift */; };
 		C929034E1DCAD41200796369 /* FontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C929034D1DCAD41200796369 /* FontViewController.swift */; };
 		C92903501DCAD48300796369 /* FontTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C929034F1DCAD48300796369 /* FontTableViewCell.swift */; };
+		C931540F1E547D1D00F14302 /* AlamoFire.Request+debugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C931540E1E547D1D00F14302 /* AlamoFire.Request+debugLog.swift */; };
 		C93E19811DCFC36500A5CD7F /* ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19801DCFC36500A5CD7F /* ColorPallete.swift */; };
 		C93E19831DCFC3C100A5CD7F /* CollageImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19821DCFC3C100A5CD7F /* CollageImageView.swift */; };
 		C93E19861DCFC4B800A5CD7F /* StyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E19851DCFC4B800A5CD7F /* StyleView.swift */; };
@@ -203,6 +204,7 @@
 		C929034A1DCAC68000796369 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C929034D1DCAD41200796369 /* FontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontViewController.swift; sourceTree = "<group>"; };
 		C929034F1DCAD48300796369 /* FontTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontTableViewCell.swift; sourceTree = "<group>"; };
+		C931540E1E547D1D00F14302 /* AlamoFire.Request+debugLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlamoFire.Request+debugLog.swift"; sourceTree = "<group>"; };
 		C93E19801DCFC36500A5CD7F /* ColorPallete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPallete.swift; sourceTree = "<group>"; };
 		C93E19821DCFC3C100A5CD7F /* CollageImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageImageView.swift; sourceTree = "<group>"; };
 		C93E19851DCFC4B800A5CD7F /* StyleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleView.swift; sourceTree = "<group>"; };
@@ -340,9 +342,9 @@
 		C9D324161DFCEF7300B49444 /* Label Editor */ = {
 			isa = PBXGroup;
 			children = (
-				C97774C91E219EC9009E562A /* LabelEditorViewController+CollageSourceDelegate.swift */,
 				C9D324171DFCEF8800B49444 /* LabelEditorViewController.swift */,
 				C97E9FF51DD0200000A9C5BD /* LabelEditorViewControler+PhotoSaving.swift */,
+				C97774C91E219EC9009E562A /* LabelEditorViewController+CollageSourceDelegate.swift */,
 				C9F7FBD01E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift */,
 				C97774C41E217BC3009E562A /* RemoveSavedLabelViewController.swift */,
 				C97774CB1E21A103009E562A /* LabelEditorViewController+ImagePicker.swift */,
@@ -363,6 +365,7 @@
 				C94426B01DD41C7F003F34C4 /* RoundedImageView.swift */,
 				C94ECAC81E4F4E1E00C80D05 /* RoundedButton.swift */,
 				C9C81FBF1E51CBBA00BCAD08 /* STRNormalizer.swift */,
+				C931540E1E547D1D00F14302 /* AlamoFire.Request+debugLog.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				C9E7857D1DCA5FC100B337F4 /* RoundedView.swift in Sources */,
 				C9C81FC01E51CBBA00BCAD08 /* STRNormalizer.swift in Sources */,
 				C94426B51DD43CE1003F34C4 /* WatermarkImage.swift in Sources */,
+				C931540F1E547D1D00F14302 /* AlamoFire.Request+debugLog.swift in Sources */,
 				C96A7B031DD3EBD200A2386C /* StyleViewController+CollectionView.swift in Sources */,
 				C9F80B4A1DD3BB0A00B38DEF /* Style+CoreDataClass.swift in Sources */,
 				C97774CA1E219EC9009E562A /* LabelEditorViewController+CollageSourceDelegate.swift in Sources */,

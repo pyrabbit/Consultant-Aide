@@ -18,6 +18,7 @@ final class StyleView: UIView {
     var savedLabel: SavedLabel?
     
     var style: String = ""
+    var styleId: String = ""
     var price: Float = 0.0
     var sizes: [String]?
     var forKids = false
@@ -39,10 +40,10 @@ final class StyleView: UIView {
     
     init(savedLabel: SavedLabel) {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        self.forKids = savedLabel.forKids
-        internalInitializer(style: savedLabel.name, price: savedLabel.price, sizes: savedLabel.sizes)
-        
         self.savedLabel = savedLabel
+        self.forKids = savedLabel.forKids
+        self.styleId = savedLabel.styleId
+        internalInitializer(style: savedLabel.name, price: savedLabel.price, sizes: savedLabel.sizes)
     }
     
     func containWithin(view: UIView?) {

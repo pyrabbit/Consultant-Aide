@@ -8,7 +8,34 @@ extension LabelEditorViewController {
             PhotosAuthorization.GetAuthorizationStatus(completion: { granted in
                 if granted {
                     DispatchQueue.main.async {
-                        self.convertAndSavePhoto()
+                        let image = self.covertPhoto()
+                        self.saveToPhotosAlbum(image: image)
+                        
+                        if (true) {
+                            let service = STRService()
+                            service.createImage(image: image, completion: { success, id in
+                                if (success) {
+                                    if (self.labels.count >= 1) {
+                                        if let label = self.labels.first {
+                                            var optId: Int?
+                                            var optSizeId: Int?
+                                            
+                                            optId = STRNormalizer.convert(styleId: label.styleId)
+                                            
+                                            if let size = label.sizes?.first {
+                                                optSizeId = STRNormalizer.convert(size: size)
+                                            }
+                                        
+                                            if let styleId = optId, let sizeId = optSizeId {
+                                                print("Uploading new item to STR")
+                                                service.createItem(styleId: styleId, sizeId: sizeId, imageId: id)
+                                            }
+                                        }
+                                    }
+
+                                }
+                            })
+                        }
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -22,8 +49,30 @@ extension LabelEditorViewController {
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
+    func saveToPhotosAlbum(image: UIImage?) {
+        guard let image = image else {
+            return
+        }
+        
+        let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: .alert)
+        self.present(savingAlert, animated: true, completion: nil)
+        
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        
+        savingAlert.dismiss(animated: true, completion: {
+            let savedAlert = UIAlertController(title: "Saved!", message: "", preferredStyle: .alert)
+            self.present(savedAlert, animated: true, completion: nil)
+            
+            let maxDisplayTime = DispatchTime.now() + 1
+            DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
+                savedAlert.dismiss(animated: true, completion: nil)
+            })
+        })
+
+    }
     
-    func convertAndSavePhoto() {
+    
+    func covertPhoto() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
         
@@ -40,35 +89,15 @@ extension LabelEditorViewController {
                                           width: labelContainer.frame.width * scale,
                                           height: labelContainer.frame.height * scale)
                     
-                    print("cropRect: \(cropRect)")
-                    
                     if let croppedImage = newCGImage.cropping(to: cropRect) {
-                        let finalImage = UIImage(cgImage: croppedImage)
-                        
-                        let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: .alert)
-                        self.present(savingAlert, animated: true, completion: nil)
-                        
-                        UIImageWriteToSavedPhotosAlbum(finalImage, nil, nil, nil)
-                        
-                        if (true) {
-                            let service = STRService()
-                            service.createImage(image: finalImage)
-                        }
-                        
-                        savingAlert.dismiss(animated: true, completion: {
-                            let savedAlert = UIAlertController(title: "Saved!", message: "", preferredStyle: .alert)
-                            self.present(savedAlert, animated: true, completion: nil)
-                            
-                            let maxDisplayTime = DispatchTime.now() + 1
-                            DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
-                                savedAlert.dismiss(animated: true, completion: nil)
-                            })
-                        })
+                        UIGraphicsEndImageContext()
+                        return UIImage(cgImage: croppedImage)
                     }
                 }
             }
         }
         
         UIGraphicsEndImageContext()
+        return nil
     }
 }

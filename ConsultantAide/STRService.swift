@@ -24,7 +24,11 @@ class STRService {
         UIApplication.shared.open(URL(string: "https://beta.shoptheroe.com/o/authorize/?response_type=token&client_id=\(id)&state=random_state_string&redirect_uri=consultantaide://strDidAuthorizeApp")!)
     }
     
-    func createImage(image: UIImage) {
+    func createImage(image: UIImage?, completion: @escaping (Bool, Int)  -> ()) {
+        guard let image = image else {
+            return
+        }
+        
         guard let data = UIImagePNGRepresentation(image) else {
             return
         }
@@ -33,6 +37,7 @@ class STRService {
             return
         }
         
+        print("Uploading image to STR")
         Alamofire.upload(
             multipartFormData: { multipartFormData in
                 multipartFormData.append(data, withName: "image_full", fileName: "image.png", mimeType: "image/png")
@@ -51,16 +56,17 @@ class STRService {
                             let data = JSON(json)
                             
                             if let imageId = data["pk"].int {
-                                print("image id: \(imageId)")
-                                self.createItem(styleId: 40, sizeId: 3, imageId: imageId)
+                                completion(true, imageId)
                             }
                         case .failure(let error):
                             print(error)
+                            completion(false, 0)
                         }
                         
                     }
                 case .failure(let encodingError):
                     print(encodingError)
+                    completion(false, 0)
                 }
             }
         )
@@ -73,7 +79,7 @@ class STRService {
         
         let parameters: [String: Any] = [
             "itemchoice_id" : styleId,
-            "size_id    " : sizeId,
+            "size_id" : sizeId,
             "image_id" : imageId
         ]
         
@@ -84,7 +90,7 @@ class STRService {
             headers: ["Authorization": "Bearer \(access_token)"]).responseJSON(
                 completionHandler: { response in
                     debugPrint(response)
-            })
+            }).debugLog()
     }
     
 }

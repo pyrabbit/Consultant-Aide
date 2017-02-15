@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="SavedLabel" representedClassName="SavedLabel" syncable="YES">
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="forKids" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="price" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sizes" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="styleId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="xPos" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="yPos" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
@@ -23,7 +24,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="SavedLabel" positionX="-63" positionY="9" width="128" height="150"/>
+        <element name="SavedLabel" positionX="-63" positionY="9" width="128" height="165"/>
         <element name="Style" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

@@ -9,7 +9,7 @@
 import Foundation
 
 class STRNormalizer {
-    static func convert(size: String) -> Int {
+    static func convert(size: String) -> Int? {
         switch size {
         case "XXS":
             return 1
@@ -68,11 +68,11 @@ class STRNormalizer {
         case "12/14":
             return 24
         default:
-            return 0
+            return nil
         }
     }
     
-    static func convert(styleId: String) -> Int {
+    static func convert(styleId: String) -> Int? {
         switch styleId {
         case "lularoe-adeline":
             return 44
@@ -145,7 +145,7 @@ class STRNormalizer {
         case "lularoe-sloan":
             return 27
         default:
-            return 0
+            return nil
         }
     }
 }

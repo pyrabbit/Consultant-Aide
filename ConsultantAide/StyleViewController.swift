@@ -138,6 +138,7 @@ class StyleViewController: UIViewController {
         style.price = styleCell.style.price
         style.sizes = sizes
         style.forKids = styleCell.style.forKids
+        style.styleId = styleCell.style.styleId
         
         ad.saveContext()
         selectedStyle = style
