@@ -45,10 +45,6 @@ class LabelEditorViewController: UIViewController {
         
         labelService?.fetch()
         
-        if labels.isEmpty {
-            removeItemsBtn.isEnabled = false
-        }
-        
         if (labelContainer.subviews.count > 0) {
             removeItemsBtn.isEnabled = true
         }

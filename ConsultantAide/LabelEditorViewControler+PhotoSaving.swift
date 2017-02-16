@@ -11,30 +11,31 @@ extension LabelEditorViewController {
                         let image = self.covertPhoto()
                         self.saveToPhotosAlbum(image: image)
                         
-                        if (true) {
-                            let service = STRService()
-                            service.createImage(image: image, completion: { success, id in
-                                if (success) {
-                                    if (self.labels.count >= 1) {
-                                        if let label = self.labels.first {
-                                            var optId: Int?
-                                            var optSizeId: Int?
-                                            
-                                            optId = STRNormalizer.convert(styleId: label.styleId)
-                                            
-                                            if let size = label.sizes?.first {
-                                                optSizeId = STRNormalizer.convert(size: size)
-                                            }
-                                        
-                                            if let styleId = optId, let sizeId = optSizeId {
-                                                print("Uploading new item to STR")
-                                                service.createItem(styleId: styleId, sizeId: sizeId, imageId: id)
+                        if let decider = UserDefaults.standard.value(forKey: "strAutoUploadIsEnabled") as? Bool {
+                            if (decider) {
+                                let service = STRService()
+                                service.createImage(image: image, completion: { success, id in
+                                    if (success) {
+                                        if (self.labels.count >= 1) {
+                                            if let label = self.labels.first {
+                                                var optId: Int?
+                                                var optSizeId: Int?
+                                                
+                                                optId = STRNormalizer.convert(styleId: label.styleId)
+                                                
+                                                if let size = label.sizes?.first {
+                                                    optSizeId = STRNormalizer.convert(size: size)
+                                                }
+                                                
+                                                if let styleId = optId, let sizeId = optSizeId {
+                                                    service.createItem(styleId: styleId, sizeId: sizeId, imageId: id)
+                                                }
                                             }
                                         }
+                                        
                                     }
-
-                                }
-                            })
+                                })
+                            }
                         }
                     }
                 } else {

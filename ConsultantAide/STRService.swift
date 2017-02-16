@@ -37,7 +37,7 @@ class STRService {
             return
         }
         
-        print("Uploading image to STR")
+        print("ShopTheRoe: Uploading image...")
         Alamofire.upload(
             multipartFormData: { multipartFormData in
                 multipartFormData.append(data, withName: "image_full", fileName: "image.png", mimeType: "image/png")
@@ -49,23 +49,22 @@ class STRService {
                 switch encodingResult {
                 case .success(let upload, _, _):
                     upload.responseJSON { response in
-//                        debugPrint(response)
-                        
                         switch response.result {
                         case .success(let json):
                             let data = JSON(json)
                             
                             if let imageId = data["pk"].int {
+                                print("ShopTheRoe: Successfully uploaded image with id \(imageId)")
                                 completion(true, imageId)
                             }
                         case .failure(let error):
-                            print(error)
+                            print("ShopTheRoe: Failed uploading image with error \(error)")
                             completion(false, 0)
                         }
                         
                     }
                 case .failure(let encodingError):
-                    print(encodingError)
+                    print("ShopTheRoe: Failed encoding image with error \(encodingError)")
                     completion(false, 0)
                 }
             }
@@ -83,14 +82,24 @@ class STRService {
             "image_id" : imageId
         ]
         
+        print("ShopTheRoe: Uploading item...")
         Alamofire.request("\(baseUrl)/items/",
             method: .post,
             parameters: parameters,
             encoding: JSONEncoding.default,
             headers: ["Authorization": "Bearer \(access_token)"]).responseJSON(
                 completionHandler: { response in
-                    debugPrint(response)
-            }).debugLog()
+                    switch response.result {
+                    case .success(let json):
+                        let data = JSON(json)
+                        
+                        if let itemId = data["pk"].int {
+                            print("ShopTheRoe: Successfully uploaded item with id \(itemId)")
+                        }
+                    case .failure(let error):
+                        print("ShopTheRoe: Failed uploading item with error \(error)")
+                    }
+            })
     }
     
 }

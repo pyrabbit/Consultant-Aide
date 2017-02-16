@@ -13,18 +13,20 @@ class SavedLabelService {
     var delegate: SavedLabelServiceDelegate?
     
     func fetch() {
-        let fetchRequest = NSFetchRequest<SavedLabel>(entityName: "SavedLabel")
-        var fetchedLabels: [SavedLabel]
-        
-        do {
-            fetchedLabels = try context.fetch(fetchRequest)
-            delegate?.didFetch(savedLabels: fetchedLabels)
-        } catch {
-            print("Unable to fetch saved labels")
-            delegate?.didFetch(savedLabels: nil)
+        DispatchQueue.main.async {
+            let fetchRequest = NSFetchRequest<SavedLabel>(entityName: "SavedLabel")
+            var fetchedLabels: [SavedLabel]
+            
+            do {
+                fetchedLabels = try context.fetch(fetchRequest)
+                self.delegate?.didFetch(savedLabels: fetchedLabels)
+            } catch {
+                print("Unable to fetch saved labels")
+                self.delegate?.didFetch(savedLabels: nil)
+            }
         }
-    
     }
+
 }
 
 protocol SavedLabelServiceDelegate {

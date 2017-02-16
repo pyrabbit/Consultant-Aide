@@ -40,6 +40,7 @@ extension RemoveSavedLabelViewController: SavedLabelServiceDelegate {
         }
         
         labels = data
+        tableView.reloadData()
     }
 }
 

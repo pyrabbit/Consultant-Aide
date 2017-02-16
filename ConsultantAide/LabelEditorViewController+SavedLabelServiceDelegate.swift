@@ -22,6 +22,12 @@ extension LabelEditorViewController: SavedLabelServiceDelegate {
             return styleView
         }
         
+        if labels.isEmpty {
+            removeItemsBtn.isEnabled = false
+        } else {
+            removeItemsBtn.isEnabled = true
+        }
+        
         _ = labels.map { label in labelContainer.addSubview(label) }
     }
 }

@@ -10,11 +10,16 @@ import UIKit
 
 class STRViewController: UIViewController {
     let strService = STRService()
+    
+    @IBOutlet weak var autoUploadSwitch: UISwitch!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let decider = UserDefaults.standard.value(forKey: "strAutoUploadIsEnabled") as? Bool {
+            autoUploadSwitch.isOn = decider
+        }
     }
 
     @IBAction func cancel(_ sender: Any) {
@@ -23,6 +28,14 @@ class STRViewController: UIViewController {
 
     @IBAction func authorize(_ sender: Any) {
         strService.authorize()
+    }
+    
+    @IBAction func toggleAutoUpload(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: "strAutoUploadIsEnabled")
+    }
+
+    @IBAction func visitSTRWebsite(_ sender: Any) {
+        UIApplication.shared.open(URL(string: "https://shoptheroe.com")!)
     }
     
     override var prefersStatusBarHidden: Bool {
