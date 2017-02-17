@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let host = url.host {
             // Handle authorization return from ShopTheRoe
             if (host == "strDidAuthorizeApp") {
-                print("STR authorized Consultant Aide!!!")
+                var activeAlert: UIAlertController
                 
                 let fields = url.fragment?.components(separatedBy: "&")
                 
@@ -35,10 +35,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 if let access_token = queryKeyPairs["access_token"] {
                     UserDefaults.standard.set(access_token, forKey: "strAccessToken")
+                    activeAlert = UIAlertController(title: "Successfully authenticated with ShopTheRoe!", message: "", preferredStyle: .alert)
+                    self.window?.rootViewController?.present(activeAlert, animated: true, completion: nil)
+                    
+                    let maxDisplayTime = DispatchTime.now() + 3
+                    DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
+                        activeAlert.dismiss(animated: true, completion: nil)
+                    })
                 }
 
                 if let error = getQueryStringParameter(url: url.absoluteString, param: "error") {
                     print(error)
+                    
+                    if let vc = self.window?.rootViewController as? STRViewController {
+                        vc.authorizeButton.isHidden = false
+                        vc.authorizeLabel.isHidden = false
+                    }
+                    
+                    activeAlert = UIAlertController(title: "Failed to authenticate with ShopTheRoe.", message: "", preferredStyle: .alert)
+                    self.window?.rootViewController?.present(activeAlert, animated: true, completion: nil)
+                    
+                    let maxDisplayTime = DispatchTime.now() + 3
+                    DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
+                        activeAlert.dismiss(animated: true, completion: nil)
+                    })
                 }
             }
         }

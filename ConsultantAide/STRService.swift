@@ -24,6 +24,28 @@ class STRService {
         UIApplication.shared.open(URL(string: "https://beta.shoptheroe.com/o/authorize/?response_type=token&client_id=\(id)&state=random_state_string&redirect_uri=consultantaide://strDidAuthorizeApp")!)
     }
     
+    func testAuthentication(completion: @escaping (Bool)  -> ()) {
+        guard let access_token = UserDefaults.standard.value(forKey: "strAccessToken") else {
+            completion(false)
+            return
+        }
+        
+        Alamofire.request(baseUrl,
+            method: .get,
+            parameters: nil,
+            encoding: JSONEncoding.default,
+            headers: ["Authorization": "Bearer \(access_token)"])
+            .responseJSON { response in
+                switch response.result {
+                case .success(_):
+                    completion(true)
+                case .failure(let error):
+                    print("ShopTheRoe: Failed test authentication with: \(error)")
+                    completion(false)
+                }
+            }
+    }
+    
     func createImage(image: UIImage?, completion: @escaping (Bool, Int)  -> ()) {
         guard let image = image else {
             return
@@ -71,7 +93,7 @@ class STRService {
         )
     }
     
-    func createItem(styleId: Int, sizeId: Int, imageId: Int) {
+    func createItem(styleId: Int, sizeId: Int, imageId: Int, completion: @escaping (Bool, Int)  -> ()) {
         guard let access_token = UserDefaults.standard.value(forKey: "strAccessToken") else {
             return
         }
@@ -95,9 +117,11 @@ class STRService {
                         
                         if let itemId = data["pk"].int {
                             print("ShopTheRoe: Successfully uploaded item with id \(itemId)")
+                            completion(true, itemId)
                         }
                     case .failure(let error):
                         print("ShopTheRoe: Failed uploading item with error \(error)")
+                        completion(false, 0)
                     }
             })
     }

@@ -6,6 +6,8 @@
 //  Copyright © 2017 Matthew Orahood. All rights reserved.
 //
 
+import UIKit
+
 extension LabelEditorViewController: SavedLabelServiceDelegate {
     func didFetch(savedLabels: [SavedLabel]?) {
         guard let data = savedLabels else {
@@ -29,5 +31,12 @@ extension LabelEditorViewController: SavedLabelServiceDelegate {
         }
         
         _ = labels.map { label in labelContainer.addSubview(label) }
+        
+        // Make the labels wide if necessary
+        if let fullWidthLabels = UserDefaults.standard.value(forKey: "fullWidthLabels") as? Bool {
+            if fullWidthLabels {
+                makeLabelsWide()
+            }
+        }
     }
 }

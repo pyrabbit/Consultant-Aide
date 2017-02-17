@@ -412,6 +412,9 @@ extension StyleView: UICollisionBehaviorDelegate {
             }
             
         }
+        
+        UserDefaults.standard.set(Int(point.x), forKey: "labelDefaultXPos")
+        UserDefaults.standard.set(Int(point.y), forKey: "labelDefaultYPos")
 
         savePosition(x: Int(point.x), y: Int(point.y))
     }

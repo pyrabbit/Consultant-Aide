@@ -12,14 +12,29 @@ class STRViewController: UIViewController {
     let strService = STRService()
     
     @IBOutlet weak var autoUploadSwitch: UISwitch!
+    @IBOutlet weak var authorizeButton: UIButton!
+    @IBOutlet weak var authorizeLabel: UILabel!
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         if let decider = UserDefaults.standard.value(forKey: "strAutoUploadIsEnabled") as? Bool {
             autoUploadSwitch.isOn = decider
         }
+        
+        toggleAuthorizeVisibility()
+    }
+    
+    func toggleAuthorizeVisibility() {
+        strService.testAuthentication(completion: { success in
+            if (success) {
+                self.authorizeButton.isHidden = true
+                self.authorizeLabel.isHidden = true
+            } else {
+                self.authorizeButton.isHidden = false
+                self.authorizeLabel.isHidden = false
+            }
+        })
     }
 
     @IBAction func cancel(_ sender: Any) {
@@ -27,6 +42,8 @@ class STRViewController: UIViewController {
     }
 
     @IBAction func authorize(_ sender: Any) {
+        authorizeButton.isHidden = true
+        authorizeLabel.isHidden = true
         strService.authorize()
     }
     

@@ -140,6 +140,11 @@ class StyleViewController: UIViewController {
         style.forKids = styleCell.style.forKids
         style.styleId = styleCell.style.styleId
         
+        if let x = UserDefaults.standard.value(forKey: "labelDefaultXPos") as? Int16, let y = UserDefaults.standard.value(forKey: "labelDefaultYPos") as? Int16 {
+            style.xPos = x
+            style.yPos = y
+        }
+        
         ad.saveContext()
         selectedStyle = style
         
