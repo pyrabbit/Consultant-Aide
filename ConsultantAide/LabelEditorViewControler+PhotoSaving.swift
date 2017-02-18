@@ -1,5 +1,6 @@
 import UIKit
 import Photos
+import GSMessages
 
 extension LabelEditorViewController {
     
@@ -13,18 +14,20 @@ extension LabelEditorViewController {
                             if (success) {
                                 if let decider = UserDefaults.standard.value(forKey: "strAutoUploadIsEnabled") as? Bool {
                                     if (decider) {
+                                        print("ShopTheRoe: Saving...")
                                         self.saveToShopTheRoe(image: image, completion: { success in
                                             if (success) {
-                                                _ = self.navigationController?.popToRootViewController(animated: true)
+                                                self.popToRootViewController(delay: 1.5)
                                             }
                                         })
+                                    } else {
+                                        self.popToRootViewController(delay: 1.5)
                                     }
+                                } else {
+                                    self.popToRootViewController(delay: 1.5)
                                 }
-                                
-                                _ = self.navigationController?.popToRootViewController(animated: true)
                             }
                         })
-
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -34,8 +37,13 @@ extension LabelEditorViewController {
                 }
             })
         }
-//        
-//        _ = self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func popToRootViewController(delay: TimeInterval) {
+        let maxDisplayTime = DispatchTime.now() + delay
+        DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
+            _ = self.navigationController?.popToRootViewController(animated: true)
+        })
     }
     
     func saveToPhotosAlbum(image: UIImage?, completion: @escaping (Bool)  -> ()) {
@@ -43,22 +51,9 @@ extension LabelEditorViewController {
             return
         }
         
-        let savingAlert = UIAlertController(title: "Saving to photo album...", message: "", preferredStyle: .alert)
-        self.present(savingAlert, animated: true, completion: nil)
-        
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        
-        savingAlert.dismiss(animated: true, completion: {
-            let savedAlert = UIAlertController(title: "Successfully saved in photo album!", message: "", preferredStyle: .alert)
-            self.present(savedAlert, animated: true, completion: nil)
-            
-            let maxDisplayTime = DispatchTime.now() + 1
-            DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
-                savedAlert.dismiss(animated: true, completion: nil)
-                completion(true)
-            })
-        })
-
+        self.showMessage("Successfully saved in photo album!", type: .success)
+        completion(true)
     }
     
     func saveToShopTheRoe(image: UIImage?, completion: @escaping (Bool)  -> ()) {
@@ -66,78 +61,51 @@ extension LabelEditorViewController {
             return
         }
         
-        var activeAlert: UIAlertController!
-        
-        activeAlert = UIAlertController(title: "Uploading image to ShopTheRoe...", message: "", preferredStyle: .alert)
-        self.present(activeAlert, animated: true, completion: nil)
-        
         let service = STRService()
+        self.showMessage("Uploading image to ShopTheRoe...", type: .info)
+        
         service.createImage(image: image, completion: { success, id in
             if (success) {
-                activeAlert.dismiss(animated: true, completion: {
-                    activeAlert = UIAlertController(title: "Successfully uploaded image to ShopTheRoe!", message: "", preferredStyle: .alert)
-                    self.present(activeAlert, animated: true, completion: nil)
-                    
-                    let maxDisplayTime = DispatchTime.now() + 1
-                    DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
-                        activeAlert.dismiss(animated: true, completion: nil)
+                self.showMessage("Successfully uploaded image to ShopTheRoe!", type: .success)
+                
+                if (self.labels.count >= 1) {
+                    if let label = self.labels.first {
+                        var optId: Int?
+                        var optSizeId: Int?
                         
-                        if (self.labels.count >= 1) {
-                            if let label = self.labels.first {
-                                var optId: Int?
-                                var optSizeId: Int?
-
-                                optId = STRNormalizer.convert(styleId: label.styleId)
-                                
-                                if let size = label.sizes?.first {
-                                    optSizeId = STRNormalizer.convert(size: size)
-                                }
-                                
-                                if let styleId = optId, let sizeId = optSizeId {
-                                    service.createItem(styleId: styleId, sizeId: sizeId, imageId: id, completion: { success, id in
-                                        if (success) {
-                                            activeAlert = UIAlertController(title: "Successfully created item on ShopTheRoe!", message: "", preferredStyle: .alert)
-                                            self.present(activeAlert, animated: true, completion: nil)
-                                            
-                                            let maxDisplayTime = DispatchTime.now() + 1
-                                            DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
-                                                activeAlert.dismiss(animated: true, completion: nil)
-                                                completion(true)
-                                            })
-                                        } else {
-                                            activeAlert = UIAlertController(title: "Failed to create item on ShopTheRoe", message: "", preferredStyle: .alert)
-                                            self.present(activeAlert, animated: true, completion: nil)
-                                            
-                                            let maxDisplayTime = DispatchTime.now() + 1
-                                            DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
-                                                activeAlert.dismiss(animated: true, completion: nil)
-                                                completion(false)
-                                            })
-                                        }
-                                    })
-                                } else {
-                                    activeAlert = UIAlertController(title: "Failed to create item on ShopTheRoe: Style or size not supported yet.", message: "", preferredStyle: .alert)
-                                    self.present(activeAlert, animated: true, completion: nil)
-                                    
-                                    let maxDisplayTime = DispatchTime.now() + 1
-                                    DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
-                                        activeAlert.dismiss(animated: true, completion: nil)
-                                        completion(false)
-                                    })
-                                }
-                            }
+                        optId = STRNormalizer.convert(styleId: label.styleId)
+                        
+                        if let size = label.sizes?.first {
+                            optSizeId = STRNormalizer.convert(size: size)
                         }
-                        
-                        completion(true)
-                    })
-                })
+
+                        if let styleId = optId, let sizeId = optSizeId {
+                            service.createItem(styleId: styleId, sizeId: sizeId, imageId: id, completion: { success, id in
+                                if (success) {
+                                    self.showMessage("Successfully uploaded item to ShopTheRoe!", type: .success)
+                                } else {
+                                    self.showMessage("Failed to upload item to ShopTheRoe!", type: .error)
+                                }
+                                
+                                completion(true)
+                            })
+                        } else {
+                            self.showMessage("Unsupported style or size.", type: .error)
+                            completion(true)
+                        }
+                    }
+                } else {
+                    completion(true)
+                }
+                
             } else {
+                self.showMessage("Failed to upload image to ShopTheRoe!", type: .error)
                 completion(false)
             }
         })
     }
-    
-    
+
+
     func convertPhoto() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)

@@ -46,6 +46,8 @@
 		C9D324151DFCC28900B49444 /* PhotoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D324141DFCC28900B49444 /* PhotoEditorViewController.swift */; };
 		C9D324181DFCEF8800B49444 /* LabelEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D324171DFCEF8800B49444 /* LabelEditorViewController.swift */; };
 		C9DD02AA1E16FE7C00F0E60A /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD02A91E16FE7C00F0E60A /* FilterView.swift */; };
+		C9DE579E1E588A570083558D /* GSMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DE579D1E588A300083558D /* GSMessages.framework */; };
+		C9DE579F1E588A570083558D /* GSMessages.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9DE579D1E588A300083558D /* GSMessages.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C9DE75491E1344F500747900 /* CustomStyleFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE75481E1344F500747900 /* CustomStyleFormView.swift */; };
 		C9DE754B1E13463500747900 /* CustomStyleFormDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE754A1E13463500747900 /* CustomStyleFormDelegate.swift */; };
 		C9DE754D1E13473100747900 /* StyleViewController+CustomStyleForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DE754C1E13473100747900 /* StyleViewController+CustomStyleForm.swift */; };
@@ -74,6 +76,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = "Alamofire iOS";
+		};
+		C9DE579C1E588A300083558D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9DE57981E588A300083558D /* GSMessages.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C5F08D6C1C3A3AB000E5B75A;
+			remoteInfo = GSMessages;
+		};
+		C9DE57A01E588A570083558D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9DE57981E588A300083558D /* GSMessages.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C5F08D6B1C3A3AB000E5B75A;
+			remoteInfo = GSMessages;
 		};
 		C9E7A0DE1E512B9F00A5F066 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -189,6 +205,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C9DE579F1E588A570083558D /* GSMessages.framework in Embed Frameworks */,
 				C9E7A14D1E512C0900A5F066 /* SwiftyJSON.framework in Embed Frameworks */,
 				C95083111E512DBC00A3D131 /* Alamofire.framework in Embed Frameworks */,
 			);
@@ -235,6 +252,7 @@
 		C9D324141DFCC28900B49444 /* PhotoEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEditorViewController.swift; sourceTree = "<group>"; };
 		C9D324171DFCEF8800B49444 /* LabelEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelEditorViewController.swift; sourceTree = "<group>"; };
 		C9DD02A91E16FE7C00F0E60A /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		C9DE57981E588A300083558D /* GSMessages.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GSMessages.xcodeproj; path = GSMessages/GSMessages.xcodeproj; sourceTree = "<group>"; };
 		C9DE75481E1344F500747900 /* CustomStyleFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleFormView.swift; sourceTree = "<group>"; };
 		C9DE754A1E13463500747900 /* CustomStyleFormDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStyleFormDelegate.swift; sourceTree = "<group>"; };
 		C9DE754C1E13473100747900 /* StyleViewController+CustomStyleForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StyleViewController+CustomStyleForm.swift"; sourceTree = "<group>"; };
@@ -264,6 +282,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9DE579E1E588A570083558D /* GSMessages.framework in Frameworks */,
 				C9E7A14C1E512C0900A5F066 /* SwiftyJSON.framework in Frameworks */,
 				C95083101E512DBC00A3D131 /* Alamofire.framework in Frameworks */,
 			);
@@ -353,6 +372,14 @@
 			name = "Label Editor";
 			sourceTree = "<group>";
 		};
+		C9DE57991E588A300083558D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9DE579D1E588A300083558D /* GSMessages.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C9E785771DCA573A00B337F4 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +449,7 @@
 			children = (
 				C9F072F81DCA49240014F0E7 /* ConsultantAide */,
 				C9F072F71DCA49240014F0E7 /* Products */,
+				C9DE57981E588A300083558D /* GSMessages.xcodeproj */,
 				C9E7A1341E512C0100A5F066 /* SwiftyJSON.xcodeproj */,
 				C9E7A0D31E512B9F00A5F066 /* Alamofire.xcodeproj */,
 			);
@@ -494,6 +522,7 @@
 			dependencies = (
 				C9E7A14F1E512C0900A5F066 /* PBXTargetDependency */,
 				C95083131E512DBC00A3D131 /* PBXTargetDependency */,
+				C9DE57A11E588A570083558D /* PBXTargetDependency */,
 			);
 			name = ConsultantAide;
 			productName = ConsultantAide;
@@ -534,6 +563,10 @@
 					ProjectRef = C9E7A0D31E512B9F00A5F066 /* Alamofire.xcodeproj */;
 				},
 				{
+					ProductGroup = C9DE57991E588A300083558D /* Products */;
+					ProjectRef = C9DE57981E588A300083558D /* GSMessages.xcodeproj */;
+				},
+				{
 					ProductGroup = C9E7A1351E512C0100A5F066 /* Products */;
 					ProjectRef = C9E7A1341E512C0100A5F066 /* SwiftyJSON.xcodeproj */;
 				},
@@ -546,6 +579,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		C9DE579D1E588A300083558D /* GSMessages.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GSMessages.framework;
+			remoteRef = C9DE579C1E588A300083558D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		C9E7A0DF1E512B9F00A5F066 /* Alamofire.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -725,6 +765,11 @@
 			isa = PBXTargetDependency;
 			name = "Alamofire iOS";
 			targetProxy = C95083121E512DBC00A3D131 /* PBXContainerItemProxy */;
+		};
+		C9DE57A11E588A570083558D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GSMessages;
+			targetProxy = C9DE57A01E588A570083558D /* PBXContainerItemProxy */;
 		};
 		C9E7A14F1E512C0900A5F066 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

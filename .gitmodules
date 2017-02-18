@@ -4,3 +4,6 @@
 [submodule "Alamofire"]
 	path = Alamofire
 	url = ./Alamofire/
+[submodule "GSMessages"]
+	path = GSMessages
+	url = ./GSMessages/
