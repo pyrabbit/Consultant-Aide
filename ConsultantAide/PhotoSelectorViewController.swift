@@ -42,6 +42,17 @@ extension PhotoSelectorViewController: UIImagePickerControllerDelegate, UINaviga
                             let picker = UIImagePickerController();
                             picker.delegate = self
                             picker.sourceType = .camera
+                            
+                            if let decider = UserDefaults.standard.value(forKey: "cameraFlashEnabled") as? Bool {
+                                if (decider) {
+                                    picker.cameraFlashMode = .on
+                                } else {
+                                    picker.cameraFlashMode = .off
+                                }
+                            } else {
+                                picker.cameraFlashMode = .on
+                            }
+    
                             self.present(picker, animated: true, completion: nil)
                         }
                     }

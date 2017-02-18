@@ -1105,8 +1105,37 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="UJS-21-XYx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="sY6-wp-Ery">
                                         <rect key="frame" x="0.0" y="1080" width="343" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sY6-wp-Ery" id="gBg-yZ-pil">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Flash On" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwm-Qm-Kf9">
+                                                    <rect key="frame" x="8" y="19" width="128" height="21"/>
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ybF-Nb-cAs">
+                                                    <rect key="frame" x="286" y="14" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.34901960780000002" green="0.83921568629999999" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="toggleCameraFlash" destination="MrW-Zp-qd4" eventType="valueChanged" id="Jhl-hw-ZYc"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Bwm-Qm-Kf9" firstAttribute="top" secondItem="gBg-yZ-pil" secondAttribute="top" constant="19" id="3xT-jI-kUI"/>
+                                                <constraint firstAttribute="trailing" secondItem="ybF-Nb-cAs" secondAttribute="trailing" constant="8" id="BYg-jf-eg0"/>
+                                                <constraint firstItem="ybF-Nb-cAs" firstAttribute="top" secondItem="gBg-yZ-pil" secondAttribute="top" constant="14" id="QTA-gg-WwR"/>
+                                                <constraint firstItem="Bwm-Qm-Kf9" firstAttribute="leading" secondItem="gBg-yZ-pil" secondAttribute="leading" constant="8" id="fg5-hh-OGW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="UJS-21-XYx">
+                                        <rect key="frame" x="0.0" y="1140" width="343" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UJS-21-XYx" id="txA-LB-ND8">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="59.5"/>
@@ -1145,6 +1174,7 @@
                     <value key="contentSizeForViewInPopover" type="size" width="343" height="612"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="cameraFlashToggle" destination="ybF-Nb-cAs" id="KLf-6c-OQi"/>
                         <outlet property="defaultCollageSize" destination="Ao4-YI-XIL" id="0G0-jm-FeE"/>
                         <outlet property="defaultFont" destination="g5k-dk-NkR" id="YG4-dD-kZ8"/>
                         <outlet property="defaultFontSize" destination="HRb-4h-OTg" id="aWO-Hm-f9w"/>

@@ -28,6 +28,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var watermarkTextLabel: UILabel!
     @IBOutlet weak var watermarkImageToggle: UISwitch!
     @IBOutlet weak var watermarkFontSize: UISlider!
+    @IBOutlet weak var cameraFlashToggle: UISwitch!
     
     var colorFor = ""
     var color: UIColor?
@@ -66,6 +67,10 @@ class SettingsTableViewController: UITableViewController {
     
     @IBAction func setWatermarkFontSize() {
         UserDefaults.standard.set(watermarkFontSize.value, forKey: "watermarkFontSize")
+    }
+    
+    @IBAction func toggleCameraFlash() {
+        UserDefaults.standard.set(cameraFlashToggle.isOn, forKey: "cameraFlashEnabled")
     }
     
     @IBAction func unwindFromColorPicker(segue: UIStoryboardSegue) {
@@ -137,7 +142,7 @@ class SettingsTableViewController: UITableViewController {
             performSegue(withIdentifier: "segueToColorPicker", sender: self)
         case 16:
             presentPhotoLibraryController()
-        case 18:
+        case 19:
             performSegue(withIdentifier: "segueToSTRSettings", sender: self)
         default:
             print("Some other path was selected.")
@@ -244,7 +249,9 @@ class SettingsTableViewController: UITableViewController {
             watermarkTransparency.value = size
         }
         
-        
+        if let decider = UserDefaults.standard.value(forKey: "cameraFlashEnabled") as? Bool {
+            cameraFlashToggle.isOn = decider
+        }
         
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent("watermark.png").path
