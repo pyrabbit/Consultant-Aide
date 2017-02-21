@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GSMessages
 
 class STRViewController: UIViewController {
     let strService = STRService()
@@ -28,6 +29,9 @@ class STRViewController: UIViewController {
     func toggleAuthorizeVisibility() {
         strService.testAuthentication(completion: { success in
             if (success) {
+                self.showMessage("You are logged into ShopTheRoe!", type: .success, options: [
+                        .position(.bottom)
+                    ])
                 self.authorizeButton.isHidden = true
                 self.authorizeLabel.isHidden = true
             } else {

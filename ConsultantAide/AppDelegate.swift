@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GSMessages
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,7 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let access_token = queryKeyPairs["access_token"] {
                     UserDefaults.standard.set(access_token, forKey: "strAccessToken")
                     activeAlert = UIAlertController(title: "Successfully authenticated with ShopTheRoe!", message: "", preferredStyle: .alert)
-                    self.window?.rootViewController?.present(activeAlert, animated: true, completion: nil)
+                    self.window?.rootViewController?.showMessage("You are logged into ShopTheRoe!", type: .success, options: [
+                        .position(.bottom)
+                        ])
                     
                     let maxDisplayTime = DispatchTime.now() + 3
                     DispatchQueue.main.asyncAfter(deadline: maxDisplayTime, execute: {
