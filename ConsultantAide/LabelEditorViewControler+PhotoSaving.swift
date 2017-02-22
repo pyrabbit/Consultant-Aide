@@ -62,7 +62,9 @@ extension LabelEditorViewController {
         }
         
         let service = STRService()
-        self.showMessage("Uploading image to ShopTheRoe...", type: .info)
+        self.showMessage("Uploading image to ShopTheRoe...", type: .info, options: [
+            .autoHide(false)
+            ])
         
         service.createImage(image: image, completion: { success, id in
             if (success) {
