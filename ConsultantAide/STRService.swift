@@ -80,13 +80,15 @@ class STRService {
                                 completion(true, imageId)
                             }
                         case .failure(let error):
-                            print("ShopTheRoe: Failed uploading image with error \(error)")
+                            let message = "ShopTheRoe: Failed uploading image with error \(error)"
+                            print(message)
                             completion(false, 0)
                         }
                         
                     }
                 case .failure(let encodingError):
-                    print("ShopTheRoe: Failed encoding image with error \(encodingError)")
+                    let message = "ShopTheRoe: Failed encoding image with error \(encodingError)"
+                    print(message)
                     completion(false, 0)
                 }
             }

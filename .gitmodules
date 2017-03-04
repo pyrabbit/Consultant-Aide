@@ -7,6 +7,6 @@
 [submodule "GSMessages"]
 	path = GSMessages
 	url = ./GSMessages/
-[submodule "Firebase"]
-	path = Firebase
-	url = ./Firebase
+[submodule "Rollbar"]
+	path = Rollbar
+	url = ./Rollbar/
