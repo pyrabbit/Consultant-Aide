@@ -430,11 +430,13 @@ extension StyleView: UICollisionBehaviorDelegate {
         fetchRequest.fetchLimit = 1
         fetchRequest.predicate = predicate
 
+        let moc = ad.mainManagedObjectContext
+        
         do {
-            let result = try context.fetch(fetchRequest)
+            let result = try moc.fetch(fetchRequest)
             result.first?.xPos = Int16(x)
             result.first?.yPos = Int16(y)
-            ad.saveContext()
+            ad.saveMainContext()
         } catch {
             print("Failed to load SavedLabel from CoreData")
         }

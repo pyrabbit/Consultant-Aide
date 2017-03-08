@@ -56,7 +56,12 @@ class STRViewController: UIViewController {
     }
 
     @IBAction func visitSTRWebsite(_ sender: Any) {
-        UIApplication.shared.open(URL(string: "https://shoptheroe.com")!)
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(URL(string: "https://shoptheroe.com")!)
+        } else {
+            // Fallback on earlier versions
+            UIApplication.shared.openURL(URL(string: "https://shoptheroe.com")!)
+        }
     }
     
     override var prefersStatusBarHidden: Bool {

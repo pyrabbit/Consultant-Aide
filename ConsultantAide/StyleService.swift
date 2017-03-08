@@ -32,7 +32,8 @@ class StyleService {
         let nameSort = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [brandSort,nameSort]
         
-        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        let moc = ad.mainManagedObjectContext
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
         
         do {
             try controller.performFetch()
@@ -45,14 +46,17 @@ class StyleService {
     }
     
     static func saveCustomStyle(name: String, price: Float = 0.0, sizes: [String]?, forKids: Bool) {
-        let style = Style(context: context)
+        let moc = ad.temporaryWorkerContext
+        let style = NSEntityDescription.insertNewObject(forEntityName: "Style", into: moc) as! Style
+        
         style.brand = "Custom"
         style.name = name
         style.price = price
         style.sizes = sizes
         style.forKids = forKids
         style.styleId = UUID().uuidString
-        ad.saveContext()
+        
+        ad.saveWorkerContext(context: moc)
     }
     
     
@@ -82,8 +86,7 @@ class StyleService {
         let nameSort = NSSortDescriptor(key: "styleId", ascending: true)
         fetchRequest.sortDescriptors = [nameSort]
         
-        let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        moc.parent = context
+        let moc = ad.temporaryWorkerContext
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
         
@@ -132,31 +135,30 @@ class StyleService {
         fetchRequest.predicate = styleIdPredicate
         fetchRequest.fetchLimit = 1
         
-        ad.persistentContainer.performBackgroundTask { context in
-            let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        let moc = ad.temporaryWorkerContext
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try controller.performFetch()
             
-            do {
-                try controller.performFetch()
-                
-                if let results = controller.fetchedObjects {
-                    if !(results.isEmpty) {
-                        print("Found \(styleId)")
-                        completion(results.first, context)
-                    } else {
-                        print("Creating \(styleId)")
-                        let newStyleObject = Style(context: context)
-                        newStyleObject.styleId = styleId
-                        completion(newStyleObject, context)
-                    }
+            if let results = controller.fetchedObjects {
+                if !(results.isEmpty) {
+                    print("Found \(styleId)")
+                    completion(results.first, moc)
+                } else {
+                    print("Creating \(styleId)")
+                    let newStyleObject = NSEntityDescription.insertNewObject(forEntityName: "Style", into: moc) as! Style
+                    newStyleObject.styleId = styleId
+                    completion(newStyleObject, moc)
                 }
-            } catch {
-                let error = error as NSError
-                print("\(error)")
             }
-            
-            completion(nil, context)
+        } catch {
+            let error = error as NSError
+            print("\(error)")
         }
-
+        
+        completion(nil, moc)
     }
     
     private static func updateDeviceWithData(data: Dictionary<String, AnyObject>?) {
@@ -196,12 +198,7 @@ class StyleService {
                     style.forKids = decider
                 }
                 
-                do {
-                    try context.save()
-                } catch {
-                    print("Could not save style object!!!")
-                }
-                
+                ad.saveWorkerContext(context: context)
             })
         }
     }

@@ -18,7 +18,8 @@ class SavedLabelService {
             var fetchedLabels: [SavedLabel]
             
             do {
-                fetchedLabels = try context.fetch(fetchRequest)
+                let moc = ad.mainManagedObjectContext
+                fetchedLabels = try moc.fetch(fetchRequest)
                 self.delegate?.didFetch(savedLabels: fetchedLabels)
             } catch {
                 print("Unable to fetch saved labels")

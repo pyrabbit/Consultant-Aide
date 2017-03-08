@@ -34,9 +34,6 @@
 		C96A7B031DD3EBD200A2386C /* StyleViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B021DD3EBD200A2386C /* StyleViewController+CollectionView.swift */; };
 		C96A7B0C1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B0A1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift */; };
 		C96A7B0D1DD3F1E300A2386C /* SavedLabel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A7B0B1DD3F1E300A2386C /* SavedLabel+CoreDataProperties.swift */; };
-		C96ED8DE1E6ADD87009010B4 /* Rollbar in Resources */ = {isa = PBXBuildFile; fileRef = C96ED8DD1E6ADD87009010B4 /* Rollbar */; };
-		C96ED8E21E6ADDD3009010B4 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C96ED8E01E6ADDD3009010B4 /* CrashReporter.framework */; };
-		C96ED8E31E6ADDD3009010B4 /* Rollbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C96ED8E11E6ADDD3009010B4 /* Rollbar.framework */; };
 		C97774C51E217BC3009E562A /* RemoveSavedLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97774C41E217BC3009E562A /* RemoveSavedLabelViewController.swift */; };
 		C97774C81E219B4B009E562A /* CollageSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97774C71E219B4B009E562A /* CollageSourceView.swift */; };
 		C97774CA1E219EC9009E562A /* LabelEditorViewController+CollageSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97774C91E219EC9009E562A /* LabelEditorViewController+CollageSourceDelegate.swift */; };
@@ -70,6 +67,8 @@
 		C9F7FBD11E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F7FBD01E214ACD008C836A /* LabelEditorViewController+SavedLabelServiceDelegate.swift */; };
 		C9F80B4A1DD3BB0A00B38DEF /* Style+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F80B481DD3BB0A00B38DEF /* Style+CoreDataClass.swift */; };
 		C9F80B4B1DD3BB0A00B38DEF /* Style+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F80B491DD3BB0A00B38DEF /* Style+CoreDataProperties.swift */; };
+		C9FDBEB71E6EED1200013415 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FDBEB51E6EED1200013415 /* CrashReporter.framework */; };
+		C9FDBEB81E6EED1200013415 /* Rollbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FDBEB61E6EED1200013415 /* Rollbar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,9 +243,6 @@
 		C96A7B021DD3EBD200A2386C /* StyleViewController+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StyleViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		C96A7B0A1DD3F1E300A2386C /* SavedLabel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedLabel+CoreDataClass.swift"; path = "../SavedLabel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C96A7B0B1DD3F1E300A2386C /* SavedLabel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedLabel+CoreDataProperties.swift"; path = "../SavedLabel+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C96ED8DD1E6ADD87009010B4 /* Rollbar */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Rollbar; sourceTree = "<group>"; };
-		C96ED8E01E6ADDD3009010B4 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = Rollbar/CrashReporter.framework; sourceTree = "<group>"; };
-		C96ED8E11E6ADDD3009010B4 /* Rollbar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rollbar.framework; path = Rollbar/Rollbar.framework; sourceTree = "<group>"; };
 		C97774C41E217BC3009E562A /* RemoveSavedLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveSavedLabelViewController.swift; sourceTree = "<group>"; };
 		C97774C71E219B4B009E562A /* CollageSourceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageSourceView.swift; sourceTree = "<group>"; };
 		C97774C91E219EC9009E562A /* LabelEditorViewController+CollageSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LabelEditorViewController+CollageSourceDelegate.swift"; sourceTree = "<group>"; };
@@ -282,6 +278,8 @@
 		C9F80B481DD3BB0A00B38DEF /* Style+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Style+CoreDataClass.swift"; path = "../Style+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C9F80B491DD3BB0A00B38DEF /* Style+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Style+CoreDataProperties.swift"; path = "../Style+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C9F80B4E1DD3D43B00B38DEF /* firebase-master.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "firebase-master.json"; sourceTree = "<group>"; };
+		C9FDBEB51E6EED1200013415 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = Rollbar/CrashReporter.framework; sourceTree = "<group>"; };
+		C9FDBEB61E6EED1200013415 /* Rollbar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rollbar.framework; path = Rollbar/Rollbar.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,8 +287,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C96ED8E21E6ADDD3009010B4 /* CrashReporter.framework in Frameworks */,
-				C96ED8E31E6ADDD3009010B4 /* Rollbar.framework in Frameworks */,
+				C9FDBEB71E6EED1200013415 /* CrashReporter.framework in Frameworks */,
+				C9FDBEB81E6EED1200013415 /* Rollbar.framework in Frameworks */,
 				C9DE579E1E588A570083558D /* GSMessages.framework in Frameworks */,
 				C9E7A14C1E512C0900A5F066 /* SwiftyJSON.framework in Frameworks */,
 				C95083101E512DBC00A3D131 /* Alamofire.framework in Frameworks */,
@@ -339,15 +337,6 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		C96ED8DF1E6ADDD3009010B4 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C96ED8E01E6ADDD3009010B4 /* CrashReporter.framework */,
-				C96ED8E11E6ADDD3009010B4 /* Rollbar.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		C97774C61E218610009E562A /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +347,15 @@
 				C97774C71E219B4B009E562A /* CollageSourceView.swift */,
 			);
 			name = Subviews;
+			sourceTree = "<group>";
+		};
+		C9809E1B1E6AE62E00E63732 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9FDBEB51E6EED1200013415 /* CrashReporter.framework */,
+				C9FDBEB61E6EED1200013415 /* Rollbar.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C9D3240C1DFCB04F00B49444 /* Photo Selector */ = {
@@ -470,9 +468,8 @@
 				C9DE57981E588A300083558D /* GSMessages.xcodeproj */,
 				C9E7A1341E512C0100A5F066 /* SwiftyJSON.xcodeproj */,
 				C9E7A0D31E512B9F00A5F066 /* Alamofire.xcodeproj */,
-				C96ED8DD1E6ADD87009010B4 /* Rollbar */,
 				C91137FB1E66E0E100E02B6A /* ConsultantAide-Bridging-Header.h */,
-				C96ED8DF1E6ADDD3009010B4 /* Frameworks */,
+				C9809E1B1E6AE62E00E63732 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -716,7 +713,6 @@
 				C9F073071DCA49240014F0E7 /* LaunchScreen.storyboard in Resources */,
 				C9F073041DCA49240014F0E7 /* Assets.xcassets in Resources */,
 				C9537A681E61B5FD003C35C8 /* api-v2.1-import.json in Resources */,
-				C96ED8DE1E6ADD87009010B4 /* Rollbar in Resources */,
 				C9F072FF1DCA49240014F0E7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -846,6 +842,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -897,6 +894,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -909,6 +907,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -925,14 +924,15 @@
 				DEVELOPMENT_TEAM = 82GBM43259;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Firebase/Analytics",
-					"$(PROJECT_DIR)/Firebase/Crash",
 					"$(PROJECT_DIR)/Rollbar",
 				);
 				INFOPLIST_FILE = ConsultantAide/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattorahood.ConsultantAide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ConsultantAide-Bridging-Header.h";
@@ -951,14 +951,15 @@
 				DEVELOPMENT_TEAM = 82GBM43259;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Firebase/Analytics",
-					"$(PROJECT_DIR)/Firebase/Crash",
 					"$(PROJECT_DIR)/Rollbar",
 				);
 				INFOPLIST_FILE = ConsultantAide/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattorahood.ConsultantAide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ConsultantAide-Bridging-Header.h";

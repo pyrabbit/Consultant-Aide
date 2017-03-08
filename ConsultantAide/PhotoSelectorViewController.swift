@@ -26,9 +26,11 @@ class PhotoSelectorViewController: UIViewController {
     }
     
     @IBAction func openFacebookGroup(_ sender: Any) {
-        if let url = URL(string: "fb://group?id=898845000237494") {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        guard let url = URL(string: "fb://group?id=898845000237494") else {
+            return
         }
+        
+        UIApplication.shared.openURL(url)
     }
 }
 

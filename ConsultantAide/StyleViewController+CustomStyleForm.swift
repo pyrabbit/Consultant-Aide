@@ -28,13 +28,14 @@ extension StyleViewController: CustomStyleFormDelegate {
                 UserDefaults.standard.set(filters, forKey: "styleFilters")
             }
             
+            print("[Debug] Checking if filter view brands has Custom")
             if !(filterView.brands.contains("Custom")) {
                 filterView.brands.append("Custom")
                 filterView.brands = filterView.brands.sorted()
                 filterView.tableView.reloadData()
             }
-            
-            tableView.reloadData()
+
+            styles = styles.filter { filters.contains($0.brand) }
         }
         
         tableView.reloadData()

@@ -13,15 +13,22 @@ import SwiftyJSON
 
 class STRService {
 
-    let baseUrl = "https://beta.shoptheroe.com/api/v2"
+    let betaBaseUrl = "https://beta.shoptheroe.com/api/v2"
+    let baseUrl = "https://shoptheroe.com/api/v2"
     var id: String
+    var authorizeUrl: URL
+    var betaId: String
+    var betaAuthorizeUrl: URL
     
     init() {
-        id = "EKBEWEHiA8S2gRrNdfYeuw8RwiECMzFlmrAmsTsM"
+        betaId = "EKBEWEHiA8S2gRrNdfYeuw8RwiECMzFlmrAmsTsM"
+        id = "KPMDPQIzzDNjfTmmkXdG1ZPAai3B3TQvlbIHnUoA"
+        authorizeUrl = URL(string: "https://shoptheroe.com/o/authorize/?response_type=token&client_id=\(id)&state=random_state_string&redirect_uri=consultantaide://strDidAuthorizeApp")!
+        betaAuthorizeUrl = URL(string: "https://beta.shoptheroe.com/o/authorize/?response_type=token&client_id=\(betaId)&state=random_state_string&redirect_uri=consultantaide://strDidAuthorizeApp")!
     }
     
     func authorize() {
-        UIApplication.shared.open(URL(string: "https://beta.shoptheroe.com/o/authorize/?response_type=token&client_id=\(id)&state=random_state_string&redirect_uri=consultantaide://strDidAuthorizeApp")!)
+        UIApplication.shared.openURL(authorizeUrl)
     }
     
     func testAuthentication(completion: @escaping (Bool)  -> ()) {
@@ -30,17 +37,19 @@ class STRService {
             return
         }
         
-        Alamofire.request(baseUrl,
+        Alamofire.request("\(baseUrl)/",
             method: .get,
             parameters: nil,
             encoding: JSONEncoding.default,
             headers: ["Authorization": "Bearer \(access_token)"])
+            .validate(statusCode: 200..<300)
             .responseJSON { response in
                 switch response.result {
                 case .success(_):
                     completion(true)
                 case .failure(let error):
-                    print("ShopTheRoe: Failed test authentication with: \(error)")
+                    let message = "ShopTheRoe: Failed test authentication with: \(error)"
+                    Rollbar.error(withMessage: message)
                     completion(false)
                 }
             }
@@ -81,14 +90,14 @@ class STRService {
                             }
                         case .failure(let error):
                             let message = "ShopTheRoe: Failed uploading image with error \(error)"
-                            print(message)
+                            Rollbar.error(withMessage: message)
                             completion(false, 0)
                         }
                         
                     }
                 case .failure(let encodingError):
                     let message = "ShopTheRoe: Failed encoding image with error \(encodingError)"
-                    print(message)
+                    Rollbar.error(withMessage: message)
                     completion(false, 0)
                 }
             }
@@ -122,7 +131,8 @@ class STRService {
                             completion(true, itemId)
                         }
                     case .failure(let error):
-                        print("ShopTheRoe: Failed uploading item with error \(error)")
+                        let message = "ShopTheRoe: Failed uploading item with error \(error)"
+                        Rollbar.error(withMessage: message)
                         completion(false, 0)
                     }
             })

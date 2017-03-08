@@ -69,8 +69,9 @@ extension StyleViewController: UITableViewDelegate, UITableViewDataSource, NSFet
             tableView.reloadData()
             
             if let style = cell.style {
-                context.delete(style)
-                ad.saveContext()
+                let moc = ad.mainManagedObjectContext
+                moc.delete(style)
+                ad.saveMainContext()
             }
         }
     }

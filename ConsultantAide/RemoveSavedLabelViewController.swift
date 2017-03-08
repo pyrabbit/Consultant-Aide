@@ -76,8 +76,9 @@ extension RemoveSavedLabelViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             let savedLabel = labels[indexPath.row]
-            context.delete(savedLabel)
-            ad.saveContext()
+            let moc = ad.mainManagedObjectContext
+            moc.delete(savedLabel)
+            ad.saveMainContext()
             
             labels.remove(at: indexPath.row)
             tableView.reloadData()

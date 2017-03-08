@@ -36,7 +36,6 @@ class StyleViewController: UIViewController {
             filterView.filters = Set(filters)
             
             if filters.count > 0 {
-                print("Filtering styles")
                 styles = styles.filter { filters.contains($0.brand) }
             }
         }
@@ -131,7 +130,8 @@ class StyleViewController: UIViewController {
             sizes.append(sizeText)
         }
         
-        let style = SavedLabel(context: context)
+        let moc = ad.mainManagedObjectContext
+        let style = NSEntityDescription.insertNewObject(forEntityName: "SavedLabel", into: moc) as! SavedLabel
         
         style.name = styleCell.style.name
         style.brand = styleCell.style.brand
@@ -145,7 +145,7 @@ class StyleViewController: UIViewController {
             style.yPos = y
         }
         
-        ad.saveContext()
+        ad.saveMainContext()
         selectedStyle = style
         
         _ = navigationController?.popViewController(animated: true)
