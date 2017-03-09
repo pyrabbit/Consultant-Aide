@@ -126,8 +126,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 try FileManager.default.createDirectory(at: supportDirectory, withIntermediateDirectories: true, attributes: nil)
             } catch {
-                Rollbar.error(withMessage: "Could not create the necessary ApplicationSupport directory for the SQLite database.")
-                abort()
+                let nserror = error as NSError
+                Rollbar.error(withMessage: "Could not create the necessary ApplicationSupport directory for the SQLite database. \(error)")
             }
         }
         
@@ -141,10 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             dict[NSUnderlyingErrorKey] = error as NSError
             let wrappedError = NSError(domain: "com.mattorahood.ConsultantAide", code: 9999, userInfo: dict)
-            // Replace this with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
-            abort()
+            Rollbar.error(withMessage: "Unresolved persistantStoreCoordinator error \(wrappedError), \(wrappedError.userInfo)")
         }
 
         return coordinator
@@ -163,8 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 try self.masterManagedObjectContext.save()
             } catch {
                 let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
+                Rollbar.error(withMessage: "Unresolved saveMasterContext error \(nserror), \(nserror.userInfo)")
             }
         }
     }
@@ -182,8 +178,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.saveMasterContext()
             } catch {
                 let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
+                Rollbar.error(withMessage: "Unresolved saveMainContext error \(nserror), \(nserror.userInfo)")
             }
         }
     }
@@ -200,8 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.saveMainContext()
         } catch {
             let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
+            Rollbar.error(withMessage: "Unresolved saveWorkerContext error \(nserror), \(nserror.userInfo)")
         }
     }
 }
