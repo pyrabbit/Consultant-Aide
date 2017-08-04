@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GSMessages
 
 class SettingsTableViewController: UITableViewController {
 
@@ -144,6 +145,16 @@ class SettingsTableViewController: UITableViewController {
             presentPhotoLibraryController()
         case 19:
             performSegue(withIdentifier: "segueToSTRSettings", sender: self)
+        case 20:
+            UserDefaults.standard.set(0, forKey: "defaultWatermarkTextY")
+            UserDefaults.standard.set(0, forKey: "defaultWatermarkTextX")
+            UserDefaults.standard.set(0, forKey: "defaultWatermarkImageX")
+            UserDefaults.standard.set(0, forKey: "defaultWatermarkImageY")
+            UserDefaults.standard.set(0, forKey: "defaultCollageXPosition")
+            UserDefaults.standard.set(0, forKey: "defaultCollageYPosition")
+            UserDefaults.standard.set(0, forKey: "labelDefaultXPos")
+            UserDefaults.standard.set(0, forKey: "labelDefaultYPos")
+            self.showMessage("Successfully reset default label position!", type: .success)
         default:
             print("Some other path was selected.")
         }
