@@ -96,10 +96,16 @@ class STRNormalizer {
             return 25
         case "lularoe-gracie":
             return 34
+        case "lularoe-gigi":
+            return 97
+        case "lularoe-harvey":
+            return 103
         case "lularoe-irma":
             return 17
         case "lularoe-jade":
             return 15
+        case "lularoe-jaxon":
+            return 102
         case "lularoe-jill":
             return 7
         case "lularoe-jordan":
@@ -118,6 +124,8 @@ class STRNormalizer {
             return 6
         case "lularoe-lucy":
             return 2
+        case "lularoe-lynnae":
+            return 99
         case "lularoe-madison":
             return 3
         case "lularoe-mae":
@@ -142,8 +150,28 @@ class STRNormalizer {
             return 18
         case "lularoe-sarah":
             return 23
+        case "lularoe-sariah-kids":
+            return 100
+        case "lularoe-shirley":
+            return 98
         case "lularoe-sloan":
             return 27
+        case "lularoe-scarlett-kids":
+            return 82
+        case "lularoe-carly-disney":
+            return 85
+        case "lularoe-cassie-disney":
+            return 86
+        case "lularoe-classic-t-disney":
+            return 88
+        case "lularoe-irma-disney":
+            return 87
+        case "lularoe-leggings-kids-disney":
+            return 91
+        case "lularoe-mae-disney":
+            return 89
+        case "lularoe-randy-disney":
+            return 90
         default:
             return nil
         }
