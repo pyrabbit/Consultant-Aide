@@ -75,13 +75,43 @@ extension LabelEditorViewController {
                         var optId: Int?
                         var optSizeId: Int?
                         
-                        optId = STRNormalizer.convert(styleId: label.styleId)
+                        // Handle edge case with STR Leggings
+                        if (label.styleId == "lularoe-leggings") {
+                            optId = Optional.init(12)
+                            optSizeId = Optional.init(10)
+                            
+                            if let size = label.sizes?.first {
+                                switch size {
+                                case "TALL/CURVY":
+                                    optId = Optional.init(13)
+                                case "TC2":
+                                    optId = Optional.init(101)
+                                default:
+                                    optId = Optional.init(12)
+                                }
+                            }
+                        } else if (label.styleId == "lularoe-leggings-disney") {
+                            optId = Optional.init(93)
+                            optSizeId = Optional.init(10)
+                            
+                            if let size = label.sizes?.first {
+                                switch size {
+                                case "TALL/CURVY":
+                                    optId = Optional.init(94)
+                                default:
+                                    optId = Optional.init(93)
+                                }
+                            }
+                        } else {
+                            optId = STRNormalizer.convert(styleId: label.styleId)
+                        }
                         
                         if let size = label.sizes?.first {
                             optSizeId = STRNormalizer.convert(size: size)
                         }
 
                         if let styleId = optId, let sizeId = optSizeId {
+                            print("DEBUG - Entering Item Creation")
                             service.createItem(styleId: styleId, sizeId: sizeId, imageId: id, completion: { success, id in
                                 if (success) {
                                     self.showMessage("Successfully uploaded item to ShopTheRoe!", type: .success)

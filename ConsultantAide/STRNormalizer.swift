@@ -67,6 +67,8 @@ class STRNormalizer {
             return 23
         case "12/14":
             return 24
+        case "TC2":
+            return 50;
         default:
             return nil
         }
@@ -168,6 +170,8 @@ class STRNormalizer {
             return 87
         case "lularoe-leggings-kids-disney":
             return 91
+        case "lularoe-leggings-tween-disney":
+            return 92
         case "lularoe-mae-disney":
             return 89
         case "lularoe-randy-disney":
